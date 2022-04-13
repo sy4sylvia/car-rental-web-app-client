@@ -5,13 +5,21 @@ const ejs = require("ejs");
 //bcrypt
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-
+const session = require("express-session");
 
 const app = express();
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
+
+//initialize session -> this is for cookies, might not be necessary
+app.use(session({
+    secret: "any long string could be the secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {}
+}));
 
 //database setup
 
