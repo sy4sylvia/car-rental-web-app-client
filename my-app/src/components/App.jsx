@@ -16,6 +16,7 @@ function App() {
     return (
         <div className="container">
             <h1>Welcome to WOW! {text}</h1>
+            {/*<p> <FontAwesomeIcon icon="fa-solid fa-cars" /> </p> */}
             <form onSubmit={handleClick}>
                 <input onChange = {handleChange} type="text" placeholder="What's your name?" value={name} />
                 <button onClick={handleClick}>Submit</button>
