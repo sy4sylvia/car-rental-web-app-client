@@ -6,6 +6,7 @@ function Register(){
     const [information, setInformation] = useState({
         firstName: "",
         middleName:"",
+        lastName:"",
         email:"",
         phone:"",
         driverLicenseNo:""
@@ -20,6 +21,8 @@ function Register(){
         country:""
     });
 
+    const [password, setPassword] = useState("");
+
     const handleInformationChange = (event) => {
         setInformation((prevalue) => {
             return {
@@ -28,6 +31,12 @@ function Register(){
             }
         })
     }
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+        //when would encrpytion process be handled?
+    }
+
     const handleAddressChange = (event) => {
         setAddress((prevalue) => {
             return {
@@ -62,13 +71,22 @@ function Register(){
                 </div>
 
                 <div className="input-container">
-                    <label>Middle Name</label>
+                    <label>Last Name</label>
                     <input onChange = {handleInformationChange} type="text" placeholder="Last Name" value={information.lastName} />
                 </div>
 
                 <div className="input-container">
                     <label>Email</label>
                     <input onChange = {handleInformationChange} type="text" placeholder="Email" value={information.email} />
+                </div>
+
+                <div className="input-container">
+                    <label>Password</label>
+                    <input onChange = {handlePasswordChange} type="text" placeholder="Password" value={password} />
+                </div>
+
+                <div className="input-container">
+                    <p>Hold on, we still need addtional information...</p>
                 </div>
 
                 <div className="input-container">
