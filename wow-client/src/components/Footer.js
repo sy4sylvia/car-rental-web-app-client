@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import logo from '../imgs/logo_dark.png';
+
+// do i need a logo at the footer???
+
 function Footer() {
     return (
         <section className="about-section footer">

@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+//import all the components we want to render in our page.
 
 function App() {
   return (
