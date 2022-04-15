@@ -46,9 +46,6 @@ function Register(){
     function handleClick(event) {
 
     }
-
-
-
     // function handleFirstNameChange(event) {
     //     setFirstName(event.target.value);
     // }
@@ -89,7 +86,6 @@ function Register(){
     //     setDriverLicenseNo(event.target.value);
     // }
 
-
     return (
         <div className="container">
             <h1>Register</h1>
@@ -120,10 +116,6 @@ function Register(){
 
                 <button onClick={handleClick}>Submit</button>
             </form>
-
-
-
-
         </div>
     );
 }
