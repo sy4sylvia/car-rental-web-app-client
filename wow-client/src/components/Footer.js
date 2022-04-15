@@ -16,8 +16,6 @@ function Footer() {
                 <br />
             </p>
             <p>
-                Car Rentals
-                { ' ' }
                 Copyright® {new Date().getFullYear()}
             </p>
         </section>
