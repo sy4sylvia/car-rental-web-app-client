@@ -1,27 +1,28 @@
 import './App.css';
-// import {BrowserRouter, Route, Routes} from "react-router-dom";
-
+import React from 'react';
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 //import all the components we want to render in our page.
+import Home from "./components/home";
 import Login from './components/login';
 import Register from "./components/register";
-
-import React, {useState} from 'react';
 
 function App() {
   // configure route paths
   return (
-      // <h1>Test on App.js </h1>
-      <Routes>
-          {/*switch replaced by routes*/}
-        <Route path = '/' element={App}/>
-        <Route path = '/Login' element={Login}/>
-        <Route path = '/Register' element={Register}/>
-      </Routes>
-
+      <Router>
+          <Layout>
+              <Routes>
+                  {/*switch replaced by routes*/}
+                  <Route path = '/' element={<Home/>}/>
+                  <Route path = '/Login' element={<Login/>}/>
+                  <Route path = '/Register' element={<Register/>}/>
+              </Routes>
+          </Layout>
+      </Router>
   );
 
-
+  //originally from React tutorial
 
     // <div className="App">
     //   <header className="App-header">

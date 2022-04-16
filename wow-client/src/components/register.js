@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
-
 //need more on requiring information: PropTypes?
-
 function Register(){
     const [information, setInformation] = useState({
         firstName: "",
@@ -49,6 +47,10 @@ function Register(){
     function handleClick(event) {
         //after clicking the submit button -> should be saved to database
         //then direct to car rental page
+
+        //form would automatically refresh the page
+        //prevent current page being refreshed after submitting information
+        event.preventDefault();
     }
 
     return (
@@ -57,7 +59,7 @@ function Register(){
             <p>Nice to meet you! </p>
             <p>Register and book your ride today!</p>
             <br/>
-            {/* form would refresh the page */}
+            {/*  */}
 
             <form onSubmit={handleClick} name = "information">
                 <div className="input-container">
