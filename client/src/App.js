@@ -27,29 +27,43 @@
 
 import './App.css';
 import React from 'react';
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {Link} from "react-router-dom";
+// import { BrowserRouter, Link, Route, Routes} from "react-router-dom";
 
 //import all the components we want to render in our page.
-import Home from "./pages/Home";
-import Login from './pages/Login';
-import Register from "./pages/Register";
+import Home from "./routes/Home";
+import Login from './routes/Login';
+import Register from "./routes/Register";
+import Test from "./routes/Test";
 import Navigation from "./components/Navigation";
+
+// function App() {
+//     return (
+//         <div className="App">
+//             {/*<Navigation></Navigation>*/}
+//             <BrowserRouter>
+//                 <Routes>
+//                     <Route exact path = '/test' element = {<Test />} />
+//                     <Route exact path = '/login' element = {<Login />} />
+//                     <Route exact path = '/register' element = {<Register />} />
+//                     <Route exact path = '/' element = {<Home />} />
+//                     {/*default route comes last*/}
+//                 </Routes>
+//             </BrowserRouter>
+//         </div>
+//     );
+// }
+
 
 function App() {
     return (
-        <div className="App">
-            {/*<Navigation></Navigation>*/}
-            <Router>
-                <Routes>
-                    <Route path = '/login' element = {<Login />} />
-                    <Route path = '/register' element = {<Register />} />
-                    <Route path = '/' element = {<Home />} />
-                    {/*default route comes last*/}
-                </Routes>
-            </Router>
+        <div>
+            <h1>omg</h1>
         </div>
     );
 }
+
+
 // const App = () => (
 //     <Router>
 //         <Routes>

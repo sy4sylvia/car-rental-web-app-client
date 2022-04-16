@@ -59,7 +59,6 @@ function Register(){
             <p>Nice to meet you! </p>
             <p>Register and book your ride today!</p>
             <br/>
-            {/*  */}
 
             <form onSubmit={handleClick} name = "information">
                 <div className="input-container">

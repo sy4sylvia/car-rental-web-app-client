@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@reduxjs/toolkit": "^1.8.1",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "ejs": "^3.0.2",

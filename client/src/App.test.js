@@ -4,7 +4,7 @@ import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createRoot} from 'react-dom/client';
-import Register from "./pages/register";
+import Register from "./routes/Register";
 import {act} from "react-dom/test-utils";
 
 //default from React
