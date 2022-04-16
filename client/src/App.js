@@ -25,7 +25,6 @@
 //
 // export default App;
 
-
 import './App.css';
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
@@ -34,14 +33,31 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Home from "./pages/Home";
 import Login from './pages/Login';
 import Register from "./pages/Register";
+import Navigation from "./components/Navigation";
 
-const App = () => (
-    <Router>
-      <Routes>
-        <Route path = '/' element = {<Home />} />
-        <Route path = '/login' element = {<Login />} />
-        <Route path = '/register' element = {<Register />} />
-      </Routes>
-    </Router>
-);
+function App() {
+    return (
+        <div className="App">
+            {/*<Navigation></Navigation>*/}
+            <Router>
+                <Routes>
+                    <Route path = '/login' element = {<Login />} />
+                    <Route path = '/register' element = {<Register />} />
+                    <Route path = '/' element = {<Home />} />
+                    {/*default route comes last*/}
+                </Routes>
+            </Router>
+        </div>
+    );
+}
+// const App = () => (
+//     <Router>
+//         <Routes>
+//           <Route path = '/login' element = {<Login />} />
+//           <Route path = '/register' element = {<Register />} />
+//           <Route path = '/' element = {<Home />} />
+//             {/*default route comes last*/}
+//         </Routes>
+//     </Router>
+// );
 export default App;
