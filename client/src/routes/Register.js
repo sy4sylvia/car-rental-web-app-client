@@ -54,16 +54,12 @@ function Register(){
         event.preventDefault();
     }
 
+    //route change after checking for corporate discount
     let navigate = useNavigate();
     const routeChange = () =>{
         let path = '/test';
         navigate(path);
     }
-
-    // function routeChange(event) {
-    //     //after clicking the corporate discount program button
-    //     event.preventDefault();
-    // }
 
     return (
         <div className="container">

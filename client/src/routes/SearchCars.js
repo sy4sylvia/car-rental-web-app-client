@@ -70,7 +70,7 @@ function SearchCars() {
             {/*    <input onChange = {handleCarInformation} type="text" placeholder="Drop-off Date" value={carInformation.dropOffDate} />*/}
             {/*</div>*/}
             <h4 />
-            
+
             <button onClick={routeChange}>Search</button>
 
         </div>
