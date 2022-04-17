@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 //need more on requiring information: PropTypes?
+import { useNavigate } from "react-router-dom";
 function Register(){
     const [information, setInformation] = useState({
         firstName: "",
@@ -52,6 +53,17 @@ function Register(){
         //prevent current page being refreshed after submitting information
         event.preventDefault();
     }
+
+    let navigate = useNavigate();
+    const routeChange = () =>{
+        let path = '/test';
+        navigate(path);
+    }
+
+    // function routeChange(event) {
+    //     //after clicking the corporate discount program button
+    //     event.preventDefault();
+    // }
 
     return (
         <div className="container">
@@ -140,6 +152,9 @@ function Register(){
                 </div>
                 <button onClick={handleClick}>Submit</button>
             </form>
+
+            <h3>Check for your corporate discount here!</h3>
+            <button onClick={routeChange}>Corporate Discount Program</button>
         </div>
     );
 }

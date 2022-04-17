@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
+import FlavorForm from "./FlavorForm";
+import Navigation from "../components/Navigation";
 
 function Test(){
+
     return (
-        <div className="container">
-            <h1>test!!!!</h1>
-        </div>
+        <FlavorForm />
+        // <div>
+        //     <h1> test </h1>
+        //     <h1>...</h1>
+        //
+        // </div>
+
+        //test on select
+
     );
 }
 

@@ -9,6 +9,7 @@ import Login from "./routes/Login";
 import Home from "./routes/Home";
 import Test from "./routes/Test";
 import Employee from "./routes/Employee";
+import SearchCars from "./routes/SearchCars";
 
 const rootElement = document.getElementById("root");
 render(<BrowserRouter>
@@ -17,9 +18,11 @@ render(<BrowserRouter>
                 <Route path="home" element={<Home />} />
                 <Route path="register" element={<Register />} />
                 <Route path="login" element={<Login />} />
+                <Route path="employee" element={<Employee />} />
             </Route>
             <Route path="test" element={<Test />} />
-            <Route path="employee" element={<Employee />} />
+            <Route path="search-cars" element={<SearchCars />} />
+
         </Routes>
     </BrowserRouter>,
      rootElement);

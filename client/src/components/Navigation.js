@@ -16,6 +16,7 @@ function Navigation() {
                 <Link to="/register">Register</Link> |{" "}
                 <Link to="/login">Log in</Link> |{" "}
                 <Link to="/employee">Employee</Link> |{" "}
+                <Link to="/search-cars">Search Cars</Link> |{" "}
                 <Link to="/test">Test</Link>
             </nav>
             <Outlet />
