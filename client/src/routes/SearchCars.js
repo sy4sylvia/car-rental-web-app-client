@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import CarTypes from "../selections/CarTypes";
 import PickUpLocations from "../selections/PickUpLocations";
 import DropOffLocations from "../selections/DropOffLocations";
+import Datepicker from "../selections/Datepicker";
 
 function SearchCars() {
 
@@ -24,6 +25,11 @@ function SearchCars() {
         })
     }
 
+    let navigate = useNavigate();
+    const routeChange = () =>{
+        let path = '/display';
+        navigate(path);
+    }
 
 
     return (
@@ -50,15 +56,23 @@ function SearchCars() {
             {/*    <input onChange = {handleCarInformation} type="text" placeholder="Drop-off Location" value={carInformation.dropOffLocation} />*/}
             {/*</div>*/}
 
+            <h4 />
 
             <div className="input-container">
                 <label>Pick-up Date</label>
-                <input onChange = {handleCarInformation} type="text" placeholder="Pick-up Date" value={carInformation.pickUpDate} />
-            </div>
-            <div className="input-container">
+                <Datepicker />
                 <label>Drop-off Date</label>
-                <input onChange = {handleCarInformation} type="text" placeholder="Drop-off Date" value={carInformation.dropOffDate} />
+                <Datepicker />
+                {/*<input onChange = {handleCarInformation} type="text" placeholder="Pick-up Date" value={carInformation.pickUpDate} />*/}
             </div>
+            {/*<div className="input-container">*/}
+            {/*    <label>Drop-off Date</label>*/}
+            {/*    <input onChange = {handleCarInformation} type="text" placeholder="Drop-off Date" value={carInformation.dropOffDate} />*/}
+            {/*</div>*/}
+            <h4 />
+            
+            <button onClick={routeChange}>Search</button>
+
         </div>
 
     );

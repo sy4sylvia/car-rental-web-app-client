@@ -19,9 +19,11 @@ render(<BrowserRouter>
                 <Route path="register" element={<Register />} />
                 <Route path="login" element={<Login />} />
                 <Route path="employee" element={<Employee />} />
+                <Route path="search-cars" element={<SearchCars />} />
+                <Route path="test" element={<Test />} />
             </Route>
-            <Route path="test" element={<Test />} />
-            <Route path="search-cars" element={<SearchCars />} />
+
+
 
         </Routes>
     </BrowserRouter>,

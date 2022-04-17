@@ -47,9 +47,8 @@ input[type="checkbox"] {
   opacity: 1;
 }
 
-footer {
+.footer {
   color: white;
-  color: rgba(0, 0, 0, 0.5);
   text-align: center;
 }
 
@@ -111,6 +110,13 @@ button {
   font-size: 18px;
 }
 
-.footer {
-  text-align: center;
+/*.footer {*/
+/*  text-align: center;*/
+/*}*/
+.date-picker {
+  padding: 2% 40% 2% 40%;
+}
+
+.selection-bar {
+
 }

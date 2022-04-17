@@ -19,19 +19,20 @@ class DropOffLocations extends React.Component {
 
     render() {
         return (
-            <label>
-                Drop-off Locations {" "}
-                <select value={this.state.value} onChange={this.handleChange}>
-                    <option value="henry">1 Henry Street</option>
-                    <option value="monroe">490 Monroe Street</option>
-                    <option value="west">23 W 66th Street</option>
-                    <option value="humboldt">Humboldt Street</option>
-                    <option value="union">Union Street</option>
-                    {/*other values not added yet*/}
-                    <option value="others">Others</option>
-                </select>
-            </label>
-
+            <div>
+                <label>
+                    Drop-off Locations {" "}
+                    <select value={this.state.value} onChange={this.handleChange} className="selection-bar">
+                        <option value="henry">1 Henry Street</option>
+                        <option value="monroe">490 Monroe Street</option>
+                        <option value="west">23 W 66th Street</option>
+                        <option value="humboldt">Humboldt Street</option>
+                        <option value="union">Union Street</option>
+                        {/*other values not added yet*/}
+                        <option value="others">Others</option>
+                    </select>
+                </label>
+            </div>
         );
     }
 }
