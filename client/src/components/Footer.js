@@ -7,17 +7,15 @@ function Footer() {
             <h2 className="about-section__primary">
                 <Link className="nav-link white" to="/">
                     {/*direct to homepage ---necessary?*/}
-                    <img className="logo" src={logo} alt="logo not assigned right now" />
+                    {/*<img className="logo" src={logo} alt="logo not assigned right now" />*/}
                 </Link>
             </h2>
             <p>
-                World On Wheels
+                <strong>World On Wheels</strong>
                 {' '}
-                <br />
-            </p>
-            <p>
                 Copyright® {new Date().getFullYear()}
             </p>
+
         </section>
     );
 }
