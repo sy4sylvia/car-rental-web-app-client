@@ -8,6 +8,7 @@ import Register from "./routes/Register";
 import Login from "./routes/Login";
 import Home from "./routes/Home";
 import Test from "./routes/Test";
+import Employee from "./routes/Employee";
 
 const rootElement = document.getElementById("root");
 render(<BrowserRouter>
@@ -18,6 +19,7 @@ render(<BrowserRouter>
                 <Route path="login" element={<Login />} />
             </Route>
             <Route path="test" element={<Test />} />
+            <Route path="employee" element={<Employee />} />
         </Routes>
     </BrowserRouter>,
      rootElement);

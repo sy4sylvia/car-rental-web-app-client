@@ -14,13 +14,15 @@ function Navigation() {
             >
                 <Link to="/home">Home</Link> |{" "}
                 <Link to="/register">Register</Link> |{" "}
-                <Link to="/login">Log in</Link>|{" "}
+                <Link to="/login">Log in</Link> |{" "}
+                <Link to="/employee">Employee</Link> |{" "}
                 <Link to="/test">Test</Link>
             </nav>
             <Outlet />
         </div>
-
     );
+
+
 
     // return (
     //     <Navbar collapseOnSelect expand="sm" bg="light" variant="light">
@@ -53,7 +55,6 @@ function Navigation() {
 }
 
 export default Navigation;
-
 // export default function Navigation() {
 //
 //     const [token, setToken] = React.useState(1000);

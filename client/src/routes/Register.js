@@ -32,7 +32,7 @@ function Register(){
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
-        //when would encrpytion process be handled?
+        //when would encryption process be handled?
     }
 
     const handleAddressChange = (event) => {
@@ -56,8 +56,11 @@ function Register(){
     return (
         <div className="container">
             <h1>Register</h1>
-            <p>Nice to meet you! </p>
-            <p>Register and book your ride today!</p>
+            <h3>
+                Nice to meet you!
+                <br/>
+                Register and book your ride today!
+            </h3>
             <br/>
 
             <form onSubmit={handleClick} name = "information">

@@ -1,37 +1,44 @@
-import React, {useRef} from 'react';
+import React, {useState} from 'react';
 
 function Login(){
-    const email = useRef();
-    const password = useRef();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+        //actually not set...?send data back to database and verify?
+    }
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+        //actually not set...?send data back to database and verify?
+    }
 
     const handleLogin = event => {
         event.preventDefault();
-
-        const data = {
-            email: email.current.value,
-            password: password.current.value
-        };
-
         //try to log in with the data
     }
 
-
     function handleClick(event) {
+        // form would refresh the page
         event.preventDefault();
     }
-
 
     return (
         <div className="container">
             <h1>Log in</h1>
-            <p>Welcome back! </p>
-
+            <h3>Welcome back! </h3>
             <br/>
-            {/* form would refresh the page */}
-
             <form onSubmit={handleClick} name = "information">
+                <div className="input-container">
+                    <label>Email</label>
+                    <input onChange = {handleEmailChange} type="text" placeholder="Email" value={email} />
+                </div>
 
-
+                <div className="input-container">
+                    <label>Password</label>
+                    <input onChange = {handlePasswordChange} type="text" placeholder="Password" value={password} />
+                </div>
             </form>
 
         </div>
