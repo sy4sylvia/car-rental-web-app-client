@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import {Link, Outlet} from 'react-router-dom';
 
-import { Container } from '@mui/material';
 
 function Navigation() {
     return (
