@@ -55,6 +55,17 @@ function Checkout(){
             }
         })
     }
+
+    const handleValidateChange = (event) => {
+        setCoupon((prevalue) => {
+            return {
+                ...prevalue,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
+
+
     function handleClick(event) {
         event.preventDefault();
     }
@@ -130,18 +141,19 @@ function Checkout(){
                         </div>
 
 
+
+
+
+                        <h4>Have a discount coupon?</h4>
                         <div className="input-container">
                             <label>Discount Coupon: </label>
                             <input onChange = {handleCouponChange} type="text" placeholder="Please input the discount coupon here." value={coupon.couponId} />
+                            <button onClick={handleValidateChange}>Apply</button>
                         </div>
 
-
-                        <p>Have a discount coupon?</p>
-                        <div className="input-container">
-                            <label>Billing Zipcode</label>
-                            <input onChange = {handlePaymentInfoChange} type="text" placeholder="Billing Zipcode" value={paymentInfo.zipcode} />
-                        </div>
-                        <button onClick={routeChange}>...</button>
+                        <br/>
+                        <br/>
+                        <br/>
 
                         <button onClick={routeChange}>Confirm and Submit</button>
                     </form>
