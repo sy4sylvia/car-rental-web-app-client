@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useNavigate} from "react-router-dom";
 
 function Login(){
     const [email, setEmail] = useState("");
@@ -24,10 +25,16 @@ function Login(){
         event.preventDefault();
     }
 
+    let navigate = useNavigate();
+    const routeChange = () =>{
+        let path = '/search-cars';
+        navigate(path);
+    }
+
     return (
         <div className="container">
             <h1>Log in</h1>
-            <h3>Welcome back! </h3>
+            <h2>Welcome back! </h2>
             <br/>
             <form onSubmit={handleClick} name = "information">
                 <div className="input-container">
@@ -40,7 +47,7 @@ function Login(){
                     <input onChange = {handlePasswordChange} type="text" placeholder="Password" value={password} />
                 </div>
 
-                <button onClick={handleClick}>Submit</button>
+                <button onClick={routeChange}>Log in</button>
             </form>
 
         </div>

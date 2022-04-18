@@ -5,7 +5,6 @@ import { ThemeProvider } from "styled-components";
 
 const initialState = {
     date: new Date(),
-    // date: null,
     showDatepicker: false,
 }
 
@@ -47,9 +46,7 @@ function Datepicker() {
                              showDatepicker={state.showDatepicker} // Boolean
             />
         </div>
-
         // </ThemeProvider>
-
     );
 }
 export default Datepicker;

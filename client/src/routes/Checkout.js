@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 //need more on requiring information: PropTypes?
 import { useNavigate } from "react-router-dom";
 import CompanyNames from "../selections/CompanyNames";
-function Register(){
+
+
+function Checkout(){
     const [information, setInformation] = useState({
         firstName: "",
         middleName:"",
@@ -55,32 +57,20 @@ function Register(){
         event.preventDefault();
     }
 
-
+    //route change after checking for corporate discount
     let navigate = useNavigate();
     const routeChange = () =>{
-        let path = '/login';
+        let path = '/complete';
         navigate(path);
     }
 
     return (
         <div className="container">
-            <h1>Register</h1>
-            <h3>
-                Nice to meet you!
-                <br/>
-                Register and book your ride today!
-            </h3>
-            <br/>
-
+            <h1>Customer Info</h1>
             <form onSubmit={handleClick} name = "information">
                 <div className="input-container">
                     <label>First Name</label>
                     <input onChange = {handleInformationChange} type="text" placeholder="First Name" value={information.firstName} />
-                </div>
-
-                <div className="input-container">
-                    <label>Middle Name</label>
-                    <input onChange = {handleInformationChange} type="text" placeholder="Middle Name(optional)" value={information.middleName} />
                 </div>
 
                 <div className="input-container">
@@ -98,9 +88,6 @@ function Register(){
                     <input onChange = {handlePasswordChange} type="text" placeholder="Password" value={password} />
                 </div>
 
-                <div className="input-container">
-                    <p>Hold on, we still need addtional information...</p>
-                </div>
 
                 <div className="input-container">
                     <label>Mobile Phone</label>
@@ -112,30 +99,38 @@ function Register(){
                     <input onChange = {handleInformationChange} type="text" placeholder="Driver License Number" value={information.driverLicenseNo} />
                 </div>
 
-                <button onClick={handleClick}>Submit</button>
+                {/*<button onClick={handleClick}>Submit</button>*/}
             </form>
 
-            <h3>Address Book</h3>
-            <p>Please edit your address here.</p>
+
+
+            <h1>Payment Info</h1>
+
             <form onSubmit={handleClick} name = "address">
                 <div className="input-container">
-                    <label>Street</label>
+                    <label>Credit Card Number</label>
                     <input onChange = {handleAddressChange} type="text" placeholder="Street" value={address.street} />
                 </div>
 
+                {/*use select instead*/}
                 <div className="input-container">
-                    <label>Apt/Unit</label>
+                    <label>Expire Month</label>
                     <input onChange = {handleAddressChange} type="text" placeholder="Apt(optional)" value={address.apt} />
                 </div>
 
                 <div className="input-container">
-                    <label>City</label>
+                    <label>Expire Year</label>
                     <input onChange = {handleAddressChange} type="text" placeholder="City" value={address.city} />
                 </div>
 
                 <div className="input-container">
-                    <label>State</label>
+                    <label>CVC</label>
                     <input onChange = {handleAddressChange} type="text" placeholder="State" value={address.state} />
+                </div>
+
+                <div className="input-container">
+                    <label>Billing Zipcode</label>
+                    <input onChange = {handleAddressChange} type="text" placeholder="Zipcode" value={address.zipcode} />
                 </div>
 
                 <div className="input-container">
@@ -143,21 +138,13 @@ function Register(){
                     <input onChange = {handleAddressChange} type="text" placeholder="Country" value={address.country} />
                 </div>
 
-                <div className="input-container">
-                    <label>Zipcode</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="Zipcode" value={address.zipcode} />
-                </div>
-                <button onClick={handleClick}>Submit</button>
+
+                <button onClick={routeChange}>Submit</button>
             </form>
 
-            <h3>Check for your corporate discount here!</h3>
-            <div>
-                <CompanyNames />
-            </div>
-            {/*<button onClick={routeChange}>Corporate Discount Program</button>*/}
-            <button onClick={routeChange}>Finish Registration</button>
+
         </div>
     );
 }
 
-export default Register;
+export default Checkout;
