@@ -114,14 +114,13 @@ button {
 /*  text-align: center;*/
 /*}*/
 .date-picker {
-  padding: 2% 40% 2% 40%;
+  padding: 1.5% 40% 1.5% 40%;
 }
 
 .selection-bar {
-
+  padding: 1.5% 40% 1.5% 40%;
 }
 
 .search-results {
   text-align: center;
-
 }

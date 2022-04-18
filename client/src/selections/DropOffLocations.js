@@ -1,40 +1,35 @@
-import React from "react";
+import React, { useState } from 'react';
+import Select from 'react-select';
 
-class DropOffLocations extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {value: 'standard'};
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+const options = [
+    { value: 'henry', label: "1 Henry Street" },
+    { value: 'monroe', label: "490 Monroe Street" },
+    { value: 'west', label: "23 W 66th Street" },
+    { value: 'humboldt', label: "45 Humboldt Street" },
+    { value: 'union', label: "2 Union Street" },
+    { value: 'others', label: 'Others' },
+];
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
-    }
+export default function DropOffLocations() {
+    const [officeOption, setOfficeOption] = useState(null);
 
-    handleSubmit(event) {
-        alert('Your favorite flavor is: ' + this.state.value);
-        event.preventDefault();
-    }
-
-    render() {
-        return (
-            <div>
-                <label>
-                    Drop-off Locations {" "}
-                    <select value={this.state.value} onChange={this.handleChange} className="selection-bar">
-                        <option value="henry">1 Henry Street</option>
-                        <option value="monroe">490 Monroe Street</option>
-                        <option value="west">23 W 66th Street</option>
-                        <option value="humboldt">Humboldt Street</option>
-                        <option value="union">Union Street</option>
-                        {/*other values not added yet*/}
-                        <option value="others">Others</option>
-                    </select>
-                </label>
-            </div>
-        );
-    }
+    return (
+        <div className="selection-bar">
+            <h4>Drop-off Locations</h4>
+            <Select
+                defaultValue={officeOption}
+                onChange={setOfficeOption}
+                options={options}
+                theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 0,
+                    colors: {
+                        ...theme.colors,
+                        neutral0: 'floralWhite',
+                        primary25: 'silver',
+                    },
+                })}
+            />
+        </div>
+    );
 }
-
-export default DropOffLocations;

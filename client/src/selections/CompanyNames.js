@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 import Select from 'react-select';
 
 const options = [
-    { value: 'henry', label: "1 Henry Street" },
-    { value: 'monroe', label: "490 Monroe Street" },
-    { value: 'west', label: "23 W 66th Street" },
-    { value: 'humboldt', label: "45 Humboldt Street" },
-    { value: 'union', label: "2 Union Street" },
-    { value: 'others', label: 'Others' },
+    { value: 'apple', label: 'Apple' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'amazon', label: 'Amazon' },
+    { value: 'jpmorgan', label: 'J.P. Morgan' },
+    { value: 'meta', label: 'Meta' },
+    { value: 'microsoft', label: 'Microsoft' },
+    { value: 'pwc', label: 'Price Waterhouse Coopers' },
 ];
 
-export default function PickUpLocations() {
-    const [officeOption, setOfficeOption] = useState(null);
+export default function CompanyNames() {
+    const [companyNameOption, setCompanyNameOption] = useState(null);
 
     return (
         <div className="selection-bar">
-            <h4>Pick-up Locations</h4>
             <Select
-                defaultValue={officeOption}
-                onChange={setOfficeOption}
+                defaultValue={companyNameOption}
+                onChange={setCompanyNameOption}
                 options={options}
                 theme={(theme) => ({
                     ...theme,

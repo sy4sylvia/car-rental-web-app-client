@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 //need more on requiring information: PropTypes?
 import { useNavigate } from "react-router-dom";
+import CompanyNames from "../selections/CompanyNames";
 function Register(){
     const [information, setInformation] = useState({
         firstName: "",
@@ -150,6 +151,9 @@ function Register(){
             </form>
 
             <h3>Check for your corporate discount here!</h3>
+            <div>
+                <CompanyNames />
+            </div>
             <button onClick={routeChange}>Corporate Discount Program</button>
         </div>
     );

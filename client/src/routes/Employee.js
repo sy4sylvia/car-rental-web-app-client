@@ -37,6 +37,8 @@ function Employee(){
                     <label>Password</label>
                     <input onChange = {handlePasswordChange} type="text" placeholder="Password" value={password} />
                 </div>
+
+                <button onClick={handleClick}>Submit</button>
             </form>
 
         </div>

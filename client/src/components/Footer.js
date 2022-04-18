@@ -13,7 +13,7 @@ function Footer() {
             <p>
                 <strong>World On Wheels</strong>
                 {' '}
-                Copyright® {new Date().getFullYear()}
+                Copyright© {new Date().getFullYear()}
             </p>
 
         </section>
