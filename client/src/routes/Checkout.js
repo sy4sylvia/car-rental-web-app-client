@@ -66,82 +66,73 @@ function Checkout(){
 
     return (
         <div className="container">
-            <h1>Customer Info</h1>
-            <form onSubmit={handleClick} name = "information">
-                <div className="input-container">
-                    <label>First Name</label>
-                    <input onChange = {handleInformationChange} type="text" placeholder="First Name" value={information.firstName} />
+            <div className="row" >
+                <div className="feature-box col-lg-4">
+                    <i className="icon fa-solid fa-circle-check fa-4x"></i>
+
+                    <h2>Customer Info</h2>
+                    <form onSubmit={handleClick} name = "information">
+                        <div className="input-container">
+                            <label className="checkout-label">First Name</label>
+                            <input onChange = {handleInformationChange} type="text" placeholder="First Name" value={information.firstName} />
+                        </div>
+
+                        <div className="input-container">
+                            <label>Last Name</label>
+                            <input onChange = {handleInformationChange} type="text" placeholder="Last Name" value={information.lastName} />
+                        </div>
+
+                        <div className="input-container">
+                            <label>Email</label>
+                            <input onChange = {handleInformationChange} type="text" placeholder="Email" value={information.email} />
+                        </div>
+
+                        <div className="input-container">
+                            <label>Mobile Phone</label>
+                            <input onChange = {handleInformationChange} type="text" placeholder="Mobile Phone" value={information.phone} />
+                        </div>
+
+                    </form>
+
                 </div>
 
-                <div className="input-container">
-                    <label>Last Name</label>
-                    <input onChange = {handleInformationChange} type="text" placeholder="Last Name" value={information.lastName} />
+                <div className="feature-box col-lg-4">
+                    <i className="icon fa-solid fa-bullseye fa-4x"></i>
+
+                    <h2>Payment Info</h2>
+
+                    <form onSubmit={handleClick} name = "address">
+                        <div className="input-container">
+                            <label>Credit Card Number</label>
+                            <input onChange = {handleAddressChange} type="text" placeholder="Street" value={address.street} />
+                        </div>
+
+                        {/*use select instead*/}
+                        <div className="input-container">
+                            <label>Expire Month</label>
+                            <input onChange = {handleAddressChange} type="text" placeholder="Apt(optional)" value={address.apt} />
+                        </div>
+
+                        <div className="input-container">
+                            <label>Expire Year</label>
+                            <input onChange = {handleAddressChange} type="text" placeholder="City" value={address.city} />
+                        </div>
+
+                        <div className="input-container">
+                            <label>CVC</label>
+                            <input onChange = {handleAddressChange} type="text" placeholder="State" value={address.state} />
+                        </div>
+
+                        <div className="input-container">
+                            <label>Billing Zipcode</label>
+                            <input onChange = {handleAddressChange} type="text" placeholder="Zipcode" value={address.zipcode} />
+                        </div>
+
+
+                        <button onClick={routeChange}>Confirm and Submit</button>
+                    </form>
                 </div>
-
-                <div className="input-container">
-                    <label>Email</label>
-                    <input onChange = {handleInformationChange} type="text" placeholder="Email" value={information.email} />
-                </div>
-
-                <div className="input-container">
-                    <label>Password</label>
-                    <input onChange = {handlePasswordChange} type="text" placeholder="Password" value={password} />
-                </div>
-
-
-                <div className="input-container">
-                    <label>Mobile Phone</label>
-                    <input onChange = {handleInformationChange} type="text" placeholder="Mobile Phone" value={information.phone} />
-                </div>
-
-                <div className="input-container">
-                    <label>Driver License Number</label>
-                    <input onChange = {handleInformationChange} type="text" placeholder="Driver License Number" value={information.driverLicenseNo} />
-                </div>
-
-                {/*<button onClick={handleClick}>Submit</button>*/}
-            </form>
-
-
-
-            <h1>Payment Info</h1>
-
-            <form onSubmit={handleClick} name = "address">
-                <div className="input-container">
-                    <label>Credit Card Number</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="Street" value={address.street} />
-                </div>
-
-                {/*use select instead*/}
-                <div className="input-container">
-                    <label>Expire Month</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="Apt(optional)" value={address.apt} />
-                </div>
-
-                <div className="input-container">
-                    <label>Expire Year</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="City" value={address.city} />
-                </div>
-
-                <div className="input-container">
-                    <label>CVC</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="State" value={address.state} />
-                </div>
-
-                <div className="input-container">
-                    <label>Billing Zipcode</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="Zipcode" value={address.zipcode} />
-                </div>
-
-                <div className="input-container">
-                    <label>Country</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="Country" value={address.country} />
-                </div>
-
-
-                <button onClick={routeChange}>Submit</button>
-            </form>
-
+            </div>
 
         </div>
     );

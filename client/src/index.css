@@ -13,7 +13,7 @@
 /*}*/
 
 
-h1 {
+h1,h2,h3,h4,h5 {
   color: #fff;
   padding: 10px;
 }
@@ -122,5 +122,15 @@ button {
 }
 
 .search-results {
+  text-align: center;
+}
+
+/*.input-form-box {*/
+/*  text-align: center;*/
+/*  display: block;*/
+/*  margin-right: auto;*/
+/*}*/
+
+.checkout-label {
   text-align: center;
 }

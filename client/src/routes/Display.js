@@ -78,7 +78,7 @@ function Display() {
                                 title={item.title}
                                 subtitle={
                                     <span>
-                                <a href="/checkout">
+                                <a href="/review">
                                     <button>Check this one out!</button>
                                 </a>
                                         {/*by: {item.author}*/}

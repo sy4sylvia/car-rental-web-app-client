@@ -75,27 +75,27 @@ function Register(){
             <form onSubmit={handleClick} name = "information">
                 <div className="input-container">
                     <label>First Name</label>
-                    <input onChange = {handleInformationChange} type="text" placeholder="First Name" value={information.firstName} />
+                    <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="First Name" value={information.firstName} />
                 </div>
 
                 <div className="input-container">
                     <label>Middle Name</label>
-                    <input onChange = {handleInformationChange} type="text" placeholder="Middle Name(optional)" value={information.middleName} />
+                    <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Middle Name(optional)" value={information.middleName} />
                 </div>
 
                 <div className="input-container">
                     <label>Last Name</label>
-                    <input onChange = {handleInformationChange} type="text" placeholder="Last Name" value={information.lastName} />
+                    <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Last Name" value={information.lastName} />
                 </div>
 
                 <div className="input-container">
                     <label>Email</label>
-                    <input onChange = {handleInformationChange} type="text" placeholder="Email" value={information.email} />
+                    <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Email" value={information.email} />
                 </div>
 
                 <div className="input-container">
                     <label>Password</label>
-                    <input onChange = {handlePasswordChange} type="text" placeholder="Password" value={password} />
+                    <input className = "input-form-box" onChange = {handlePasswordChange} type="text" placeholder="Password" value={password} />
                 </div>
 
                 <div className="input-container">
@@ -104,12 +104,12 @@ function Register(){
 
                 <div className="input-container">
                     <label>Mobile Phone</label>
-                    <input onChange = {handleInformationChange} type="text" placeholder="Mobile Phone" value={information.phone} />
+                    <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Mobile Phone" value={information.phone} />
                 </div>
 
                 <div className="input-container">
                     <label>Driver License Number</label>
-                    <input onChange = {handleInformationChange} type="text" placeholder="Driver License Number" value={information.driverLicenseNo} />
+                    <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Driver License Number" value={information.driverLicenseNo} />
                 </div>
 
                 <button onClick={handleClick}>Submit</button>
@@ -120,32 +120,32 @@ function Register(){
             <form onSubmit={handleClick} name = "address">
                 <div className="input-container">
                     <label>Street</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="Street" value={address.street} />
+                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Street" value={address.street} />
                 </div>
 
                 <div className="input-container">
                     <label>Apt/Unit</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="Apt(optional)" value={address.apt} />
+                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Apt(optional)" value={address.apt} />
                 </div>
 
                 <div className="input-container">
                     <label>City</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="City" value={address.city} />
+                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="City" value={address.city} />
                 </div>
 
                 <div className="input-container">
                     <label>State</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="State" value={address.state} />
+                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="State" value={address.state} />
                 </div>
 
                 <div className="input-container">
                     <label>Country</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="Country" value={address.country} />
+                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Country" value={address.country} />
                 </div>
 
                 <div className="input-container">
                     <label>Zipcode</label>
-                    <input onChange = {handleAddressChange} type="text" placeholder="Zipcode" value={address.zipcode} />
+                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Zipcode" value={address.zipcode} />
                 </div>
                 <button onClick={handleClick}>Submit</button>
             </form>
