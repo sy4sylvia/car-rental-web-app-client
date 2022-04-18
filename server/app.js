@@ -3,16 +3,18 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mysql = require("mysql2");
 
+//CURRENTLY, NOT USED.
+
 //bcrypt
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+
 
 const app = express();
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
-
 
 
 //database setup
@@ -45,7 +47,6 @@ connection.query('SELECT * FROM `sjd_order` WHERE `end_odometer` > 1000', (err, 
 //         else console.log(results);
 //     }
 // );
-
 
 
 //CRUD
