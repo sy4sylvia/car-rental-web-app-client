@@ -134,3 +134,8 @@ button {
 .checkout-label {
   text-align: center;
 }
+
+
+textarea {
+  resize: none;
+}

@@ -11,7 +11,6 @@ function App() {
     return (
         <Container>
             <Navigation />
-            <Home />
             <Footer />
         </Container>
 

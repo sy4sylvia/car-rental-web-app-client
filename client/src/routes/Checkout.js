@@ -3,30 +3,34 @@ import React, {useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import CompanyNames from "../selections/CompanyNames";
 
+//already logged in, no need to login and use password again.
 
 function Checkout(){
-    const [information, setInformation] = useState({
+    const [customerInfo, setCustomerInfo] = useState({
         firstName: "",
-        middleName:"",
         lastName:"",
         email:"",
         phone:"",
         driverLicenseNo:""
     });
 
-    const [address, setAddress] = useState({
-        street: "",
-        apt:"",
-        city:"",
+    const [paymentInfo, setPaymentInfo] = useState({
+        cardNumber:"",
+        month: "",
+        year:"",
+        cvc:"",
         zipcode:"",
         state:"",
         country:""
     });
 
-    const [password, setPassword] = useState("");
+    const [coupon, setCoupon] = useState({
+            couponId: ""
+        }
+    );
 
-    const handleInformationChange = (event) => {
-        setInformation((prevalue) => {
+    const handleCustomerInformationChange = (event) => {
+        setCustomerInfo((prevalue) => {
             return {
                 ...prevalue,
                 [event.target.name]: event.target.value
@@ -34,13 +38,8 @@ function Checkout(){
         })
     }
 
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-        //when would encryption process be handled?
-    }
-
-    const handleAddressChange = (event) => {
-        setAddress((prevalue) => {
+    const handlePaymentInfoChange = (event) => {
+        setPaymentInfo((prevalue) => {
             return {
                 ...prevalue,
                 [event.target.name]: event.target.value
@@ -48,12 +47,15 @@ function Checkout(){
         })
     }
 
+    const handleCouponChange = (event) => {
+        setCoupon((prevalue) => {
+            return {
+                ...prevalue,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
     function handleClick(event) {
-        //after clicking the submit button -> should be saved to database
-        //then direct to car rental page
-
-        //form would automatically refresh the page
-        //prevent current page being refreshed after submitting information
         event.preventDefault();
     }
 
@@ -74,24 +76,23 @@ function Checkout(){
                     <form onSubmit={handleClick} name = "information">
                         <div className="input-container">
                             <label className="checkout-label">First Name</label>
-                            <input onChange = {handleInformationChange} type="text" placeholder="First Name" value={information.firstName} />
+                            <input onChange = {handleCustomerInformationChange} type="text" placeholder="First Name" value={customerInfo.firstName} />
                         </div>
 
                         <div className="input-container">
                             <label>Last Name</label>
-                            <input onChange = {handleInformationChange} type="text" placeholder="Last Name" value={information.lastName} />
+                            <input onChange = {handleCustomerInformationChange} type="text" placeholder="Last Name" value={customerInfo.lastName} />
                         </div>
 
                         <div className="input-container">
                             <label>Email</label>
-                            <input onChange = {handleInformationChange} type="text" placeholder="Email" value={information.email} />
+                            <input onChange = {handleCustomerInformationChange} type="text" placeholder="Email" value={customerInfo.email} />
                         </div>
 
                         <div className="input-container">
                             <label>Mobile Phone</label>
-                            <input onChange = {handleInformationChange} type="text" placeholder="Mobile Phone" value={information.phone} />
+                            <input onChange = {handleCustomerInformationChange} type="text" placeholder="Mobile Phone" value={customerInfo.phone} />
                         </div>
-
                     </form>
 
                 </div>
@@ -104,30 +105,43 @@ function Checkout(){
                     <form onSubmit={handleClick} name = "address">
                         <div className="input-container">
                             <label>Credit Card Number</label>
-                            <input onChange = {handleAddressChange} type="text" placeholder="Street" value={address.street} />
+                            <input onChange = {handlePaymentInfoChange} type="text" placeholder="Credit Card Number" value={paymentInfo.cardNumber} />
                         </div>
 
                         {/*use select instead*/}
                         <div className="input-container">
                             <label>Expire Month</label>
-                            <input onChange = {handleAddressChange} type="text" placeholder="Apt(optional)" value={address.apt} />
+                            <input onChange = {handlePaymentInfoChange} type="text" placeholder="Expire Month" value={paymentInfo.month} />
                         </div>
 
                         <div className="input-container">
                             <label>Expire Year</label>
-                            <input onChange = {handleAddressChange} type="text" placeholder="City" value={address.city} />
+                            <input onChange = {handlePaymentInfoChange} type="text" placeholder="Expire Year" value={paymentInfo.year} />
                         </div>
 
                         <div className="input-container">
-                            <label>CVC</label>
-                            <input onChange = {handleAddressChange} type="text" placeholder="State" value={address.state} />
+                            <label>CVV/CVC</label>
+                            <input onChange = {handlePaymentInfoChange} type="text" placeholder="CVV/CVC" value={paymentInfo.cvc} />
                         </div>
 
                         <div className="input-container">
                             <label>Billing Zipcode</label>
-                            <input onChange = {handleAddressChange} type="text" placeholder="Zipcode" value={address.zipcode} />
+                            <input onChange = {handlePaymentInfoChange} type="text" placeholder="Billing Zipcode" value={paymentInfo.zipcode} />
                         </div>
 
+
+                        <div className="input-container">
+                            <label>Discount Coupon: </label>
+                            <input onChange = {handleCouponChange} type="text" placeholder="Please input the discount coupon here." value={coupon.couponId} />
+                        </div>
+
+
+                        <p>Have a discount coupon?</p>
+                        <div className="input-container">
+                            <label>Billing Zipcode</label>
+                            <input onChange = {handlePaymentInfoChange} type="text" placeholder="Billing Zipcode" value={paymentInfo.zipcode} />
+                        </div>
+                        <button onClick={routeChange}>...</button>
 
                         <button onClick={routeChange}>Confirm and Submit</button>
                     </form>

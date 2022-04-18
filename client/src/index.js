@@ -38,10 +38,11 @@ render(<BrowserRouter>
 
                 <Route path="employee" element={<Employee />} />
                 <Route path="car-management" element={<CarManagement />} />
-                <Route path="test" element={<Test />} />
+
             </Route>
 
-
+            <Route path="test" element={<Test />} />
+            {/*outside route - no navbar, header, footer*/}
 
         </Routes>
     </BrowserRouter>,
