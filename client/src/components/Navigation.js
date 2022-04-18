@@ -12,7 +12,7 @@ function Navigation() {
                     paddingBottom: "1rem",
                 }}
             >
-                <Link to="/home">Home</Link> |{" "}
+                <Link to="/">Home</Link> |{" "}
                 <Link to="/register">Register</Link> |{" "}
                 <Link to="/login">Log in</Link> |{" "}
                 <Link to="/employee">Employee</Link> |{" "}

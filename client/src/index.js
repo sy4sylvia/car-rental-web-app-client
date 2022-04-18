@@ -18,6 +18,7 @@ import Display from "./routes/Display";
 import Checkout from "./routes/Checkout";
 import Complete from "./routes/Complete";
 import Review from "./routes/Review";
+import CarManagement from "./routes/CarManagement";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -28,12 +29,15 @@ render(<BrowserRouter>
                 <Route path="home" element={<Home />} />
                 <Route path="register" element={<Register />} />
                 <Route path="login" element={<Login />} />
-                <Route path="employee" element={<Employee />} />
+
                 <Route path="search-cars" element={<SearchCars />} />
                 <Route path="display" element={<Display />} />
                 <Route path="checkout" element={<Checkout />} />
                 <Route path="review" element={<Review />} />
                 <Route path="complete" element={<Complete />} />
+
+                <Route path="employee" element={<Employee />} />
+                <Route path="car-management" element={<CarManagement />} />
                 <Route path="test" element={<Test />} />
             </Route>
 

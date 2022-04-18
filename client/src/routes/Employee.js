@@ -1,5 +1,6 @@
 //essentially -> similar to log in
 import React, {useState} from 'react';
+import {useNavigate} from "react-router-dom";
 
 function Employee(){
     const [employeeId, setEmployeeId] = useState("");
@@ -22,6 +23,13 @@ function Employee(){
         //verify login information in the backend?
     }
 
+    let navigate = useNavigate();
+    const routeChange = () =>{
+        let path = '/car-management';
+        navigate(path);
+    }
+
+
     return (
         <div className="container">
             <h1>Log in (Employee)</h1>
@@ -38,7 +46,7 @@ function Employee(){
                     <input onChange = {handlePasswordChange} type="text" placeholder="Password" value={password} />
                 </div>
 
-                <button onClick={handleClick}>Submit</button>
+                <button onClick={routeChange}>Log in</button>
             </form>
 
         </div>
