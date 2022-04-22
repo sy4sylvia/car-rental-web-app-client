@@ -43,7 +43,7 @@ function SearchCars() {
             {/*    <input onChange = {handleCarInformation} type="text" placeholder="Car Type" value={carInformation.carType} />*/}
             {/*</div>*/}
 
-            <h4>Current our offices are only located in NYC</h4>
+            <h4>Currently our offices are only located in NYC</h4>
             <PickUpLocations />
             {/*<div className="input-container">*/}
             {/*    <label>Pick-up Location</label>*/}

@@ -19,12 +19,17 @@ import Checkout from "./routes/Checkout";
 import Complete from "./routes/Complete";
 import Review from "./routes/Review";
 import CarManagement from "./routes/CarManagement";
+import Navbar from "./components/Navbar";
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootElement = document.getElementById("root");
 render(<BrowserRouter>
+
         <Routes>
+
+
+
             <Route path="/" element={<App />}>
                 <Route path="home" element={<Home />} />
                 <Route path="register" element={<Register />} />
