@@ -1,5 +1,5 @@
 # Full-Stack Project for CS-6083B: Car Rental Company
-Frontend: React by Siya Guo
+Frontend tech: React, Node.js, HTML/CSS
 
 ## Getting Started
 
@@ -11,6 +11,9 @@ cd client
 ```
 Please make sure you're inside the client folder before contining to the next step.
 
+Please make sure you have downloaded and installed Node.js and npm(Please refer to official documentation through the official website.)
+
+Please install dependencies according to full-stack-web-app/client/package.json otherwise you might run into problems displaying the website.
 
 ## Usage
 Start server with:
