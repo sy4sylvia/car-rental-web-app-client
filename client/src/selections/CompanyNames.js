@@ -3,7 +3,6 @@ import Select from 'react-select';
 
 const options = [
     { value: 'apple', label: 'Apple' },
-    { value: 'strawberry', label: 'Strawberry' },
     { value: 'amazon', label: 'Amazon' },
     { value: 'jpmorgan', label: 'J.P. Morgan' },
     { value: 'meta', label: 'Meta' },

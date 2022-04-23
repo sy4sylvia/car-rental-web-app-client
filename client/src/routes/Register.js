@@ -150,7 +150,7 @@ function Register(){
                 <button onClick={handleClick}>Submit</button>
             </form>
 
-            <h3>Check for your corporate discount here!</h3>
+            <h3>Belong to a company? Select your company for corporate discount.</h3>
             <div>
                 <CompanyNames />
             </div>

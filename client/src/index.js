@@ -19,9 +19,8 @@ import Checkout from "./routes/Checkout";
 import Complete from "./routes/Complete";
 import Review from "./routes/Review";
 import CarManagement from "./routes/CarManagement";
-import Navbar from "./components/Navbar";
+import UserProfile from "./routes/UserProfile";
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootElement = document.getElementById("root");
 render(<BrowserRouter>
@@ -40,6 +39,8 @@ render(<BrowserRouter>
                 <Route path="checkout" element={<Checkout />} />
                 <Route path="review" element={<Review />} />
                 <Route path="complete" element={<Complete />} />
+
+                <Route path="user-profile" element={<UserProfile />} />
 
                 <Route path="employee" element={<Employee />} />
                 <Route path="car-management" element={<CarManagement />} />

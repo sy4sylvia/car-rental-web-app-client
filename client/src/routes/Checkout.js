@@ -29,6 +29,11 @@ function Checkout(){
         }
     );
 
+    const [corporateCustomerInformation, setCorporateCustomerInformation] = useState({
+            corporateID: ""
+        }
+    );
+
     const handleCustomerInformationChange = (event) => {
         setCustomerInfo((prevalue) => {
             return {
@@ -56,8 +61,30 @@ function Checkout(){
         })
     }
 
+    // validation of individual coupon
     const handleValidateChange = (event) => {
         setCoupon((prevalue) => {
+            alert("coupon applied!");
+            return {
+                ...prevalue,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
+
+    const handleCorporateInformationChange = (event) => {
+        setCorporateCustomerInformation((prevalue) => {
+            alert("You have chosen the corporate discount!");
+            return {
+                ...prevalue,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
+
+    const handleValidateCorporateId = (event) => {
+        setCorporateCustomerInformation((prevalue) => {
+            alert("coupon applied!");
             return {
                 ...prevalue,
                 [event.target.name]: event.target.value
@@ -144,11 +171,20 @@ function Checkout(){
 
 
 
-                        <h4>Have a discount coupon?</h4>
+                        <h4>Have a discount coupon or want to use corporate discount?</h4>
                         <div className="input-container">
-                            <label>Discount Coupon: </label>
-                            <input onChange = {handleCouponChange} type="text" placeholder="Please input the discount coupon here." value={coupon.couponId} />
+                            <label>Individual Discount Coupon: </label>
+                            <input onChange = {handleCouponChange} type="text" placeholder="Individual Discount Coupon Id" value={coupon.couponId} />
                             <button onClick={handleValidateChange}>Apply</button>
+                        </div>
+
+                        <h4></h4>
+                        <div className="input-container">
+                            <label>Corporate: </label>
+                            <CompanyNames />
+                            <input onChange = {handleCorporateInformationChange} type="text" placeholder="Corporate Id" value={corporateCustomerInformation.corporateID} />
+                            {/*<input onChange = {handleCouponChange} type="text" placeholder="Please input the discount coupon here." value={coupon.couponId} />*/}
+                            <button onClick={handleValidateCorporateId}>Choose your corporate</button>
                         </div>
 
                         <br/>
