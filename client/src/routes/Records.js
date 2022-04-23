@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 
 function Records(){
-    //route change after checking for corporate discount
     let navigate = useNavigate();
     const routeChange = () =>{
-        let path = '/home';
+        let path = '/employee';
         navigate(path);
     }
 
@@ -14,8 +13,8 @@ function Records(){
             <h3>Records maintained by employees.
             </h3>
             <br/>
-            <button onClick={routeChange}>Take Me to Home</button>
-
+            <button onClick={routeChange}>Log out</button>
+            {/*for employee - log out and redirect to the log in page*/}
         </div>
     );
 }
