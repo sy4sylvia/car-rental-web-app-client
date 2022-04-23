@@ -28,7 +28,6 @@ render(<BrowserRouter>
         <Routes>
 
 
-
             <Route path="/" element={<App />}>
                 <Route path="home" element={<Home />} />
                 <Route path="register" element={<Register />} />
@@ -44,6 +43,8 @@ render(<BrowserRouter>
 
                 <Route path="employee" element={<Employee />} />
                 <Route path="car-management" element={<CarManagement />} />
+
+                <Route path="records" element={<Records />} />
 
             </Route>
 
