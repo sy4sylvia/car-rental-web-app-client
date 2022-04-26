@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import UserPersonalInfo from "../containers/UserPersonalInfo";
+import OrderTables from "../containers/OrderTables";
 
 function Test() {
 
@@ -28,8 +29,7 @@ function Test() {
     return (
 
     <div>
-        <UserPersonalInfo />
-
+        <OrderTables />
 
         <form onSubmit={handleSubmit}>
             <label>
