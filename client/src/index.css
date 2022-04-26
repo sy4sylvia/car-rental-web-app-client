@@ -145,13 +145,13 @@ textarea {
   align-items: center;
 }
 table {
-  border: 2px solid forestgreen;
+  border: 2px solid darkolivegreen;
   width: 800px;
   height: 200px;
 }
 
 th {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
 }
 
 td {

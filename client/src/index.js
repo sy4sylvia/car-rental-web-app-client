@@ -15,12 +15,13 @@ import Display from "./routes/Display";
 import Checkout from "./routes/Checkout";
 import Complete from "./routes/Complete";
 import Review from "./routes/Review";
-import CarManagement from "./routes/CarManagement";
+import CarManagement from "./routes/EmployeeActions/CarManagement";
 import UserProfile from "./routes/UserProfile";
 import Records from "./routes/Records";
 import UserEditInfo from "./routes/UserProfileSubRoutes/UserEditInfo";
 import UserEditAddressInfo from "./routes/UserProfileSubRoutes/UserEditAddressInfo";
 import OrderHistory from "./routes/UserProfileSubRoutes/OrderHistory";
+import EmployeeLogin from "./routes/EmployeeActions/EmployeeLogin";
 
 const rootElement = document.getElementById("root");
 render(<BrowserRouter>
@@ -43,7 +44,10 @@ render(<BrowserRouter>
                 <Route path="user-profile-edit-address" element={<UserEditAddressInfo />} />
                 <Route path="order-history" element={<OrderHistory />} />
 
+
+
                 <Route path="employee" element={<Employee />} />
+                <Route path="employee-login" element={<EmployeeLogin />} />
                 <Route path="car-management" element={<CarManagement />} />
 
                 <Route path="records" element={<Records />} />
