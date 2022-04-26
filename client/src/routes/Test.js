@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import UserPersonalInfo from "../containers/UserPersonalInfo";
 
 function Test() {
 
@@ -26,6 +27,10 @@ function Test() {
 
     return (
 
+    <div>
+        <UserPersonalInfo />
+
+
         <form onSubmit={handleSubmit}>
             <label>
                 Apply Discount:
@@ -39,6 +44,7 @@ function Test() {
 
             <input type="submit" value="Submit" />
         </form>
+    </div>
 
     );
 }

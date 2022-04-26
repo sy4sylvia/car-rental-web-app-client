@@ -23,21 +23,6 @@ function Datepicker() {
     const [state, dispatch] = useReducer(reducer, initialState)
 
     return (
-        // <ThemeProvider
-        //     theme={{
-        //         breakpoints: ["32em", "48em", "64em"],
-        //         reactDatepicker: {
-        //             daySize: [36, 40],
-        //             fontFamily: "system-ui, -apple-system",
-        //             colors: {
-        //                 accessibility: "#D80249",
-        //                 selectedDay: "#f7518b",
-        //                 selectedDayHover: "#F75D95",
-        //                 primaryColor: "#d8366f"
-        //             }
-        //         }
-        //     }}
-        // >
         <div className="date-picker">
             <DateSingleInput
                              onDateChange={data => dispatch({type: "dateChange", payload: data})}
@@ -46,7 +31,6 @@ function Datepicker() {
                              showDatepicker={state.showDatepicker} // Boolean
             />
         </div>
-        // </ThemeProvider>
     );
 }
 export default Datepicker;

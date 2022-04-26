@@ -3,9 +3,6 @@ import {BrowserRouter, Routes, Route,} from "react-router-dom";
 
 import './index.css';
 
-import "/node_modules/react-grid-layout/css/styles.css";
-import "/node_modules/react-resizable/css/styles.css";
-//???
 
 import App from "./App";
 import Register from "./routes/Register";
@@ -21,7 +18,9 @@ import Review from "./routes/Review";
 import CarManagement from "./routes/CarManagement";
 import UserProfile from "./routes/UserProfile";
 import Records from "./routes/Records";
-
+import UserEditInfo from "./routes/UserProfileSubRoutes/UserEditInfo";
+import UserEditAddressInfo from "./routes/UserProfileSubRoutes/UserEditAddressInfo";
+import OrderHistory from "./routes/UserProfileSubRoutes/OrderHistory";
 
 const rootElement = document.getElementById("root");
 render(<BrowserRouter>
@@ -39,6 +38,10 @@ render(<BrowserRouter>
                 <Route path="complete" element={<Complete />} />
 
                 <Route path="user-profile" element={<UserProfile />} />
+
+                <Route path="user-profile-edit-info" element={<UserEditInfo />} />
+                <Route path="user-profile-edit-address" element={<UserEditAddressInfo />} />
+                <Route path="order-history" element={<OrderHistory />} />
 
                 <Route path="employee" element={<Employee />} />
                 <Route path="car-management" element={<CarManagement />} />
