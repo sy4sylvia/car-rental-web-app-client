@@ -20,14 +20,13 @@ import Complete from "./routes/Complete";
 import Review from "./routes/Review";
 import CarManagement from "./routes/CarManagement";
 import UserProfile from "./routes/UserProfile";
+import Records from "./routes/Records";
 
 
 const rootElement = document.getElementById("root");
 render(<BrowserRouter>
 
         <Routes>
-
-
             <Route path="/" element={<App />}>
                 <Route path="home" element={<Home />} />
                 <Route path="register" element={<Register />} />

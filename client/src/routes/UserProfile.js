@@ -16,4 +16,4 @@ function UserProfile(){
     );
 }
 
-export default Complete;
+export default UserProfile;
