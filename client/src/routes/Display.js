@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Button} from "react-bootstrap";
-import Navigation from "../components/Navigation";
+import Navigation from "../containers/abandoned/Navigation";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";

@@ -24,7 +24,7 @@ function EmployeeLogin(){
 
     let navigate = useNavigate();
     const routeChange = () =>{
-        let path = '/car-management';
+        let path = '/records';
         navigate(path);
     }
 

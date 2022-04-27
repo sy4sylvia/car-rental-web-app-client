@@ -1,12 +1,12 @@
 import React from "react";
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from "../containers/NavbarElements";
-import {Outlet} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 
 function Navbar() {
     return (
         <div>
             <Nav>
-                <NavLink to="/home">Home</NavLink>
+                <NavLink to="/home">WOW</NavLink>
 
                 <Bars />
                 <NavMenu>
@@ -19,7 +19,7 @@ function Navbar() {
 
                 <NavBtn>
                     {/*<NavBtnLink to="/test">Test</NavBtnLink>*/}
-                    <NavBtnLink to="/employee" activeStyle>Employee</NavBtnLink>
+                    <NavBtnLink to="/employee-login" activeStyle>Employee</NavBtnLink>
                 </NavBtn>
             </Nav>
             <Outlet />

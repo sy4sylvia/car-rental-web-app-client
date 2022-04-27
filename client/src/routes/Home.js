@@ -12,7 +12,6 @@ function Home(){
             {/*    <Link to="/employee">Employee</Link>*/}
             {/*</nav>*/}
             <h1>What to display on the homepage???????</h1>
-            <h3>Above navbar is for test purpose only.</h3>
         </div>
     );
 }

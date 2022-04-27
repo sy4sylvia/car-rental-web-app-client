@@ -31,9 +31,16 @@ function SearchCars() {
         navigate(path);
     }
 
+    const routeChangeReturnCar = () =>{
+        let path = '/display';
+        navigate(path);
+    }
 
     return (
         <div className="container">
+            <h1>Returning Car?</h1>
+            <button onClick={routeChangeReturnCar}>Return</button>
+
             <h1>Search Cars</h1>
             {/*<FontAwesomeIcon icon="fa-solid fa-calendar-day" />*/}
 
