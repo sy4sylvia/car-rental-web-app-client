@@ -30,12 +30,12 @@ export default function UserAddressInfo() {
 
     function handleClick(event) {
         event.preventDefault();
-
     }
 
     let navigate = useNavigate();
     const routeChange = () =>{
-        let path = '/user-profile';
+        alert("address information submitted successfully.");
+        let path = '/register';
         navigate(path);
     };
 
@@ -43,7 +43,7 @@ export default function UserAddressInfo() {
         <div className>
             <br />
             <h2>Address Book</h2>
-            <h3>Let's start with filling put your address information.</h3>
+            <h3>Let's start with filling out your address information.</h3>
             <br />
             <form onSubmit={handleClick} name = "address">
                 <div className="input-container">
@@ -75,7 +75,7 @@ export default function UserAddressInfo() {
                     <label>Zipcode</label>
                     <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Zipcode" defaultValue={address.cust_add_zipcode} />
                 </div>
-                <button onClick={routeChange}>Submit</button>
+                <button onClick={routeChange}>Submit Address Information</button>
             </form>
 
         </div>

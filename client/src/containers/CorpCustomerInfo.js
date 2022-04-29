@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import CompanyNames from "../selections/CompanyNames";
 
-function SignUpCorpCustomer(){
+function CorpCustomerInfo(){
     const[corpCustInfo, setCorpCustInfo] = useState({
         //corporate name already selected from previous selections
         //registration number not displayed
@@ -17,7 +17,6 @@ function SignUpCorpCustomer(){
             }
         })
     };
-
 
     function handleClick(event) {
         //after clicking the submit button -> should be saved to database
@@ -34,18 +33,27 @@ function SignUpCorpCustomer(){
         navigate(path);
     }
 
+    const routeChangeIndividualRegister = () =>{
+        let path = '/review';
+        navigate(path);
+    }
 
     return (
         <div className>
-            <h3>Belong to a company?
+            <br />
+            <h2>Belong to a company? {" "}
+                <button onClick={routeChangeIndividualRegister} style={{borderRadius: "13px"}}>
+                    No - continue as an individual customer</button>
+            </h2>
+            <h3>
                 <br />
                 Select your company below 👇🏻👇👇🏾
                 <br />
-                Register for corporate account with corporate discount only!</h3>
+                Register for corporate account with corporate discount only!
+            </h3>
+
             <div>
                 <CompanyNames />
-                <SignUpCorpCustomer />
-
             </div>
 
             {/*if className = "container" extra space at the top*/}
@@ -58,12 +66,10 @@ function SignUpCorpCustomer(){
                            type="text" placeholder="Employee ID" defaultValue={corpCustInfo.emp_id} />
                 </div>
 
-                <button onClick={handleClick}>Submit</button>
-
-                <button onClick={routeChangeCorpRegister}>Continue as a Corporate Customer</button>
+                <button onClick={routeChangeCorpRegister}>Finish Registration as a Corporate Customer</button>
             </form>
         </div>
     );
 }
 
-export default SignUpCorpCustomer;
+export default CorpCustomerInfo;

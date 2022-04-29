@@ -3,6 +3,9 @@ import React, {useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import CompanyNames from "../selections/CompanyNames";
 import UserAddressInfo from "../containers/UserAddressInfo";
+import CommonCustomerInfo from "../containers/CommonCustomerInfo";
+import CorpCustomerInfo from "../containers/CorpCustomerInfo";
+
 function Register(){
     const [information, setInformation] = useState({
         firstName: "",
@@ -13,14 +16,6 @@ function Register(){
         driverLicenseNo:""
     });
 
-    // const [address, setAddress] = useState({
-    //     street: "",
-    //     apt:"",
-    //     city:"",
-    //     zipcode:"",
-    //     state:"",
-    //     country:""
-    // });
 
     const [password, setPassword] = useState("");
 
@@ -38,14 +33,6 @@ function Register(){
         //when would encryption process be handled?
     }
 
-    // const handleAddressChange = (event) => {
-    //     setAddress((prevalue) => {
-    //         return {
-    //             ...prevalue,
-    //             [event.target.name]: event.target.value
-    //         }
-    //     })
-    // }
 
     function handleClick(event) {
         //after clicking the submit button -> should be saved to database
@@ -73,6 +60,12 @@ function Register(){
             </h3>
             <br/>
 
+            <CommonCustomerInfo />
+            <UserAddressInfo />
+            <CorpCustomerInfo />
+
+
+
             <form onSubmit={handleClick} name = "information">
                 <div className="input-container">
                     <label>First Name</label>
@@ -91,24 +84,6 @@ function Register(){
                     <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Last Name" value={information.lastName} />
                 </div>
 
-                <div className="input-container">
-                    <label>Email</label>
-                    <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Email" value={information.email} />
-                </div>
-
-                <div className="input-container">
-                    <label>Password</label>
-                    <input className = "input-form-box" onChange = {handlePasswordChange} type="text" placeholder="Password" value={password} />
-                </div>
-
-                <div className="input-container">
-                    <p>Hold on, we still need addtional information...</p>
-                </div>
-
-                <div className="input-container">
-                    <label>Mobile Phone</label>
-                    <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Mobile Phone" value={information.phone} />
-                </div>
 
                 <div className="input-container">
                     <label>Driver License Number</label>
@@ -118,14 +93,10 @@ function Register(){
                 <button onClick={handleClick}>Submit</button>
             </form>
 
-            <UserAddressInfo />
-
-            <h3>Belong to a company? Select your company for corporate discount.</h3>
-            <div>
-                <CompanyNames />
-            </div>
-            {/*<button onClick={routeChange}>Corporate Discount Program</button>*/}
             <button onClick={routeChange}>Finish Registration</button>
+
+
+
         </div>
     );
 }
