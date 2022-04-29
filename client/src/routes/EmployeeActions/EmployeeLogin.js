@@ -1,8 +1,28 @@
 //essentially -> similar to log in
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {useNavigate} from "react-router-dom";
 
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import AuthService from "../../services/auth.service"
+
+const required = (value) => {
+    if (!value) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                This field is required!
+            </div>
+        );
+    }
+};
 function EmployeeLogin(){
+    const form = useRef();
+    const checkBtn = useRef();
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
+
+
     const [employeeId, setEmployeeId] = useState("");
     const [password, setPassword] = useState("");
 
@@ -16,10 +36,31 @@ function EmployeeLogin(){
         //actually not set...?send data back to database and verify?
     }
 
-    function handleClick(event) {
+    function handleEmployeeLogin(event) {
         // form would refresh the page
         event.preventDefault();
-        //verify login information in the backend?
+
+        setMessage("");
+        setLoading(true);
+        form.current.validateAll();
+
+        if (checkBtn.current.context._errors.length === 0) {
+            AuthService.login(employeeId, password).then(
+                () => {
+                    navigate("/records");
+                    window.location.reload();
+                },
+                (error) => {
+                    const resMessage =
+                        (error.response && error.response.data && error.response.data.message)
+                        || error.message || error.toString();
+                    setLoading(false);
+                    setMessage(resMessage);
+                }
+            );
+        } else {
+            setLoading(false);
+        }
     }
 
     let navigate = useNavigate();
@@ -34,19 +75,39 @@ function EmployeeLogin(){
             <h1>Log in (Employee)</h1>
             <h3>We're honored to have you has part of our company.</h3>
             <br/>
-            <form onSubmit={handleClick} name = "information">
+            <Form onSubmit={handleEmployeeLogin} name = "information">
                 <div className="input-container">
                     <label>Employee ID</label>
-                    <input onChange = {handleEmployeeIdChange} type="text" placeholder="Employee Id" value={employeeId} />
+                    <Input onChange = {handleEmployeeIdChange} type="text"
+                           placeholder="Employee Id" defaultValue={employeeId}
+                           validations={[required]} />
                 </div>
 
                 <div className="input-container">
                     <label>Password</label>
-                    <input onChange = {handlePasswordChange} type="text" placeholder="Password" value={password} />
+                    <Input onChange = {handlePasswordChange} type="password"
+                           placeholder="Password" defaultValue={password}
+                           validations={[required]} />
                 </div>
 
-                <button onClick={routeChange}>Log in</button>
-            </form>
+                {/*<button onClick={routeChange}>Log in</button>*/}
+                <div className="form-group">
+                    <button disabled={loading}>
+                        {loading && (
+                            <span className="spinner-border spinner-border-sm"></span>
+                        )}
+                        <span>Log in</span>
+                    </button>
+                </div>
+                {message && (
+                    <div className="form-group">
+                        <div className="alert alert-danger" role="alert">
+                            {message}
+                        </div>
+                    </div>
+                )}
+                <CheckButton style={{ display: "none" }} ref={checkBtn} />
+            </Form>
 
         </div>
     );
