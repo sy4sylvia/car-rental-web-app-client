@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-//need more on requiring information: PropTypes?
+//need more on requiring information: Prop?
 import { useNavigate } from "react-router-dom";
 import CompanyNames from "../selections/CompanyNames";
 import UserAddressInfo from "../containers/UserAddressInfo";
