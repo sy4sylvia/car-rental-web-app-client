@@ -5,18 +5,12 @@ import {useNavigate} from "react-router-dom";
 export default function UserAddressInfo() {
     //only note down address for individual customers
     const [address, setAddress] = useState({
-        // street: "",
-        cust_add_street:"",
-        // apt:"",
-        cust_add_unit:"",
-        cust_add_city:"",
+        street: "",
+        apt:"",
         city:"",
-        // zipcode:"",
-        cust_add_zipcode:"",
-        // state:"",
-        cust_add_state:"",
-        cust_add_country:""
-        // country:""
+        state:"",
+        country:"",
+        zipcode:""
     });
 
     const handleAddressChange = (event) => {
@@ -48,32 +42,32 @@ export default function UserAddressInfo() {
             <form onSubmit={handleClick} name = "address">
                 <div className="input-container">
                     <label>Street</label>
-                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Street" defaultValue={address.cust_add_street} />
+                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Street" defaultValue={address.street} />
                 </div>
 
                 <div className="input-container">
                     <label>Apt/Unit</label>
-                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Unit(optional)" defaultValue={address.cust_add_unit} />
+                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Unit(optional)" defaultValue={address.apt} />
                 </div>
 
                 <div className="input-container">
                     <label>City</label>
-                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="City" defaultValue={address.cust_add_city} />
+                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="City" defaultValue={address.city} />
                 </div>
 
                 <div className="input-container">
                     <label>State</label>
-                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="State" defaultValue={address.cust_add_state} />
+                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="State" defaultValue={address.state} />
                 </div>
 
                 <div className="input-container">
                     <label>Country</label>
-                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Country" defaultValue={address.cust_add_country} />
+                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Country" defaultValue={address.country} />
                 </div>
 
                 <div className="input-container">
                     <label>Zipcode</label>
-                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Zipcode" defaultValue={address.cust_add_zipcode} />
+                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Zipcode" defaultValue={address.zipcode} />
                 </div>
                 <button onClick={routeChange}>Submit Address Information</button>
             </form>

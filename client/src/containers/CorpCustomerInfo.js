@@ -6,7 +6,7 @@ function CorpCustomerInfo(){
     const[corpCustInfo, setCorpCustInfo] = useState({
         //corporate name already selected from previous selections
         //registration number not displayed
-        emp_id: "", //employee id
+        empId: "", //employee id -> database: emp_id
     });
 
     const handleCorpCustInfoChange = (event) => {
@@ -29,7 +29,7 @@ function CorpCustomerInfo(){
 
     let navigate = useNavigate();
     const routeChangeCorpRegister = () =>{
-        let path = '/test';
+        let path = '/login';
         navigate(path);
     }
 
@@ -63,7 +63,7 @@ function CorpCustomerInfo(){
                 <div className="input-container">
                     <label>Employee ID</label>
                     <input className = "input-form-box" onChange = {handleCorpCustInfoChange}
-                           type="text" placeholder="Employee ID" defaultValue={corpCustInfo.emp_id} />
+                           type="text" placeholder="Employee ID" defaultValue={corpCustInfo.empId} />
                 </div>
 
                 <button onClick={routeChangeCorpRegister}>Finish Registration as a Corporate Customer</button>

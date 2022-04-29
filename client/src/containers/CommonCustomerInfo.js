@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function CommonCustomerInfo() {
     const [customerInfo, setCustomerInfo] = useState({
-        cust_email_address:"",
-        cust_phone_number:"",
+        email:"",
+        phone:"",
     });
 
     const [password, setPassword] = useState("");
@@ -43,13 +43,13 @@ export default function CommonCustomerInfo() {
             <form onSubmit={handleClick} name = "information">
                 <div className="input-container">
                     <label>Email</label>
-                    <input className = "input-form-box" onChange = {handleCustomerInfoChange} type="text" placeholder="Email" defaultValue={customerInfo.cust_email_address} />
+                    <input className = "input-form-box" onChange = {handleCustomerInfoChange} type="text" placeholder="Email" defaultValue={customerInfo.email} />
                 </div>
 
                 {/*change password - another route*/}
                 <div className="input-container">
                     <label>Mobile Phone</label>
-                    <input className = "input-form-box" onChange = {handleCustomerInfoChange} type="text" placeholder="Mobile Phone" defaultValue={customerInfo.cust_phone_number} />
+                    <input className = "input-form-box" onChange = {handleCustomerInfoChange} type="text" placeholder="Mobile Phone" defaultValue={customerInfo.phone} />
                 </div>
 
                 <div className="input-container">
