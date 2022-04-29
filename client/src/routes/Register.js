@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 //need more on requiring information: PropTypes?
 import { useNavigate } from "react-router-dom";
 import CompanyNames from "../selections/CompanyNames";
+import UserAddressInfo from "../containers/UserAddressInfo";
 function Register(){
     const [information, setInformation] = useState({
         firstName: "",
@@ -12,14 +13,14 @@ function Register(){
         driverLicenseNo:""
     });
 
-    const [address, setAddress] = useState({
-        street: "",
-        apt:"",
-        city:"",
-        zipcode:"",
-        state:"",
-        country:""
-    });
+    // const [address, setAddress] = useState({
+    //     street: "",
+    //     apt:"",
+    //     city:"",
+    //     zipcode:"",
+    //     state:"",
+    //     country:""
+    // });
 
     const [password, setPassword] = useState("");
 
@@ -37,14 +38,14 @@ function Register(){
         //when would encryption process be handled?
     }
 
-    const handleAddressChange = (event) => {
-        setAddress((prevalue) => {
-            return {
-                ...prevalue,
-                [event.target.name]: event.target.value
-            }
-        })
-    }
+    // const handleAddressChange = (event) => {
+    //     setAddress((prevalue) => {
+    //         return {
+    //             ...prevalue,
+    //             [event.target.name]: event.target.value
+    //         }
+    //     })
+    // }
 
     function handleClick(event) {
         //after clicking the submit button -> should be saved to database
@@ -75,7 +76,9 @@ function Register(){
             <form onSubmit={handleClick} name = "information">
                 <div className="input-container">
                     <label>First Name</label>
-                    <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="First Name" value={information.firstName} />
+                    <input className = "input-form-box"
+                           onChange = {handleInformationChange}
+                           type="text" placeholder="First Name" defaultValue={information.firstName} />
                 </div>
 
                 <div className="input-container">
@@ -115,40 +118,7 @@ function Register(){
                 <button onClick={handleClick}>Submit</button>
             </form>
 
-            <h3>Address Book</h3>
-            <p>Please edit your address here.</p>
-            <form onSubmit={handleClick} name = "address">
-                <div className="input-container">
-                    <label>Street</label>
-                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Street" value={address.street} />
-                </div>
-
-                <div className="input-container">
-                    <label>Apt/Unit</label>
-                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Apt(optional)" value={address.apt} />
-                </div>
-
-                <div className="input-container">
-                    <label>City</label>
-                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="City" value={address.city} />
-                </div>
-
-                <div className="input-container">
-                    <label>State</label>
-                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="State" value={address.state} />
-                </div>
-
-                <div className="input-container">
-                    <label>Country</label>
-                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Country" value={address.country} />
-                </div>
-
-                <div className="input-container">
-                    <label>Zipcode</label>
-                    <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Zipcode" value={address.zipcode} />
-                </div>
-                <button onClick={handleClick}>Submit</button>
-            </form>
+            <UserAddressInfo />
 
             <h3>Belong to a company? Select your company for corporate discount.</h3>
             <div>

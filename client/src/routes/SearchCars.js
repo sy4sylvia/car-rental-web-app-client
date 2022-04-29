@@ -31,38 +31,18 @@ function SearchCars() {
         navigate(path);
     }
 
-    const routeChangeReturnCar = () =>{
-        let path = '/display';
-        navigate(path);
-    }
-
     return (
         <div className="container">
-            <h1>Returning Car?</h1>
-            <button onClick={routeChangeReturnCar}>Return</button>
-
             <h1>Search Cars</h1>
             {/*<FontAwesomeIcon icon="fa-solid fa-calendar-day" />*/}
 
             <CarTypes />
-            {/*<div className="input-container">*/}
-            {/*    <label>Car Type</label>*/}
-            {/*    <input onChange = {handleCarInformation} type="text" placeholder="Car Type" value={carInformation.carType} />*/}
-            {/*</div>*/}
 
             <h4>Currently our offices are only located in NYC</h4>
             <PickUpLocations />
-            {/*<div className="input-container">*/}
-            {/*    <label>Pick-up Location</label>*/}
-            {/*    <input onChange = {handleCarInformation} type="text" placeholder="Pick-up Location" value={carInformation.pickUpLocation} />*/}
-            {/*</div>*/}
+
             <h4 />
             <DropOffLocations />
-            {/*<div className="input-container">*/}
-            {/*    <label>Drop-off Location</label>*/}
-            {/*    <input onChange = {handleCarInformation} type="text" placeholder="Drop-off Location" value={carInformation.dropOffLocation} />*/}
-            {/*</div>*/}
-
             <h4 />
 
             <div className="input-container">

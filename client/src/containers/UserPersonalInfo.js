@@ -3,12 +3,20 @@ import { useNavigate } from "react-router-dom";
 
 export default function UserPersonalInfo() {
     const [information, setInformation] = useState({
-        firstName: "",
-        middleName:"",
-        lastName:"",
-        email:"",
-        phone:"",
-        driverLicenseNo:""
+        cust_email_address:"",
+        // email:"",
+        cust_phone_number:"",
+        // phone:"",
+        // driverLicenseNo:""
+    });
+
+    const[indCustInfo, setIndCustInfo] = useState({
+        first_name: "",
+        middle_name: "",
+        last_name: "",
+        dri_lic_num: "",
+        ins_com_name:"", //insurance company name
+        ins_pol_num:"" //insurance policy number
     });
 
     const handleInformationChange = (event) => {
