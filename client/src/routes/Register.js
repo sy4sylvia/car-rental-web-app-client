@@ -5,6 +5,7 @@ import CompanyNames from "../selections/CompanyNames";
 import UserAddressInfo from "../containers/UserAddressInfo";
 import CommonCustomerInfo from "../containers/CommonCustomerInfo";
 import CorpCustomerInfo from "../containers/CorpCustomerInfo";
+import UserPersonalInfo from "../containers/UserPersonalInfo";
 
 function Register(){
     const [information, setInformation] = useState({
@@ -65,33 +66,33 @@ function Register(){
             <CorpCustomerInfo />
 
 
+            <UserPersonalInfo />
+            {/*<form onSubmit={handleClick} name = "information">*/}
+            {/*    <div className="input-container">*/}
+            {/*        <label>First Name</label>*/}
+            {/*        <input className = "input-form-box"*/}
+            {/*               onChange = {handleInformationChange}*/}
+            {/*               type="text" placeholder="First Name" defaultValue={information.firstName} />*/}
+            {/*    </div>*/}
 
-            <form onSubmit={handleClick} name = "information">
-                <div className="input-container">
-                    <label>First Name</label>
-                    <input className = "input-form-box"
-                           onChange = {handleInformationChange}
-                           type="text" placeholder="First Name" defaultValue={information.firstName} />
-                </div>
+            {/*    <div className="input-container">*/}
+            {/*        <label>Middle Name</label>*/}
+            {/*        <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Middle Name(optional)" value={information.middleName} />*/}
+            {/*    </div>*/}
 
-                <div className="input-container">
-                    <label>Middle Name</label>
-                    <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Middle Name(optional)" value={information.middleName} />
-                </div>
-
-                <div className="input-container">
-                    <label>Last Name</label>
-                    <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Last Name" value={information.lastName} />
-                </div>
+            {/*    <div className="input-container">*/}
+            {/*        <label>Last Name</label>*/}
+            {/*        <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Last Name" value={information.lastName} />*/}
+            {/*    </div>*/}
 
 
-                <div className="input-container">
-                    <label>Driver License Number</label>
-                    <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Driver License Number" value={information.driverLicenseNo} />
-                </div>
+            {/*    <div className="input-container">*/}
+            {/*        <label>Driver License Number</label>*/}
+            {/*        <input className = "input-form-box" onChange = {handleInformationChange} type="text" placeholder="Driver License Number" value={information.driverLicenseNo} />*/}
+            {/*    </div>*/}
 
-                <button onClick={handleClick}>Submit</button>
-            </form>
+            {/*    <button onClick={handleClick}>Submit</button>*/}
+            {/*</form>*/}
 
             <button onClick={routeChange}>Finish Registration</button>
 

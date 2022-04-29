@@ -23,6 +23,7 @@ import OrderHistory from "./routes/UserProfileSubRoutes/OrderHistory";
 import EmployeeLogin from "./routes/EmployeeActions/EmployeeLogin";
 import EditVehicle from "./routes/EmployeeActions/EditVehicle";
 import UpdateOrder from "./routes/EmployeeActions/UpdateOrder";
+import UserPersonalInfo from "./containers/UserPersonalInfo";
 
 const rootElement = document.getElementById("root");
 render(<BrowserRouter>
@@ -31,6 +32,7 @@ render(<BrowserRouter>
             <Route path="/" element={<App />}>
                 <Route path="home" element={<Home />} />
                 <Route path="register" element={<Register />} />
+                <Route path="user-personal-info" element={<UserPersonalInfo />} />
                 <Route path="login" element={<Login />} />
 
                 <Route path="search-cars" element={<SearchCars />} />

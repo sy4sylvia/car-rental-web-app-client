@@ -34,7 +34,7 @@ function CorpCustomerInfo(){
     }
 
     const routeChangeIndividualRegister = () =>{
-        let path = '/review';
+        let path = '/user-personal-info';
         navigate(path);
     }
 
