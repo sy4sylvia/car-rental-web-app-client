@@ -89,7 +89,7 @@ function Login(){
 
                 <div className="input-container">
                     <label>Password</label>
-                    <Input onChange = {handlePasswordChange} type="text"
+                    <Input onChange = {handlePasswordChange} type="password"
                            placeholder="Password" defaultValue={password}
                            validations={[required]} />
                 </div>
