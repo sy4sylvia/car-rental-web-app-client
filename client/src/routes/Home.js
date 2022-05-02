@@ -1,17 +1,35 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function Home(){
+    let navigate = useNavigate();
+    const routeChangeToLogin = () =>{
+        let path = '/login';
+        navigate(path);
+    }
+
+    const routeChangeToRegister = () =>{
+        let path = '/register';
+        navigate(path);
+    }
+
     return (
         <div className="container">
-            {/*<nav>*/}
-            {/*    <Link to="/">Home</Link> |{" "}*/}
-            {/*    <Link to="about">About</Link> |{" "}*/}
-            {/*    <Link to="/register">Register</Link> |{" "}*/}
-            {/*    <Link to="/login">Login</Link> |{" "}*/}
-            {/*    <Link to="/employee">Employee</Link>*/}
-            {/*</nav>*/}
-            <h1>What to display on the homepage???????</h1>
+            <h1>Welcome to World On Wheels!</h1>
+
+            <h2>Enjoy your ride with us today!</h2>
+            <br />
+            <div>
+                <button onClick={routeChangeToRegister} style={{width: "10%"}}>
+                    Register
+                </button>
+                {' '}
+                <button onClick={routeChangeToLogin} style={{width: "10%"}}>
+                    Log in
+                </button>
+
+
+            </div>
         </div>
     );
 }

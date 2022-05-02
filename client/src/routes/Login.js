@@ -73,6 +73,11 @@ function Login(){
         navigate(path);
     }
 
+    const routeChangeToRegister = () =>{
+        let path = '/register';
+        navigate(path);
+    }
+
     return (
         <div className="container">
             <h1>Log in</h1>
@@ -100,6 +105,16 @@ function Login(){
                             (<span className="spinner-border spinner-border-sm"></span>)}
                         <span>Log in</span>
                     </button>
+
+                    <div>
+                        <p><br />
+                            Don't have an account yet? Register today!
+                        <br /></p>
+                        <button onClick={routeChangeToRegister} style={{width: "10%"}}>
+                            Register
+                        </button>
+                    </div>
+
                 </div>
 
                 {message &&

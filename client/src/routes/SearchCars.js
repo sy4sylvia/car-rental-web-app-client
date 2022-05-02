@@ -41,17 +41,22 @@ function SearchCars() {
             <h4>Currently our offices are only located in NYC</h4>
             <PickUpLocations />
 
-            <h4 />
-            <DropOffLocations />
-            <h4 />
+            {/*no drop off locations*/}
+            {/*<h4 />*/}
+            {/*<DropOffLocations />*/}
+            {/*<h4 />*/}
 
             <div className="input-container">
                 <label>Pick-up Date</label>
                 <Datepicker />
-                <label>Drop-off Date</label>
-                <Datepicker />
+
+                {/*no drop off date*/}
+                {/*<label>Drop-off Date</label>*/}
+                {/*<Datepicker />*/}
+
                 {/*<input onChange = {handleCarInformation} type="text" placeholder="Pick-up Date" value={carInformation.pickUpDate} />*/}
             </div>
+
             {/*<div className="input-container">*/}
             {/*    <label>Drop-off Date</label>*/}
             {/*    <input onChange = {handleCarInformation} type="text" placeholder="Drop-off Date" value={carInformation.dropOffDate} />*/}

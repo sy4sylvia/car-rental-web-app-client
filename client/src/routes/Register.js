@@ -60,6 +60,14 @@ function Register(){
                 Register and book your ride today!
             </h3>
             <br/>
+            <div>
+                <p>
+                    Already have an account? Log in here.
+                    <br /></p>
+                <button onClick={routeChange} style={{width: "10%"}}>
+                    Log in
+                </button>
+            </div>
 
             <CommonCustomerInfo />
             <UserAddressInfo />
