@@ -151,22 +151,19 @@ function Register(){
 
 
     //corporate customer information
-    const[corpCustInfo, setCorpCustInfo] = useState({
-        //corporate name no longer selected from selections -> input instead
-        corporateName:"",
-        registrationNo:"",
-        empId: "", //employee id -> database: emp_id
-    });
+    const[corporateName, setCorporateName] = useState("");
+    const[registrationNo, setRegistrationNo] = useState("");
+    const[empId, setEmpId] = useState("");
 
-    const handleCorpCustInfoChange = (event) => {
-        setCorpCustInfo((prevalue) => {
-            return {
-                ...prevalue,
-                [event.target.name]: event.target.value
-            }
-        })
+    const handleCorporateNameChange = (event) => {
+        setCorporateName(event.target.value);
     };
-
+    const handleRegistrationNoChange = (event) => {
+        setRegistrationNo(event.target.value);
+    };
+    const handleEmployeeIdChange = (event) => {
+        setEmpId(event.target.value);
+    };
 
 
 
@@ -214,9 +211,9 @@ function Register(){
             ins_pol_num: insurancePolicyNo,
 
             //corporate customer info
-            corp_name: corpCustInfo.corporateName,
-            regi_num: corpCustInfo.registrationNo,
-            emp_id: corpCustInfo.empId
+            corp_name: corporateName,
+            regi_num: registrationNo,
+            emp_id: empId
 
 
 
@@ -426,21 +423,19 @@ function Register(){
                             {/*<CorpCustomerInfo />*/}
                             <div className="input-container">
                                 <label>Corporate Name</label>
-                                <input className = "input-form-box" onChange = {handleCorpCustInfoChange}
-                                       type="text" placeholder="Corporate Name" defaultValue={corpCustInfo.corporateName} />
+                                <input className = "input-form-box" onChange = {handleCorporateNameChange}
+                                       type="text" placeholder="Corporate Name" defaultValue={corporateName} />
                             </div>
                             <div className="input-container">
                                 <label>Registration Number</label>
-                                <input className = "input-form-box" onChange = {handleCorpCustInfoChange}
-                                       type="text" placeholder="Registration Number" defaultValue={corpCustInfo.registrationNo} />
+                                <input className = "input-form-box" onChange = {handleRegistrationNoChange}
+                                       type="text" placeholder="Registration Number" defaultValue={registrationNo} />
                             </div>
                             <div className="input-container">
                                 <label>Employee ID</label>
-                                <input className = "input-form-box" onChange = {handleCorpCustInfoChange}
-                                       type="text" placeholder="Employee ID" defaultValue={corpCustInfo.empId} />
+                                <input className = "input-form-box" onChange = {handleEmployeeIdChange}
+                                       type="text" placeholder="Employee ID" defaultValue={empId} />
                             </div>
-                            
-
                             <button>Finish Registration</button>
 
 
@@ -448,6 +443,7 @@ function Register(){
 
 
 
+                            
 
                         </div>
                     )
