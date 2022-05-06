@@ -50,6 +50,14 @@ function EmployeeProfile() {
                 <br/>
             </div>
 
+            <div className>
+                <button onClick={editVehicleClass}>Insert Vehicle Class Information</button>
+            </div>
+
+            <div>
+                <br/>
+            </div>
+
 
             <div className>
                 <button onClick={editVehicle}>Edit Vehicle Information</button>

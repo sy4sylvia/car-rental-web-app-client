@@ -289,7 +289,7 @@ function Register(){
 
                             <div className="input-container">
                                 <label>Mobile Phone</label>
-                                <Input className = "input-form-box" onChange = {handlePhoneChange()}
+                                <Input className = "input-form-box" onChange = {handlePhoneChange}
                                        type="text" placeholder="Mobile Phone" defaultValue={phone}
                                        validations = {[required, validPhone]} />
                             </div>
@@ -443,7 +443,7 @@ function Register(){
 
 
 
-                            
+
 
                         </div>
                     )

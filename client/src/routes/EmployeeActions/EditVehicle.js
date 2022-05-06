@@ -23,12 +23,6 @@ function EditVehicle(){
     const [message, setMessage] = useState("");
 
 
-    const [vehicleClassInfo, setVehicleClassInfo] = useState({
-        overMileageFee: "",
-        rentalRate: "",
-        className: ""
-    });
-
     const [vehicleInfo, setVehicleInfo] = useState({
         make: "",
         model: "",
@@ -37,15 +31,32 @@ function EditVehicle(){
         licencePlateNumber: ""
     });
 
+    const [make, setMake] = useState("");
+    const [model, setModel] = useState("");
+    const [year, setYear] = useState("");
+    const [vin, setVIN] = useState("");
+    const [licPlateNo, setLicPlateNo] = useState("");
 
-
-    const handleVehicleClassChange = (event) => {
-        setVehicleClassInfo(event.target.value);
+    const handleMakeChange = (event) => {
+        setMake(event.target.value);
+    }
+    const handleModelChange = (event) => {
+        setModel(event.target.value);
+    }
+    const handleYearChange = (event) => {
+        setYear(event.target.value);
+    }
+    const handleVINChange = (event) => {
+        setVIN(event.target.value);
+    }
+    const handleLicPlateNoChange = (event) => {
+        setLicPlateNo(event.target.value);
     }
 
-    const handleVehicleChange = (event) => {
-        setVehicleInfo(event.target.value);
-    }
+
+
+
+
 
     const handleEditVehicle = event => {
         event.preventDefault();
@@ -54,7 +65,7 @@ function EditVehicle(){
         alert("Edited vehicle information successfully!");
         console.log("Edited vehicle information successfully!");
 
-        axios.post("corresponding-backend-url-not-provided", {
+        axios.post("http://127.0.0.1:5000/edit-vehicle", {
 
 
 
@@ -65,7 +76,6 @@ function EditVehicle(){
         }).catch(function (error) {
             console.log(error);
         });
-
 
         setMessage("");
         setLoading(true);
@@ -84,57 +94,28 @@ function EditVehicle(){
             <Form onSubmit={handleEditVehicle} name = "information" ref={form}>
 
                 <div className="input-container">
-                    <label>Class Name</label>
-                    <Input onChange = {handleVehicleClassChange} type="text"
-                           placeholder="Class Name" defaultValue={vehicleClassInfo.className}
-                           validations={[required]} />
-                </div>
-
-                <div className="input-container">
-                    <label>Rental Rate</label>
-                    <Input onChange = {handleVehicleClassChange} type="text"
-                           placeholder="Rental Rate" defaultValue={vehicleClassInfo.rentalRate}
-                           validations={[required]} />
-                </div>
-
-
-
-                <div className="input-container">
-                    <label>Over Mileage Fee</label>
-                    <Input onChange = {handleVehicleClassChange} type="text"
-                           placeholder="Over Mileage Fee" defaultValue={vehicleClassInfo.overMileageFee}
-                           validations={[required]} />
-                </div>
-
-
-
-
-
-                <br/>
-
-                <div className="input-container">
                     <label>Make</label>
-                    <Input onChange = {handleVehicleChange} type="text"
-                           placeholder="Make" defaultValue={vehicleInfo.make}
+                    <Input onChange = {handleMakeChange} type="text"
+                           placeholder="Make" defaultValue={make}
                            validations={[required]} />
                 </div>
 
                 <div className="input-container">
                     <label>Year of Manufacturing</label>
-                    <Input onChange = {handleVehicleChange} type="text"
-                           placeholder="Year" defaultValue={vehicleInfo.year}
+                    <Input onChange = {handleYearChange} type="text"
+                           placeholder="Year" defaultValue={year}
                            validations={[required]} />
                 </div>
                 <div className="input-container">
                     <label>VIN</label>
-                    <Input onChange = {handleVehicleChange} type="text"
-                           placeholder="VIN" defaultValue={vehicleInfo.vin}
+                    <Input onChange = {handleVINChange} type="text"
+                           placeholder="VIN" defaultValue={vin}
                            validations={[required]} />
                 </div>
                 <div className="input-container">
                     <label>License Plate Number</label>
-                    <Input onChange = {handleVehicleChange} type="text"
-                           placeholder="License Plate No" defaultValue={vehicleInfo.licencePlateNumber}
+                    <Input onChange = {handleLicPlateNoChange} type="text"
+                           placeholder="License Plate No" defaultValue={licPlateNo}
                            validations={[required]} />
                 </div>
 
