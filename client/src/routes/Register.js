@@ -93,11 +93,11 @@ function Register(){
     };
     const[country, setCountry] = useState("");
     const handleCountryChange = (event) => {
-        setApt(event.target.value);
+        setCountry(event.target.value);
     };
     const[zipcode, setZipcode] = useState("");
     const handleZipcodeChange = (event) => {
-        setCity(event.target.value);
+        setZipcode(event.target.value);
     };
 
 
@@ -179,6 +179,13 @@ function Register(){
 
 
 
+    let navigate = useNavigate();
+    const routeChange = () =>{
+        alert("personal information submitted successfully.");
+        console.log("registration: successful");
+        let path = '/login';
+        navigate(path);
+    }
 
     function handleRegister(event) { //click submitting form button
         event.preventDefault();
@@ -215,16 +222,41 @@ function Register(){
             regi_num: registrationNo,
             emp_id: empId
 
-
-
-
         })
             .then(function (response) {
                 console.log(response);
+                if (response.status === 200) {
+                    let path = '/login';
+                    navigate(path);
+                };
+
             })
             .catch(function (error) {
                 console.log(error);
             });
+
+
+        //
+        // axios.get("http://127.0.0.1:5000/register")
+        //     .then(function (response) {
+        //         // handle success
+        //         console.log(response);
+        //         if (response.status === 2000) {
+        //             let path = '/login';
+        //             navigate(path);
+        //         }
+        //     })
+        //     .catch(function (error) {
+        //         // handle error
+        //         console.log(error);
+        //     })
+        //     .then(function () {
+        //         // always executed
+        //     });
+
+
+
+
 
         setMessage("");
         setSuccessful(false);
@@ -250,13 +282,7 @@ function Register(){
         // }
     }
 
-    let navigate = useNavigate();
-    const routeChange = () =>{
-        alert("personal information submitted successfully.");
-        console.log("registration: successful");
-        let path = '/login';
-        navigate(path);
-    }
+
 
 
     return (

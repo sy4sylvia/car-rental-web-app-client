@@ -35,6 +35,17 @@ function Login(){
         setPassword(event.target.value);
     }
 
+    let navigate = useNavigate();
+    const routeChange = () =>{
+        let path = '/search-cars';
+        navigate(path);
+    }
+
+    const routeChangeToRegister = () =>{
+        let path = '/register';
+        navigate(path);
+    }
+
     const handleLogin = event => {
         event.preventDefault();
 
@@ -45,6 +56,12 @@ function Login(){
             password: password
         }).then(function (response) {
             console.log(response);
+            if (response.status === 200) {
+                let path = '/search-cars';
+                navigate(path);
+            } else {
+                alert("Invalid, please try again");
+            }
         }).catch(function (error) {
             console.log(error);
         });
@@ -81,16 +98,7 @@ function Login(){
     //     event.preventDefault();
     // }
 
-    let navigate = useNavigate();
-    const routeChange = () =>{
-        let path = '/search-cars';
-        navigate(path);
-    }
 
-    const routeChangeToRegister = () =>{
-        let path = '/register';
-        navigate(path);
-    }
 
     return (
         <div className="container">

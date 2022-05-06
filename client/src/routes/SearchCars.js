@@ -81,15 +81,27 @@ function SearchCars() {
         //display: Form submission canceled because the form is not connected
         axios.post("http://127.0.0.1:5000/serach-cars", {
             class_name: carType,
-            // class_name (MySQL) -> carType here
-            //office name, which is not in the original table
-            //no corresponding value
-            pickup_office: officeOption,
+            add_state: officeOption,
             //don't use date any more
             // pickup_date: initialState.date,
 
         }).then(function (response) {
                 console.log(response);
+
+
+
+            if (response.status === 200) {
+                //get corresponding result
+
+                //[{"make": "Honda", "model": "Accord Hybrid", "over_mileage_fee": "3.00", "rental_rate": "40.00", "year": "Tue, 08 Mar
+                // 2022 00:00:00 GMT"}, {"make": "Subaru", "model": "Outback", "over_mileage_fee": "3.00", "rental_rate": "40.00", "year":
+                // "Wed, 06 Apr 2022 00:00:00 GMT"}]
+
+                //take out and then send corresponding message to review page.
+                let path = '/review';
+                navigate(path);
+            };
+
             }).catch(function (error) {
                 console.log(error);
             });
