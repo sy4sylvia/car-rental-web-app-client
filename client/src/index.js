@@ -13,9 +13,9 @@ import Display from "./routes/Display";
 import Checkout from "./routes/Checkout";
 import Complete from "./routes/Complete";
 import Review from "./routes/Review";
-import CarManagement from "./routes/EmployeeActions/CarManagement";
+
 import UserProfile from "./routes/UserProfile";
-import Records from "./routes/EmployeeActions/Records";
+
 import UserEditInfo from "./routes/UserProfileSubRoutes/UserEditInfo";
 import UserEditAddressInfo from "./routes/UserProfileSubRoutes/UserEditAddressInfo";
 import OrderHistory from "./routes/UserProfileSubRoutes/OrderHistory";
@@ -23,7 +23,7 @@ import EmployeeLogin from "./routes/EmployeeActions/EmployeeLogin";
 import EditVehicle from "./routes/EmployeeActions/EditVehicle";
 import UpdateOrder from "./routes/EmployeeActions/UpdateOrder";
 import UserPersonalInfo from "./containers/UserPersonalInfo";
-import Profile from "./routes/Profile";
+
 import CorpCustomerInfo from "./containers/CorpCustomerInfo";
 import EmployeeProfile from "./routes/EmployeeActions/EmployeeProfile";
 import DeleteCustomers from "./routes/EmployeeActions/DeleteCustomers";
@@ -57,8 +57,6 @@ render(<BrowserRouter>
                 <Route path="employee-login" element={<EmployeeLogin />} />
                 <Route path = "employee-profile" element ={<EmployeeProfile /> } />
 
-                {/*<Route path="records" element={<Records />} />*/}
-                <Route path="car-management" element={<CarManagement />} />
                 <Route path="delete-customers" element={<DeleteCustomers />} />
                 <Route path="edit-vehicle" element={<EditVehicle />} />
                 <Route path="update-order" element={<UpdateOrder />} />

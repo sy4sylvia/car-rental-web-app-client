@@ -69,7 +69,7 @@ function EditVehicle(){
 
         setMessage("");
         setLoading(true);
-        form.current.validateAll();
+        // form.current.validateAll();
 
     }
 

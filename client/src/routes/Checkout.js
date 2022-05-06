@@ -101,13 +101,13 @@ function Checkout(){
                         <div className="input-container">
                             <label>Payment Method</label>
                             <input onChange = {handlePaymentInfoChange}
-                                   type="text" placeholder="Credit Card Number"
+                                   type="text" placeholder="Payment Method"
                                    defaultValue={paymentInfo.paymentMethod} />
                         </div>
                         <div className="input-container">
-                            <label>Credit Card Number</label>
+                            <label>Card Number</label>
                             <input onChange = {handlePaymentInfoChange}
-                                   type="text" placeholder="Credit Card Number"
+                                   type="text" placeholder="Card Number"
                                    defaultValue={paymentInfo.cardNumber} />
                         </div>
 
