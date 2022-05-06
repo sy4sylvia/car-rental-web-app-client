@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import axios from "axios";
 
 const required = (value) => {
     if (!value) {
@@ -36,6 +37,16 @@ function EmployeeLogin(){
     function handleEmployeeLogin(event) {
         // form would refresh the page
         event.preventDefault();
+        console.log("handled employee login");
+
+        axios.post("http://127.0.0.1:5000/employee-login", {
+            employee_id: employeeId,
+            password: password
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
 
         //JWT token -> validation -> uncomment later
 

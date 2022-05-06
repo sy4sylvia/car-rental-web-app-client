@@ -1,4 +1,4 @@
-//test -> ot used
+//test -> not used
 
 import React from "react";
 import AuthService from "../services/auth.service";

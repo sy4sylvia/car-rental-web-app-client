@@ -4,7 +4,6 @@ import {useNavigate} from "react-router-dom";
 
 function UserProfile(){
 
-    //route change after checking for corporate discount
     let navigate = useNavigate();
     const routeChangeEditInfo = () =>{
         let path = '/user-profile-edit-info';

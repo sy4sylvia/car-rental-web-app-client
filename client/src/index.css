@@ -104,17 +104,21 @@ button {
   font-size: 18px;
 }
 
-clicked {
-  appearance: none;
-  outline: 0;
-  background-color: white;
-  border: 0;
-  padding: 10px 15px;
-  color: #464E2E;
-  border-radius: 3px;
-  width: 250px;
-  font-size: 18px;
+button:active {
+  background-color: #fffaf0;
 }
+
+/*clicked {*/
+/*  appearance: none;*/
+/*  outline: 0;*/
+/*  background-color: white;*/
+/*  border: 0;*/
+/*  padding: 10px 15px;*/
+/*  color: #464E2E;*/
+/*  border-radius: 3px;*/
+/*  width: 250px;*/
+/*  font-size: 18px;*/
+/*}*/
 
 /*.footer {*/
 /*  text-align: center;*/
@@ -162,6 +166,7 @@ table {
   width: 800px;
   height: 200px;
   margin: 0%;
+  font-size: large;
 }
 
 th {

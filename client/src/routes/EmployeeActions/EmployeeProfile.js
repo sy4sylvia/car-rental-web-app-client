@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import AuthService from "../../services/auth.service";
 
 //this is where employee can be redirected to other pages
 function EmployeeProfile() {
@@ -22,6 +23,12 @@ function EmployeeProfile() {
     const updateOrder = () =>{
         let path = '/update-order';
         navigate(path);
+    }
+
+    function handleEmployeeLogout(event) {
+        AuthService.logout();
+        navigate('/employee-login');
+        // localStorage.removeItem(""); //access token
     }
 
     return (
@@ -54,7 +61,7 @@ function EmployeeProfile() {
 
             <br/>
             <h2>Log Out</h2>
-            <button onClick={routeChange} style = {{width: "13%"}}>Log out</button>
+            <button onClick={handleEmployeeLogout} style = {{width: "13%"}}>Log out</button>
             {/*for employee - log out and redirect to the login page*/}
         </div>
 

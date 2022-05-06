@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 //need more on requiring information: PropTypes?
 import { useNavigate } from "react-router-dom";
 import CompanyNames from "../selections/CompanyNames";
+import axios from "axios";
 
 //already logged in, no need to login and use password again.
 
@@ -16,10 +17,7 @@ function Checkout(){
         }
     );
 
-    const [corporateCustomerInformation, setCorporateCustomerInformation] = useState({
-            corporateID: ""
-        }
-    );
+    const [corporateCouponId, setCorporateCouponId] =useState("");
 
 
     const handlePaymentInfoChange = (event) => {
@@ -31,7 +29,7 @@ function Checkout(){
         })
     }
 
-    const handleCouponChange = (event) => {
+    const handleIndividualCouponChange = (event) => {
         setCoupon((prevalue) => {
             return {
                 ...prevalue,
@@ -52,8 +50,8 @@ function Checkout(){
         })
     }
 
-    const handleCorporateInformationChange = (event) => {
-        setCorporateCustomerInformation((prevalue) => {
+    const handleCorporateCouponChange = (event) => {
+        setCorporateCouponId((prevalue) => {
             alert("You have chosen the corporate discount!");
             return {
                 ...prevalue,
@@ -62,18 +60,24 @@ function Checkout(){
         })
     }
 
-    const handleValidateCorporateId = (event) => {
-        setCorporateCustomerInformation((prevalue) => {
-            alert("Corporate discout applied!");
-            return {
-                ...prevalue,
-                [event.target.name]: event.target.value
-            }
-        })
-    }
+    //validation handled in the backend
+
 
     function handleClick(event) {
         event.preventDefault();
+
+        console.log("handled payment information");
+
+        axios.post("http://127.0.0.1:5000/checkout", {
+            payment_method: paymentInfo.paymentMethod,
+            card_number: paymentInfo.cardNumber,
+            coupon_id: coupon.couponId,
+            regi_num: corporateCouponId
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 
     //route change after checking for corporate discount
@@ -93,11 +97,9 @@ function Checkout(){
 
                 <div className="feature-box col-lg-4">
                     <i className="icon fa-solid fa-bullseye fa-4x"></i>
+
                     <form onSubmit={handleClick}>
-
-
                         <h2>Payment Info</h2>
-
                         <div className="input-container">
                             <label>Payment Method</label>
                             <input onChange = {handlePaymentInfoChange}
@@ -115,7 +117,7 @@ function Checkout(){
                         <h3>Have a discount coupon or want to use corporate discount?</h3>
                         <div className="input-container">
                             <label>Individual Discount Coupon: </label>
-                            <input onChange = {handleCouponChange} 
+                            <input onChange = {handleIndividualCouponChange}
                             type="text" placeholder="Individual Coupon Id" defaultValue={coupon.couponId} />
                             <button onClick={handleValidateChange} style={{width: "15%"}}>Apply</button>
                         </div>
@@ -124,10 +126,10 @@ function Checkout(){
                         <div className="input-container">
                             <label>Corporate: </label>
                             <CompanyNames />
-                            <input onChange = {handleCorporateInformationChange} 
-                            type="text" placeholder="Corporate Coupon Id" defaultValue={corporateCustomerInformation.corporateID} />
+                            <input onChange = {handleCorporateCouponChange}
+                            type="text" placeholder="Corporate Coupon Id" defaultValue={corporateCouponId} />
                             {/*<input onChange = {handleCouponChange} type="text" placeholder="Please input the discount coupon here." value={coupon.couponId} />*/}
-                            <button onClick={handleValidateCorporateId} style={{width: "15%"}}>Choose</button>
+                            <button style={{width: "15%"}}>Choose</button>
                         </div>
 
                         <br/>

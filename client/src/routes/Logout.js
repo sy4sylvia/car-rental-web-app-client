@@ -1,1 +1,0 @@
-//log out and remove token from local storage
