@@ -18,11 +18,9 @@ function UpdateOrder(){
     };
 
     const [customerId, setCustomerId] = useState("");
-    const [dropOffInfo, setDropOffInfo] = useState({
-        endOdometer: "",
-        dropOffLocation:"",
-        dropOffDate: ""
-    });
+    const [endOdometer, setEndOdometer] = useState("");
+    const [dropOffOfficeId, setDropOffOfficeId] = useState("");
+
     const form = useRef();
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
@@ -31,11 +29,13 @@ function UpdateOrder(){
         setCustomerId(event.target.value);
         //value given by the customer
     }
-
-
-    const handleDropOffChange = (event) => {
-        setDropOffInfo(event.target.value);
+    const handleEndOdometerChange = (event) => {
+        setEndOdometer(event.target.value);
     }
+    const handleDropOffOfficeIdChange = (event) => {
+        setDropOffOfficeId(event.target.value);
+    }
+
 
     const handleSubmitForm = event => {
         event.preventDefault();
@@ -45,9 +45,10 @@ function UpdateOrder(){
         console.log("Updated order information successfully!!");
 
         axios.post("http://127.0.0.1:5000/update-order", {
-            End_Odometer: dropOffInfo.endOdometer,
-            DropOff_Date: dropOffInfo.dropOffDate,
-            //drop off location?
+            cust_customer_id: customerId,
+            end_odometer: endOdometer,
+            dropoff_office_id: dropOffOfficeId
+
 
 
         }).then(function (response) {
@@ -82,26 +83,25 @@ function UpdateOrder(){
 
                 <div className="input-container">
                     <label>End Odometer</label>
-                    <Input onChange = {handleDropOffChange} type="text"
-                           placeholder="End Odometer" defaultValue={dropOffInfo.endOdometer}
+                    <Input onChange = {handleEndOdometerChange} type="text"
+                           placeholder="End Odometer" defaultValue={endOdometer}
                            validations={[required]} />
                 </div>
 
                 <div className="input-container">
                     <label>Drop Off Location</label>
-                    <Input onChange = {handleDropOffChange} type="text"
-                           placeholder="Drop Off Location" defaultValue={dropOffInfo.dropOffLocation}
+                    <Input onChange = {handleDropOffOfficeIdChange} type="text"
+                           placeholder="Drop Off Location" defaultValue={dropOffOfficeId}
                            validations={[required]} />
                 </div>
 
 
-                automatically -> sysdate?
-                <div className="input-container">
-                    <label>Drop Off Date</label>
-                    <Input onChange = {handleDropOffChange} type="text"
-                           placeholder="Drop Off Date" defaultValue={dropOffInfo.dropOffDate}
-                           validations={[required]} />
-                </div>
+                {/*<div className="input-container">*/}
+                {/*    <label>Drop Off Date</label>*/}
+                {/*    <Input onChange = {handleDropOffChange} type="text"*/}
+                {/*           placeholder="Drop Off Date" defaultValue={dropOffInfo.dropOffDate}*/}
+                {/*           validations={[required]} />*/}
+                {/*</div>*/}
                 <br/>
 
 

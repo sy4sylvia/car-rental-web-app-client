@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Input from "react-validation/build/input";
 import Form from "react-validation/build/form";
+import axios from "axios";
 
 const required = (value) => {
     if (!value) {
@@ -15,10 +16,14 @@ const required = (value) => {
 
 function DeleteCustomers() {
     const [customerId, setCustomerId] = useState("");
-
-
     const handleCustomerIdChange = (event) => {
         setCustomerId(event.target.value);
+    }
+
+    let navigate = useNavigate();
+    const routeChange = () =>{
+        let path = '/employee-profile';
+        navigate(path);
     }
 
 
@@ -27,13 +32,22 @@ function DeleteCustomers() {
         event.preventDefault();
         alert("Successfully deleted customer record");
         console.log("Successfully deleted customer record");
+
+
+        axios.post("http://127.0.0.1:5000/delete-customers", {
+            cust_customer_id: customerId,
+        }).then(function (response) {
+            console.log(response);
+
+
+        }).catch(function (error) {
+            console.log(error);
+            alert(error);
+        });
+
     }
 
-    let navigate = useNavigate();
-    const routeChange = () =>{
-        let path = '/employee-profile';
-        navigate(path);
-    }
+
 
 
     return(

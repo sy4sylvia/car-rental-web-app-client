@@ -22,9 +22,14 @@ function EmployeeLogin(){
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
-
     const [employeeId, setEmployeeId] = useState("");
     const [password, setPassword] = useState("");
+
+    let navigate = useNavigate();
+    const routeChange = () =>{
+        let path = '/employee-profile';
+        navigate(path);
+    }
 
     const handleEmployeeIdChange = (event) => {
         setEmployeeId(event.target.value);
@@ -35,7 +40,6 @@ function EmployeeLogin(){
     }
 
     function handleEmployeeLogin(event) {
-        // form would refresh the page
         event.preventDefault();
         console.log("handled employee login");
 
@@ -44,8 +48,12 @@ function EmployeeLogin(){
             password: password
         }).then(function (response) {
             console.log(response);
+            if (response.status === 200) {
+                navigate('/employee-profile');
+            }
         }).catch(function (error) {
             console.log(error);
+            alert(error);
         });
 
         //JWT token -> validation -> uncomment later
@@ -71,12 +79,6 @@ function EmployeeLogin(){
         // } else {
         //     setLoading(false);
         // }
-    }
-
-    let navigate = useNavigate();
-    const routeChange = () =>{
-        let path = '/employee-profile';
-        navigate(path);
     }
 
 

@@ -70,7 +70,7 @@ function UserProfile(){
 
             <div>
                 <br />
-                <button onClick={logOut} style={{width: "20%"}}>Log Out</button>
+                <button onClick={logOut} style={{width: "15%"}}>Log Out</button>
             </div>
 
         </div>
