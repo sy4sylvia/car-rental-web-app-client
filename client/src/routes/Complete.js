@@ -18,7 +18,6 @@ function Complete(){
             </h3>
             <br/>
             <button onClick={routeChange}>Take Me to Home</button>
-
         </div>
     );
 }

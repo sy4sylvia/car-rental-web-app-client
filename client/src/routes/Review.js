@@ -3,11 +3,14 @@ import {useNavigate} from "react-router-dom";
 import OrderTables from "../containers/OrderTables";
 
 function Review() {
-    const order = [
-        { customer_id: 1, pickup_date: "2022-03-27", pickup_office_name: "Unit 490 Monroe Street",
-            vin_val:"1HGBH41JXMN109101", start_odometer: 500.00,
-            daily_odometer_limit:500.00}
-    ];
+    const order = [{
+            customer_id: 1,
+            pickup_date: "2022-03-27",
+            pickup_office_name: "Unit 490 Monroe Street",
+            vin: "1HGBH41JXMN109101",
+            start_odometer: 500.00,
+            daily_odometer_limit:500.00
+    }];
     let navigate = useNavigate();
     const routeChange = () =>{
         let path = '/checkout';
@@ -38,7 +41,7 @@ function Review() {
                                <td>{value.customer_id}</td>
                                <td>{value.pickup_date}</td>
                                <td>{value.pickup_office_name}</td>
-                               <td>{value.vin_val}</td>
+                               <td>{value.vin}</td>
                                <td>{value.start_odometer}</td>
                                <td>{value.daily_odometer_limit}</td>
                            </tr>

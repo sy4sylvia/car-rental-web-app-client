@@ -7,48 +7,42 @@ import axios from "axios";
 //already logged in, no need to login and use password again.
 
 function Checkout(){
-    const [paymentInfo, setPaymentInfo] = useState({
-        paymentMethod:"",
-        cardNumber:""
-    });
 
-    const [coupon, setCoupon] = useState({
-            couponId: ""
-        }
-    );
-
+    const[paymentMethod, setPaymentMethod] = useState("");
+    const[cardNumber, setCardNumber] = useState("");
+    const [individualCouponId, setIndividualCouponId] =useState("");
     const [corporateCouponId, setCorporateCouponId] =useState("");
 
+    //route change after checking for corporate discount
+    let navigate = useNavigate();
+    const routeChange = () =>{
+        let path = '/complete';
+        navigate(path);
+    }
 
-    const handlePaymentInfoChange = (event) => {
-        setPaymentInfo((prevalue) => {
-            return {
-                ...prevalue,
-                [event.target.name]: event.target.value
-            }
-        })
+
+    const handlePaymentMethodChange = (event) => {
+        setPaymentMethod(event.target.value);
+    }
+    const handleCardNumberChange = (event) => {
+        setCardNumber(event.target.value);
     }
 
     const handleIndividualCouponChange = (event) => {
-        setCoupon((prevalue) => {
-            return {
-                ...prevalue,
-                [event.target.name]: event.target.value
-            }
-        })
+        setIndividualCouponId(event.target.value);
     }
 
     // validation of individual coupon
-    const handleValidateChange = (event) => {
-        setCoupon((prevalue) => {
-            alert("coupon applied!");
-            console.log("Successfully applied coupon");
-            return {
-                ...prevalue,
-                [event.target.name]: event.target.value
-            }
-        })
-    }
+    // const handleValidateChange = (event) => {
+    //     setIndividualCouponId((prevalue) => {
+    //         alert("coupon applied!");
+    //         console.log("Successfully applied coupon");
+    //         return {
+    //             ...prevalue,
+    //             [event.target.name]: event.target.value
+    //         }
+    //     })
+    // }
 
     const handleCorporateCouponChange = (event) => {
         setCorporateCouponId((prevalue) => {
@@ -60,32 +54,30 @@ function Checkout(){
         })
     }
 
-    //validation handled in the backend
-
 
     function handleClick(event) {
         event.preventDefault();
 
-        console.log("handled payment information");
+        console.log("handled filter search results");
 
         axios.post("http://127.0.0.1:5000/checkout", {
-            payment_method: paymentInfo.paymentMethod,
-            card_number: paymentInfo.cardNumber,
-            coupon_id: coupon.couponId,
-            regi_num: corporateCouponId
+            payment_method: paymentMethod,
+            card_number: cardNumber,
+            coupon_id: individualCouponId,
+            //coupon_id either individual or binded with corporate
         }).then(function (response) {
             console.log(response);
+            if (response.status === 200) {
+                //take out and then send corresponding message to review page.
+                let path = '/complete';
+                navigate(path);
+            };
         }).catch(function (error) {
             console.log(error);
         });
     }
 
-    //route change after checking for corporate discount
-    let navigate = useNavigate();
-    const routeChange = () =>{
-        let path = '/complete';
-        navigate(path);
-    }
+
 
     return (
         <div className="container">
@@ -102,15 +94,15 @@ function Checkout(){
                         <h2>Payment Info</h2>
                         <div className="input-container">
                             <label>Payment Method</label>
-                            <input onChange = {handlePaymentInfoChange}
+                            <input onChange = {handlePaymentMethodChange}
                                    type="text" placeholder="Payment Method"
-                                   defaultValue={paymentInfo.paymentMethod} />
+                                   defaultValue={paymentMethod} />
                         </div>
                         <div className="input-container">
                             <label>Card Number</label>
-                            <input onChange = {handlePaymentInfoChange}
+                            <input onChange = {handleCardNumberChange}
                                    type="text" placeholder="Card Number"
-                                   defaultValue={paymentInfo.cardNumber} />
+                                   defaultValue={cardNumber} />
                         </div>
 
 
@@ -118,8 +110,8 @@ function Checkout(){
                         <div className="input-container">
                             <label>Individual Discount Coupon: </label>
                             <input onChange = {handleIndividualCouponChange}
-                            type="text" placeholder="Individual Coupon Id" defaultValue={coupon.couponId} />
-                            <button onClick={handleValidateChange} style={{width: "15%"}}>Apply</button>
+                            type="text" placeholder="Individual Coupon Id" defaultValue={individualCouponId} />
+                            <button style={{width: "15%"}}>Apply</button>
                         </div>
 
                         <h4></h4>
