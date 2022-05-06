@@ -55,47 +55,51 @@ function Register(){
     const checkBtn = useRef();
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+
 
     //common customer info
-    const [customerInfo, setCustomerInfo] = useState({
-        email:"",
-        phone:"",
-    });
+    const[email, setEmail] = useState("");
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    }
+    const[phone, setPhone] = useState("");
+    const handlePhoneChange = (event) => {
+        setPhone(event.target.value);
+    }
 
     const [password, setPassword] = useState("");
-
-    const handleCustomerInfoChange = (event) => {
-        setCustomerInfo((prevalue) => {
-            return {
-                ...prevalue,
-                [event.target.name]: event.target.value
-            }
-        })
-    };
-
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     }
 
     //address information
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [address, setAddress] = useState({
-        street: "",
-        apt:"",
-        city:"",
-        state:"",
-        country:"",
-        zipcode:""
-    });
-    const handleAddressChange = (event) => {
-        setAddress((prevalue) => {
-            return {
-                ...prevalue,
-                [event.target.name]: event.target.value
-            }
-        })
+    const[street, setStreet] = useState("");
+    const handleStreetChange = (event) => {
+        setStreet(event.target.value);
     };
+    const[apt, setApt] = useState("");
+    const handleAptChange = (event) => {
+        setApt(event.target.value);
+    };
+    const[city, setCity] = useState("");
+    const handleCityChange = (event) => {
+        setCity(event.target.value);
+    };
+    const[state, setState] = useState("");
+    const handleStateChange = (event) => {
+        setState(event.target.value);
+    };
+    const[country, setCountry] = useState("");
+    const handleCountryChange = (event) => {
+        setApt(event.target.value);
+    };
+    const[zipcode, setZipcode] = useState("");
+    const handleZipcodeChange = (event) => {
+        setCity(event.target.value);
+    };
+
 
     //corporate or individual -> checkbox group
     //depending on which box is checked -> I / C in the database
@@ -167,21 +171,47 @@ function Register(){
         event.preventDefault();
         console.log("handled registration");
 
-        axios.post("http://127.0.0.1:5000/register", {
-            email: customerInfo.email,
+        axios.post("http://127.0.0.1:5000/register",{
+            //customer common info
+            email: email,
+            phone: phone,
             password: password,
+            //address
+            add_street: street,
+            add_unit:apt,
+            add_city:city,
+            add_state:state,
+            add_country:country,
+            add_zipcode:zipcode,
 
 
-            zipcode: address.zipcode,
+            //type: i / c
+
+            cust_type: "I",
+
+            //individual customer info
+            first_name: indCustInfo.firstName,
+            middle_name: indCustInfo.middleName,
+            last_name: indCustInfo.lastName,
+            dri_lic_num: indCustInfo.driverLicenseNo,
+            ins_com_name: indCustInfo.insuranceCompanyName,
+            ins_pol_num: indCustInfo.insurancePolicyNo,
+
+            //corporate customer info
+            corp_name: corpCustInfo.corporateName,
+            regi_num: corpCustInfo.registrationNo,
+            emp_id: corpCustInfo.empId
 
 
 
 
-        }).then(function (response) {
-            console.log(response);
-        }).catch(function (error) {
-            console.log(error);
-        });
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
         setMessage("");
         setSuccessful(false);
@@ -219,15 +249,13 @@ function Register(){
     return (
         <div className="container">
             <h1>Register</h1>
-            <h3>
-                Nice to meet you!
+            <h3>Nice to meet you!
                 <br/>
                 Register and book your ride today!
             </h3>
             <br/>
             <div>
-                <p>
-                    Already have an account? Log in here.
+                <p>Already have an account? Log in here.
                     <br /></p>
                 <button onClick={routeChange} style={{width: "10%"}}>
                     Log in
@@ -241,15 +269,15 @@ function Register(){
                         <div>
                             <div className="input-container">
                                 <label>Email</label>
-                                <Input className = "input-form-box" onChange = {handleCustomerInfoChange}
-                                       type="text" placeholder="Email" defaultValue={customerInfo.email}
+                                <Input className = "input-form-box" onChange = {handleEmailChange}
+                                       type="text" placeholder="Email" defaultValue={email}
                                        validations={[required, validEmail]} />
                             </div>
 
                             <div className="input-container">
                                 <label>Mobile Phone</label>
-                                <Input className = "input-form-box" onChange = {handleCustomerInfoChange}
-                                       type="text" placeholder="Mobile Phone" defaultValue={customerInfo.phone}
+                                <Input className = "input-form-box" onChange = {handlePhoneChange()}
+                                       type="text" placeholder="Mobile Phone" defaultValue={phone}
                                        validations = {[required, validPhone]} />
                             </div>
 
@@ -266,38 +294,38 @@ function Register(){
 
                             <div className="input-container">
                                 <label>Street</label>
-                                <input className = "input-form-box" onChange = {handleAddressChange}
-                                       type="text" placeholder="Street" defaultValue={address.street} />
+                                <input className = "input-form-box" onChange = {handleStreetChange}
+                                       type="text" placeholder="Street" defaultValue={street} />
                             </div>
 
                             <div className="input-container">
                                 <label>Apt/Unit</label>
-                                <input className = "input-form-box" onChange = {handleAddressChange}
-                                       type="text" placeholder="Unit(optional)" defaultValue={address.apt} />
+                                <input className = "input-form-box" onChange = {handleAptChange}
+                                       type="text" placeholder="Unit(optional)" defaultValue={apt} />
                             </div>
 
                             <div className="input-container">
                                 <label>City</label>
-                                <input className = "input-form-box" onChange = {handleAddressChange}
-                                       type="text" placeholder="City" defaultValue={address.city} />
+                                <input className = "input-form-box" onChange = {handleCityChange}
+                                       type="text" placeholder="City" defaultValue={city} />
                             </div>
 
                             <div className="input-container">
                                 <label>State</label>
-                                <input className = "input-form-box" onChange = {handleAddressChange}
-                                       type="text" placeholder="State" defaultValue={address.state} />
+                                <input className = "input-form-box" onChange = {handleStateChange}
+                                       type="text" placeholder="State" defaultValue={state} />
                             </div>
 
                             <div className="input-container">
                                 <label>Country</label>
-                                <input className = "input-form-box" onChange = {handleAddressChange}
-                                       type="text" placeholder="Country" defaultValue={address.country} />
+                                <input className = "input-form-box" onChange = {handleCountryChange}
+                                       type="text" placeholder="Country" defaultValue={country} />
                             </div>
 
                             <div className="input-container">
                                 <label>Zipcode</label>
-                                <input className = "input-form-box" onChange = {handleAddressChange}
-                                       type="text" placeholder="Zipcode" defaultValue={address.zipcode} />
+                                <input className = "input-form-box" onChange = {handleZipcodeChange}
+                                       type="text" placeholder="Zipcode" defaultValue={zipcode} />
                             </div>
                             {/*<button onClick={handleSaveAddressInfo}>Submit Address Information</button>*/}
 
@@ -398,8 +426,10 @@ function Register(){
 
 
 
+                            <button>Finish Registration</button>
 
-                            <button onClick={routeChange}>Finish Registration</button>
+
+                            {/*<button onClick={routeChange}>Finish Registration</button>*/}
 
 
 
@@ -409,14 +439,14 @@ function Register(){
 
                 }
 
-                {message &&
-                    (<div className="form-group">
-                            <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
-                                {message}
-                            </div>
-                        </div>
-                    )}
-                <CheckButton style={{ display: "none" }} ref={checkBtn} />
+            {/*    {message &&*/}
+            {/*        (<div className="form-group">*/}
+            {/*                <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">*/}
+            {/*                    {message}*/}
+            {/*                </div>*/}
+            {/*            </div>*/}
+            {/*        )}*/}
+            {/*    <CheckButton style={{ display: "none" }} ref={checkBtn} />*/}
             </Form>
 
 

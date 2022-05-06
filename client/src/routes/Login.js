@@ -6,7 +6,7 @@ import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
 import axios from "axios";
 
-//⭐️⭐️⭐️⭐️⭐
+//could connect to the backend
 
 const required = (value) => {
     if (!value) {
@@ -114,10 +114,13 @@ function Login(){
 
                 {/*<button onClick={routeChange}>Log in</button>*/}
                 <div className="form-group">
-
-                    <button onClick={routeChange}>
+                    <button>
                         Log in
                     </button>
+
+                    {/*<button onClick={routeChange}>*/}
+                    {/*    Log in*/}
+                    {/*</button>*/}
 
                     {/*<button disabled={loading}>*/}
                     {/*    {loading &&*/}
@@ -128,7 +131,9 @@ function Login(){
                     <div>
                         <p><br />
                             Don't have an account yet? Register today!
-                        <br /></p>
+
+                        </p>
+                        <h5 />
                         <button onClick={routeChangeToRegister} style={{width: "10%"}}>
                             Register
                         </button>

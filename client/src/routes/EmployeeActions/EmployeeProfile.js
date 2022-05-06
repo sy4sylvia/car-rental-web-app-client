@@ -19,6 +19,10 @@ function EmployeeProfile() {
         let path = '/edit-vehicle';
         navigate(path);
     }
+    const editVehicleClass = () =>{
+        let path = '/edit-vehicle-class';
+        navigate(path);
+    }
 
     const updateOrder = () =>{
         let path = '/update-order';

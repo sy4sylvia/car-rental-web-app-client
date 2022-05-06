@@ -1,183 +1,475 @@
-import React, {useState, useReducer} from 'react';
-
-import {Link, useNavigate} from 'react-router-dom';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import CarTypes from "../selections/CarTypes";
-import PickUpLocations from "../selections/PickUpLocations";
-import DropOffLocations from "../selections/DropOffLocations";
-import Datepicker from "../selections/Datepicker";
+import React, {useState, useRef} from 'react';
+import { useNavigate } from "react-router-dom";
 import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import { isEmail } from "validator";
+import AuthService from "../services/auth.service";
+import "../index.css"
 import axios from "axios";
-import Select from "react-select";
+import {Checkbox} from "@mui/material";
 
-import {DateSingleInput} from '@datepicker-react/styled';
-
-function Test() {
-    //selection bar for the car type
-
-    // const options = [
-    const carTypeOptions = [
-        { value: 'standard', label: 'Standard' },
-        { value: 'midsize', label: 'Midsize' },
-        { value: 'suv', label: 'SUV' },
-        { value: 'premium', label: 'Premium' },
-        { value: 'miniVan', label: 'Mini Van' },
-        { value: 'others', label: 'Others' },
-    ];
-
-    const [carType, setCarTypeOption] = useState(null);
-
-    //
-    // const [carInformation, setCarInformation] = useState({
-    //     // carType:"",
-    //     pickUpLocation: "",
-    //     // dropOffLocation:"",
-    //     pickUpDate:"",
-    //     // dropOffDate:"",
-    // });
-
-
-    //pick up office location options selection bar
-    const officeLocationOptions = [
-        { value: 'henry', label: "1 Henry Street" },
-        { value: 'monroe', label: "490 Monroe Street" },
-        { value: 'west', label: "23 W 66th Street" },
-        { value: 'humboldt', label: "45 Humboldt Street" },
-        { value: 'union', label: "2 Union Street" },
-        { value: 'others', label: 'Others' },
-    ];
-    const [officeOption, setOfficeOption] = useState(null); //pick up office location
-
-    //date picker
-    const initialState = {
-        date: new Date(),
-        showDatepicker: false,
+//constraints on input fields
+const required = (value) => {
+    if (!value) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                This field is required!
+            </div>
+        );
     }
-    function reducer(state, action) {
-        switch (action.type) {
-            case 'focusChange':
-                return {...state, showDatepicker: action.payload}
-            case 'dateChange':
-                return action.payload
-            default:
-                throw new Error()
-        }
+};
+const validEmail = (value) => {
+    if (!isEmail(value)) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                This is not a valid email.
+            </div>
+        );
     }
-    const [state, dispatch] = useReducer(reducer, initialState)
+};
+const validPhone= (value) => {
+    if (value.length !== 10) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                The phone number must has 10 digits.
+            </div>
+        );
+    }
+};
+const validPassword = (value) => {
+    if (value.length < 6 || value.length > 20) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                The password must be between 6 and 20 characters.
+            </div>
+        );
+    }
+};
 
 
-    // const handleCarInformation = (event) => {
-    //     setCarInformation((prevalue) => {
-    //         return {
-    //             ...prevalue,
-    //             [event.target.name]: event.target.value
-    //         }
-    //     })
-    // }
+function Test(){
+    const form = useRef();
+    const checkBtn = useRef();
+    const [successful, setSuccessful] = useState(false);
+    const [message, setMessage] = useState("");
 
-    // const handleCarTypeInformation = (event) => {
-    //     setCarTypeOption(event.target.value);
-    // }
-    //
-    // const handleOfficeInformation = (event) => {
-    //     setOfficeOption(event.target.value);
-    // }
+    //common customer info
+    const [customerInfo, setCustomerInfo] = useState({
+        email:"",
+        phone:"",
+    });
 
-    const handleSearchCar = (event) => {
+    const[email, setEmail] = useState("");
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    }
+
+    const[phone, setPhone] = useState("");
+    const handlePhoneChange = (event) => {
+        setPhone(event.target.value);
+    }
+
+    const [password, setPassword] = useState("");
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    }
+
+
+    const handleCustomerInfoChange = (event) => {
+        setCustomerInfo((prevalue) => {
+            return {
+                ...prevalue,
+                [event.target.name]: event.target.value
+            }
+        })
+    };
+
+
+    //address information
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [address, setAddress] = useState({
+        street: "",
+        apt:"",
+        city:"",
+        state:"",
+        country:"",
+        zipcode:""
+    });
+
+    const[street, setStreet] = useState("");
+    const handleStreetChange = (event) => {
+        setStreet(event.target.value);
+    };
+
+
+    const handleAddressChange = (event) => {
+        setAddress((prevalue) => {
+            return {
+                ...prevalue,
+                [event.target.name]: event.target.value
+            }
+        })
+    };
+
+    //corporate or individual -> checkbox group
+    //depending on which box is checked -> I / C in the database
+    const [checkedIndividual, setCheckedIndividual] = useState(false);
+    // const handleCheckboxIndividual = (event) => {
+    //     setCheckedIndividual(event.target.value);
+    // };
+    const handleCheckboxIndividual = () => {
+        setCheckedIndividual(!checkedIndividual);
+    };
+
+    const [checkedCorporate, setCheckedCorporate] = useState(false);
+    // const handleCheckboxCorporate = (event) => {
+    //     setCheckedCorporate(event.target.value);
+    // };
+    const handleCheckboxCorporate = () => {
+        setCheckedCorporate(!checkedCorporate);
+    };
+
+
+    //individual personal info - first name, etcs
+    const[indCustInfo, setIndCustInfo] = useState({
+        firstName: "",
+        middleName:"",
+        lastName:"",
+        driverLicenseNo:"",
+        insuranceCompanyName:"", //insurance company name -> ins_com_name
+        insurancePolicyNo:"" //insurance policy number -> ins_pol_num
+    });
+
+    const handleIndividualInformationChange = (event) => {
+        setIndCustInfo(event.target.value);
+    };
+
+    //corporate customer information
+    const[corpCustInfo, setCorpCustInfo] = useState({
+        //corporate name no longer selected from selections -> input instead
+        corporateName:"",
+        registrationNo:"",
+        empId: "", //employee id -> database: emp_id
+    });
+
+    const handleCorpCustInfoChange = (event) => {
+        setCorpCustInfo((prevalue) => {
+            return {
+                ...prevalue,
+                [event.target.name]: event.target.value
+            }
+        })
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function handleRegister(event) { //click submitting form button
         event.preventDefault();
-        console.log("handled car information filtered by the user");
-        console.log(carType);
+        console.log("handled registration");
 
-        //display: Form submission canceled because the form is not connected
-        // axios.post('/corresponding-backend-url-not-provided', {
-        //
-        //     class_name: carType,
-        //     // class_name (MySQL) -> carType here
-        //
-        //     //office name, which is not in the original table
-        //     //no corresponding value
-        //     pickup_office: officeOption,
-        //     pickup_date: initialState.date,
-        //
-        // }).then(function (response) {
-        //     console.log(response);
-        // }).catch(function (error) {
-        //     console.log(error);
-        // });
+        axios.post("http://127.0.0.1:5000/register",{
+            //customer common info
+            email: email,
+            phone: phone,
+            password: password,
 
+            //address
+            add_street: street,
+            // add_unit:address.apt,
+            // add_city:address.city,
+            // add_state:address.state,
+            // add_country:address.country,
+            // add_zipcode:address.zipcode,
+            //
+            // //type: i / c
+            //
+            // cust_type: "I",
+            //
+            // //individual customer info
+            // first_name: indCustInfo.firstName,
+            // middle_name: indCustInfo.middleName,
+            // last_name: indCustInfo.lastName,
+            // dri_lic_num: indCustInfo.driverLicenseNo,
+            // ins_com_name: indCustInfo.insuranceCompanyName,
+            // ins_pol_num: indCustInfo.insurancePolicyNo,
+            //
+            // //corporate customer info
+            // corp_name: corpCustInfo.corporateName,
+            // regi_num: corpCustInfo.registrationNo,
+            // emp_id: corpCustInfo.empId
+
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        setMessage("");
+        setSuccessful(false);
+
+        //following: validation -> token
+
+        // form.current.validateAll();
+        //
+        // if (checkBtn.current.context._errors.length === 0) {
+        //     AuthService.register(customerInfo.email, customerInfo.phone, password).then(
+        //         (response) => {
+        //             setMessage(response.data.message);
+        //             setSuccessful(true);
+        //         },
+        //         (error) => {
+        //             const resMessage =
+        //                 (error.response && error.response.data && error.response.data.message)
+        //                 || error.message || error.toString();
+        //             setMessage(resMessage);
+        //             setSuccessful(false);
+        //         }
+        //     );
+        // }
     }
 
     let navigate = useNavigate();
     const routeChange = () =>{
-        let path = '/display';
+        alert("personal information submitted successfully.");
+        console.log("registration: successful");
+        let path = '/login';
         navigate(path);
     }
 
+
     return (
-        <Form onSubmit={handleSearchCar}>
-            <div className="container">
-                <h1>Search Cars</h1>
-                {/*<FontAwesomeIcon icon="fa-solid fa-calendar-day" />*/}
-                {/*<CarTypes />*/}
-                <div className="selection-bar">
-                    <label> Car Type </label>
-                    <Select
-                        onChange={setCarTypeOption}
-                        options={carTypeOptions}
-                        defaultValue={carType}
-                        theme={(theme) => ({
-                            ...theme,
-                            borderRadius: 0,
-                            colors: {
-                                ...theme.colors,
-                                neutral0: 'floralWhite',
-                                primary25: 'silver',
-                            },
-                        })}
-                    />
-                </div>
-
-                <div className="selection-bar">
-                    <label>Currently our offices are only located in NYC</label>
-                    {/*<PickUpLocations />*/}
-                    <Select
-                        onChange={setOfficeOption}
-                        options={officeLocationOptions}
-                        defaultValue={officeOption}
-                        theme={(theme) => ({
-                            ...theme,
-                            borderRadius: 0,
-                            colors: {
-                                ...theme.colors,
-                                neutral0: 'floralWhite',
-                                primary25: 'silver',
-                            },
-                        })}
-                    />
-                </div>
-
-
-                {/*<div className>*/}
-                {/*    <label>Pick-up Date</label>*/}
-                {/*    /!*<Datepicker />*!/*/}
-                {/*    <div className="date-picker">*/}
-                {/*        <DateSingleInput*/}
-                {/*            onDateChange={data => dispatch({type: "dateChange", payload: data})}*/}
-                {/*            onFocusChange={focusedInput => dispatch({type: "focusChange", payload: focusedInput})}*/}
-                {/*            date={state.date} // Date or null*/}
-                {/*            showDatepicker={state.showDatepicker} // Boolean*/}
-                {/*        />*/}
-                {/*    </div>*/}
-                {/*    /!*<input onChange = {handleCarInformation} type="text" placeholder="Pick-up Date" value={carInformation.pickUpDate} />*!/*/}
-                {/*</div>*/}
-
-                <h4 />
-
-                <button onClick={routeChange}>Search</button>
+        <div className="container">
+            <h1>Register</h1>
+            <h3>
+                Nice to meet you!
+                <br/>
+                Register and book your ride today!
+            </h3>
+            <br/>
+            <div>
+                <p>
+                    Already have an account? Log in here.
+                    <br /></p>
+                <button onClick={routeChange} style={{width: "10%"}}>
+                    Log in
+                </button>
             </div>
-        </Form>
+
+            <br/>
+            <Form onSubmit={handleRegister} name = "information" ref={form}>
+                {!successful &&
+                    (
+                        <div>
+                            <div className="input-container">
+                                <label>Email</label>
+                                <Input className = "input-form-box" onChange = {handleEmailChange}
+                                       type="text" placeholder="Email" defaultValue={email}
+                                       validations={[required, validEmail]} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Mobile Phone</label>
+                                <Input className = "input-form-box" onChange = {handlePhoneChange}
+                                       type="text" placeholder="Mobile Phone" defaultValue={phone}
+                                       validations = {[required, validPhone]} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Password</label>
+                                <Input className = "input-form-box" onChange = {handlePasswordChange}
+                                       type="password" placeholder="Password" defaultValue={password}
+                                       validations = {[required, validPassword]}/>
+                            </div>
+
+                            <div>
+                                <h2>Address Book</h2>
+                            </div>
+
+                            <div className="input-container">
+                                <label>Street</label>
+                                <input className = "input-form-box" onChange = {handleStreetChange}
+                                       type="text" placeholder="Street" defaultValue={street} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Apt/Unit</label>
+                                <input className = "input-form-box" onChange = {handleAddressChange}
+                                       type="text" placeholder="Unit(optional)" defaultValue={address.apt} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>City</label>
+                                <input className = "input-form-box" onChange = {handleAddressChange}
+                                       type="text" placeholder="City" defaultValue={address.city} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>State</label>
+                                <input className = "input-form-box" onChange = {handleAddressChange}
+                                       type="text" placeholder="State" defaultValue={address.state} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Country</label>
+                                <input className = "input-form-box" onChange = {handleAddressChange}
+                                       type="text" placeholder="Country" defaultValue={address.country} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Zipcode</label>
+                                <input className = "input-form-box" onChange = {handleAddressChange}
+                                       type="text" placeholder="Zipcode" defaultValue={address.zipcode} />
+                            </div>
+                            {/*<button onClick={handleSaveAddressInfo}>Submit Address Information</button>*/}
+
+                            <br />
+                            <h2>Belong to a company? {" "}
+                            </h2>
+
+                            <h3>
+
+                                {/*<input type="checkbox" id="topping" name="topping"*/}
+                                {/*       value={checkedIndividual} />*/}
 
 
+                                <Checkbox
+                                    value={checkedIndividual}
+                                    onChange={handleCheckboxIndividual}
+                                    label="Value 1"
+                                    // inputProps={{ 'aria-label': 'controlled' }}
+                                />
+                                "No - continue as an individual customer"
+                                <br />
+
+                                <Checkbox
+                                    value={checkedCorporate}
+                                    onChange={handleCheckboxCorporate}
+                                    // onChange to be changed to post type???
+                                    label="Value 2"
+                                />
+                                "Yes - please scroll down to the bottom to register as a corporate customer👇🏻👇👇🏾"
+
+
+                            </h3>
+                            <h2> Personal Information (for individual customer)</h2>
+
+                            <div className="input-container">
+                                <label>First Name</label>
+                                <input className = "input-form-box" onChange = {handleIndividualInformationChange}
+                                       type="text" placeholder="First Name" defaultValue={indCustInfo.firstName} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Middle Name</label>
+                                <input className = "input-form-box" onChange = {handleIndividualInformationChange}
+                                       type="text" placeholder="Middle Name(optional)" defaultValue={indCustInfo.middleName} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Last Name</label>
+                                <input className = "input-form-box" onChange = {handleIndividualInformationChange}
+                                       type="text" placeholder="Last Name" defaultValue={indCustInfo.lastName} />
+                            </div>
+
+                            {/*change password - another route*/}
+
+                            <div className="input-container">
+                                <label>Driver License Number</label>
+                                <input className = "input-form-box" onChange = {handleIndividualInformationChange}
+                                       type="text" placeholder="Driver License Number" defaultValue={indCustInfo.driverLicenseNo} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Insurance Company</label>
+                                <input className = "input-form-box" onChange = {handleIndividualInformationChange}
+                                       type="text" placeholder="Insurance Company" defaultValue={indCustInfo.insuranceCompanyName} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Insurance Policy Number</label>
+                                <input className = "input-form-box" onChange = {handleIndividualInformationChange}
+                                       type="text" placeholder="Insurance Policy Number" defaultValue={indCustInfo.insurancePolicyNo} />
+                            </div>
+
+
+
+                            <h3>
+                                <br />
+                                Register for corporate account with corporate discount only!
+                            </h3>
+
+
+
+                            {/*<CorpCustomerInfo />*/}
+                            <div className="input-container">
+                                <label>Corporate Name</label>
+                                <input className = "input-form-box" onChange = {handleCorpCustInfoChange}
+                                       type="text" placeholder="Corporate Name" defaultValue={corpCustInfo.corporateName} />
+                            </div>
+                            <div className="input-container">
+                                <label>Registration Number</label>
+                                <input className = "input-form-box" onChange = {handleCorpCustInfoChange}
+                                       type="text" placeholder="Registration Number" defaultValue={corpCustInfo.registrationNo} />
+                            </div>
+                            <div className="input-container">
+                                <label>Employee ID</label>
+                                <input className = "input-form-box" onChange = {handleCorpCustInfoChange}
+                                       type="text" placeholder="Employee ID" defaultValue={corpCustInfo.empId} />
+                            </div>
+
+
+
+                            <button>Finish Registration</button>
+
+
+                            {/*<button onClick={routeChange}>Finish Registration</button>*/}
+
+
+
+
+                        </div>
+                    )
+
+                }
+
+                {/*    {message &&*/}
+                {/*        (<div className="form-group">*/}
+                {/*                <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">*/}
+                {/*                    {message}*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        )}*/}
+                {/*    <CheckButton style={{ display: "none" }} ref={checkBtn} />*/}
+            </Form>
+
+
+            {/*<CommonCustomerInfo />*/}
+
+
+            {/*<UserAddressInfo />*/}
+
+
+            {/*<button onClick={routeChange}>Finish Registration</button>*/}
+
+        </div>
     );
 }
 

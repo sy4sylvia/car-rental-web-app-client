@@ -27,6 +27,7 @@ import UserPersonalInfo from "./containers/UserPersonalInfo";
 import CorpCustomerInfo from "./containers/CorpCustomerInfo";
 import EmployeeProfile from "./routes/EmployeeActions/EmployeeProfile";
 import DeleteCustomers from "./routes/EmployeeActions/DeleteCustomers";
+import EditVehicleClass from "./routes/EmployeeActions/EditVehicleClass";
 
 const rootElement = document.getElementById("root");
 render(<BrowserRouter>
@@ -58,6 +59,7 @@ render(<BrowserRouter>
                 <Route path = "employee-profile" element ={<EmployeeProfile /> } />
 
                 <Route path="delete-customers" element={<DeleteCustomers />} />
+                <Route path="edit-vehicle-class" element={<EditVehicleClass />} />
                 <Route path="edit-vehicle" element={<EditVehicle />} />
                 <Route path="update-order" element={<UpdateOrder />} />
             </Route>
