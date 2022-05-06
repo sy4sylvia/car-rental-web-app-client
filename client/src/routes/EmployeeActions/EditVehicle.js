@@ -23,19 +23,13 @@ function EditVehicle(){
     const [message, setMessage] = useState("");
 
 
-    const [vehicleInfo, setVehicleInfo] = useState({
-        make: "",
-        model: "",
-        year: "",
-        vin: "",
-        licencePlateNumber: ""
-    });
-
     const [make, setMake] = useState("");
     const [model, setModel] = useState("");
     const [year, setYear] = useState("");
     const [vin, setVIN] = useState("");
     const [licPlateNo, setLicPlateNo] = useState("");
+    const [vehicleClassId, setVehicleClassId] = useState("");
+    const [officeId, setOfficeId] = useState("");
 
     const handleMakeChange = (event) => {
         setMake(event.target.value);
@@ -52,7 +46,12 @@ function EditVehicle(){
     const handleLicPlateNoChange = (event) => {
         setLicPlateNo(event.target.value);
     }
-
+    const handleVehicleClassChange = (event) => {
+        setVehicleClassId(event.target.value);
+    }
+    const handleOfficeIdChange = (event) => {
+        setOfficeId(event.target.value);
+    }
 
 
 
@@ -66,9 +65,13 @@ function EditVehicle(){
         console.log("Edited vehicle information successfully!");
 
         axios.post("http://127.0.0.1:5000/edit-vehicle", {
-
-
-
+            make: make,
+            model: model,
+            year: year,
+            vin:vin,
+            lic_plt_num: licPlateNo,
+            class_id: vehicleClassId,
+            office_id: officeId
 
 
         }).then(function (response) {
@@ -99,6 +102,12 @@ function EditVehicle(){
                            placeholder="Make" defaultValue={make}
                            validations={[required]} />
                 </div>
+                <div className="input-container">
+                    <label>Model</label>
+                    <Input onChange = {handleModelChange} type="text"
+                           placeholder="Model" defaultValue={model}
+                           validations={[required]} />
+                </div>
 
                 <div className="input-container">
                     <label>Year of Manufacturing</label>
@@ -120,9 +129,22 @@ function EditVehicle(){
                 </div>
 
 
+                <div className="input-container">
+                    <label>Vehicle Class ID</label>
+                    <Input onChange = {handleVehicleClassChange} type="text"
+                           placeholder="Vehicle Class ID" defaultValue={vehicleClassId}
+                           validations={[required]} />
+                </div>
+                <div className="input-container">
+                    <label>Office ID</label>
+                    <Input onChange = {handleOfficeIdChange} type="text"
+                           placeholder="Office ID" defaultValue={officeId}
+                           validations={[required]} />
+                </div>
+
                 {/*<button onClick={routeChange}>Log in</button>*/}
                 <div>
-                    <button onClick>Confirm Update</button>
+                    <button onClick>Confirm</button>
                 </div>
 
                 <br />
