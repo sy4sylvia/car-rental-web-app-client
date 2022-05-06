@@ -121,18 +121,34 @@ function Register(){
 
 
     //individual personal info - first name, etcs
-    const[indCustInfo, setIndCustInfo] = useState({
-        firstName: "",
-        middleName:"",
-        lastName:"",
-        driverLicenseNo:"",
-        insuranceCompanyName:"", //insurance company name -> ins_com_name
-        insurancePolicyNo:"" //insurance policy number -> ins_pol_num
-    });
+    const[firstName, setFirstName] = useState("");
+    const[middleName, setMiddleName] = useState("");
+    const[lastName, setLastName] = useState("");
+    const[driverLicenseNo, setDriverLicenseNo] = useState("");
+    const[insuranceCompanyName, setInsuranceCompanyName] = useState("");
+    const[insurancePolicyNo, setInsurancePolicyNo] = useState("");
 
-    const handleIndividualInformationChange = (event) => {
-        setIndCustInfo(event.target.value);
+    const handleFirstNameChange = (event) => {
+        setFirstName(event.target.value);
     };
+    const handleMiddleNameChange = (event) => {
+        setMiddleName(event.target.value);
+    };
+    const handleLastNameChange = (event) => {
+        setLastName(event.target.value);
+    };
+    const handleDriverLicenseNoChange = (event) => {
+        setDriverLicenseNo(event.target.value);
+    };
+    const handleInsuranceCompanyNameChange = (event) => {
+        setInsuranceCompanyName(event.target.value);
+    };
+    const handleInsurancePolicyNoChange = (event) => {
+        setInsurancePolicyNo(event.target.value);
+    };
+    //insurance company name -> ins_com_name
+    // insurance policy number -> ins_pol_nu
+
 
     //corporate customer information
     const[corpCustInfo, setCorpCustInfo] = useState({
@@ -190,12 +206,12 @@ function Register(){
             cust_type: "I",
 
             //individual customer info
-            first_name: indCustInfo.firstName,
-            middle_name: indCustInfo.middleName,
-            last_name: indCustInfo.lastName,
-            dri_lic_num: indCustInfo.driverLicenseNo,
-            ins_com_name: indCustInfo.insuranceCompanyName,
-            ins_pol_num: indCustInfo.insurancePolicyNo,
+            first_name: firstName,
+            middle_name: middleName,
+            last_name: lastName,
+            dri_lic_num: driverLicenseNo,
+            ins_com_name: insuranceCompanyName,
+            ins_pol_num: insurancePolicyNo,
 
             //corporate customer info
             corp_name: corpCustInfo.corporateName,
@@ -362,40 +378,40 @@ function Register(){
 
                             <div className="input-container">
                                 <label>First Name</label>
-                                <input className = "input-form-box" onChange = {handleIndividualInformationChange}
-                                       type="text" placeholder="First Name" defaultValue={indCustInfo.firstName} />
+                                <input className = "input-form-box" onChange = {handleFirstNameChange}
+                                       type="text" placeholder="First Name" defaultValue={firstName} />
                             </div>
 
                             <div className="input-container">
                                 <label>Middle Name</label>
-                                <input className = "input-form-box" onChange = {handleIndividualInformationChange}
-                                       type="text" placeholder="Middle Name(optional)" defaultValue={indCustInfo.middleName} />
+                                <input className = "input-form-box" onChange = {handleMiddleNameChange}
+                                       type="text" placeholder="Middle Name(optional)" defaultValue={middleName} />
                             </div>
 
                             <div className="input-container">
                                 <label>Last Name</label>
-                                <input className = "input-form-box" onChange = {handleIndividualInformationChange}
-                                       type="text" placeholder="Last Name" defaultValue={indCustInfo.lastName} />
+                                <input className = "input-form-box" onChange = {handleLastNameChange}
+                                       type="text" placeholder="Last Name" defaultValue={lastName} />
                             </div>
 
                             {/*change password - another route*/}
 
                             <div className="input-container">
                                 <label>Driver License Number</label>
-                                <input className = "input-form-box" onChange = {handleIndividualInformationChange}
-                                       type="text" placeholder="Driver License Number" defaultValue={indCustInfo.driverLicenseNo} />
+                                <input className = "input-form-box" onChange = {handleDriverLicenseNoChange}
+                                       type="text" placeholder="Driver License Number" defaultValue={driverLicenseNo} />
                             </div>
 
                             <div className="input-container">
                                 <label>Insurance Company</label>
-                                <input className = "input-form-box" onChange = {handleIndividualInformationChange}
-                                       type="text" placeholder="Insurance Company" defaultValue={indCustInfo.insuranceCompanyName} />
+                                <input className = "input-form-box" onChange = {handleInsuranceCompanyNameChange}
+                                       type="text" placeholder="Insurance Company" defaultValue={insuranceCompanyName} />
                             </div>
 
                             <div className="input-container">
                                 <label>Insurance Policy Number</label>
-                                <input className = "input-form-box" onChange = {handleIndividualInformationChange}
-                                       type="text" placeholder="Insurance Policy Number" defaultValue={indCustInfo.insurancePolicyNo} />
+                                <input className = "input-form-box" onChange = {handleInsurancePolicyNoChange}
+                                       type="text" placeholder="Insurance Policy Number" defaultValue={insurancePolicyNo} />
                             </div>
 
 
@@ -423,8 +439,7 @@ function Register(){
                                 <input className = "input-form-box" onChange = {handleCorpCustInfoChange}
                                        type="text" placeholder="Employee ID" defaultValue={corpCustInfo.empId} />
                             </div>
-
-
+                            
 
                             <button>Finish Registration</button>
 
