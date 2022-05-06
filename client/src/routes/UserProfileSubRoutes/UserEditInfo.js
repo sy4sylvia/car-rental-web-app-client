@@ -2,7 +2,10 @@ import UserPersonalInfo from "../../containers/UserPersonalInfo";
 
 function UserEditInfo(){
     return (
-        <UserPersonalInfo />
+        <div className="container">
+            <UserPersonalInfo />
+        </div>
+
     );
 }
 export default UserEditInfo;

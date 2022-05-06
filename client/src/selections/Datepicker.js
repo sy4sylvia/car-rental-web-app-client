@@ -1,7 +1,6 @@
 import React, {useReducer} from 'react';
-
 import {DateSingleInput} from '@datepicker-react/styled';
-import { ThemeProvider } from "styled-components";
+
 
 const initialState = {
     date: new Date(),

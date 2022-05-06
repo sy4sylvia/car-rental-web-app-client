@@ -34,7 +34,6 @@ export default function UserPersonalInfo() {
     return (
         <div className="container">
             <h1>User Profile</h1>
-
             <form onSubmit={handleClick} name = "information">
 
                 <div className="input-container">

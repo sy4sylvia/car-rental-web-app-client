@@ -11,11 +11,15 @@ function Review() {
 
     return (
        <div>
-           <h2>Review the details of this car</h2>
+       <div style={{textAlign: "center", marginTop:"5%"}}>
+            <h2>Review the details of this car</h2>
            <h2>Daily odometer....</h2>
            <h2>Vehicle class....</h2>
+       </div>
            <OrderTables />
+           <div style={{textAlign: "center"}}>
            <button onClick={routeChange}>Continue</button>
+           </div>
        </div>
 
     );

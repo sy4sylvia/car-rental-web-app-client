@@ -11,7 +11,6 @@ function Complete(){
 
     return (
         <div className="container">
-            {/*style="color:blue;"*/}
             <h1>Congratulations!</h1>
             <h3>We have received your car rental request and will get back to you soon.
                 <br/>

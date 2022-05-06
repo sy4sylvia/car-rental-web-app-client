@@ -1,6 +1,5 @@
-import axios from "axios";
-
-const apiURL = "http://localhost:3000/api/auth/"; //3000?8080??
+import axios from "axios"; //to make HTTP requests
+const apiURL = "http://localhost:8080/api/auth/"; //backend listens on port 8080
 
 const register = (email, password) => {
     return axios.post(apiURL + "register", {
@@ -10,11 +9,12 @@ const register = (email, password) => {
 };
 
 const login = (email, password) => {
-    return axios.post(apiURL + "register", {
+    return axios.post(apiURL + "login", {
         email,
         password
     }).then((response) => {
         if (response.data.accessToken) {
+            //store or get JWT
             localStorage.setItem("user", JSON.stringify(response.data));
         }
         return response.data;
@@ -33,7 +33,7 @@ const AuthService = {
     register,
     login,
     logout,
-    getCurrentUser
+    getCurrentUser //get stored user information (including JWT)
 };
 
 export default AuthService;

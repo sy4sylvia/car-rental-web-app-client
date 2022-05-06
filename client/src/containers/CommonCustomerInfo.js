@@ -1,12 +1,13 @@
 import React, {useState, useRef} from 'react';
 import { useNavigate } from "react-router-dom";
 
-
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import AuthService from "../services/auth.service";
+import "../index.css"
+import axios from "axios";
 
 const required = (value) => {
     if (!value) {
@@ -57,7 +58,7 @@ function CommonCustomerInfo() {
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
 
-
+    //common customer info
     const [customerInfo, setCustomerInfo] = useState({
         email:"",
         phone:"",
@@ -80,25 +81,36 @@ function CommonCustomerInfo() {
 
     function handleRegister(event) { //click submitting form button
         event.preventDefault();
+        console.log("handled registration");
+
+        axios.post("testing url", {
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
+
         setMessage("");
         setSuccessful(false);
-        form.current.validateAll();
 
-        if (checkBtn.current.context._errors.length === 0) {
-            AuthService.register(customerInfo.email, customerInfo.phone, password).then(
-                (response) => {
-                    setMessage(response.data.message);
-                    setSuccessful(true);
-                },
-                (error) => {
-                    const resMessage =
-                        (error.response && error.response.data && error.response.data.message)
-                        || error.message || error.toString();
-                    setMessage(resMessage);
-                    setSuccessful(false);
-                }
-            );
-        }
+        //following: validation
+        // form.current.validateAll();
+        //
+        // if (checkBtn.current.context._errors.length === 0) {
+        //     AuthService.register(customerInfo.email, customerInfo.phone, password).then(
+        //         (response) => {
+        //             setMessage(response.data.message);
+        //             setSuccessful(true);
+        //         },
+        //         (error) => {
+        //             const resMessage =
+        //                 (error.response && error.response.data && error.response.data.message)
+        //                 || error.message || error.toString();
+        //             setMessage(resMessage);
+        //             setSuccessful(false);
+        //         }
+        //     );
+        // }
     }
 
     let navigate = useNavigate();
@@ -108,6 +120,13 @@ function CommonCustomerInfo() {
         navigate(path);
     };
 
+
+    //not working at the moment
+    const [buttonStyle, setButtonStyle] = useState("button");
+    const changeButtonStyle = () => {
+        console.log("you just clicked");
+        setButtonStyle("clicked");
+    };
 
     return (
         <div className>
@@ -141,7 +160,7 @@ function CommonCustomerInfo() {
 
                             {/*<button onClick={routeChange}>Submit</button>*/}
                             <div>
-                                <button>Submit</button>
+                                <button className={buttonStyle} onClick={changeButtonStyle}>Submit</button>
                             </div>
                         </div>
                     )

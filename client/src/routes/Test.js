@@ -1,50 +1,182 @@
-import React, {useState} from 'react';
-import UserPersonalInfo from "../containers/UserPersonalInfo";
-import OrderTables from "../containers/OrderTables";
+import React, {useState, useReducer} from 'react';
+
+import {Link, useNavigate} from 'react-router-dom';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import CarTypes from "../selections/CarTypes";
+import PickUpLocations from "../selections/PickUpLocations";
+import DropOffLocations from "../selections/DropOffLocations";
+import Datepicker from "../selections/Datepicker";
+import Form from "react-validation/build/form";
+import axios from "axios";
+import Select from "react-select";
+
+import {DateSingleInput} from '@datepicker-react/styled';
 
 function Test() {
+    //selection bar for the car type
 
-    //test textarea
+    // const options = [
+    const carTypeOptions = [
+        { value: 'standard', label: 'Standard' },
+        { value: 'midsize', label: 'Midsize' },
+        { value: 'suv', label: 'SUV' },
+        { value: 'premium', label: 'Premium' },
+        { value: 'miniVan', label: 'Mini Van' },
+        { value: 'others', label: 'Others' },
+    ];
 
-    const [state, setState] = useState({
-        essay: "Please input the discount coupon here."
+    const [carType, setCarTypeOption] = useState(null);
+
+    //
+    // const [carInformation, setCarInformation] = useState({
+    //     // carType:"",
+    //     pickUpLocation: "",
+    //     // dropOffLocation:"",
+    //     pickUpDate:"",
+    //     // dropOffDate:"",
+    // });
+
+
+    //pick up office location options selection bar
+    const officeLocationOptions = [
+        { value: 'henry', label: "1 Henry Street" },
+        { value: 'monroe', label: "490 Monroe Street" },
+        { value: 'west', label: "23 W 66th Street" },
+        { value: 'humboldt', label: "45 Humboldt Street" },
+        { value: 'union', label: "2 Union Street" },
+        { value: 'others', label: 'Others' },
+    ];
+    const [officeOption, setOfficeOption] = useState(null); //pick up office location
+
+    //date picker
+    const initialState = {
+        date: new Date(),
+        showDatepicker: false,
+    }
+    function reducer(state, action) {
+        switch (action.type) {
+            case 'focusChange':
+                return {...state, showDatepicker: action.payload}
+            case 'dateChange':
+                return action.payload
+            default:
+                throw new Error()
         }
-    );
-
-    const handleChange = (event) => {
-        setState((prevalue) => {
-            return {
-                ...prevalue,
-                [event.target.name]: event.target.value
-            }
-        })
     }
+    const [state, dispatch] = useReducer(reducer, initialState)
 
-    function handleSubmit(event) {
-        alert('An essay was submitted: ' + state.essay);
+
+    // const handleCarInformation = (event) => {
+    //     setCarInformation((prevalue) => {
+    //         return {
+    //             ...prevalue,
+    //             [event.target.name]: event.target.value
+    //         }
+    //     })
+    // }
+
+    // const handleCarTypeInformation = (event) => {
+    //     setCarTypeOption(event.target.value);
+    // }
+    //
+    // const handleOfficeInformation = (event) => {
+    //     setOfficeOption(event.target.value);
+    // }
+
+    const handleSearchCar = (event) => {
         event.preventDefault();
+        console.log("handled car information filtered by the user");
+        console.log(carType);
+
+        //display: Form submission canceled because the form is not connected
+        // axios.post('/corresponding-backend-url-not-provided', {
+        //
+        //     class_name: carType,
+        //     // class_name (MySQL) -> carType here
+        //
+        //     //office name, which is not in the original table
+        //     //no corresponding value
+        //     pickup_office: officeOption,
+        //     pickup_date: initialState.date,
+        //
+        // }).then(function (response) {
+        //     console.log(response);
+        // }).catch(function (error) {
+        //     console.log(error);
+        // });
+
     }
 
+    let navigate = useNavigate();
+    const routeChange = () =>{
+        let path = '/display';
+        navigate(path);
+    }
 
     return (
+        <Form onSubmit={handleSearchCar}>
+            <div className="container">
+                <h1>Search Cars</h1>
+                {/*<FontAwesomeIcon icon="fa-solid fa-calendar-day" />*/}
+                {/*<CarTypes />*/}
+                <div className="selection-bar">
+                    <label> Car Type </label>
+                    <Select
+                        onChange={setCarTypeOption}
+                        options={carTypeOptions}
+                        defaultValue={carType}
+                        theme={(theme) => ({
+                            ...theme,
+                            borderRadius: 0,
+                            colors: {
+                                ...theme.colors,
+                                neutral0: 'floralWhite',
+                                primary25: 'silver',
+                            },
+                        })}
+                    />
+                </div>
 
-    <div>
-        <OrderTables />
+                <div className="selection-bar">
+                    <label>Currently our offices are only located in NYC</label>
+                    {/*<PickUpLocations />*/}
+                    <Select
+                        onChange={setOfficeOption}
+                        options={officeLocationOptions}
+                        defaultValue={officeOption}
+                        theme={(theme) => ({
+                            ...theme,
+                            borderRadius: 0,
+                            colors: {
+                                ...theme.colors,
+                                neutral0: 'floralWhite',
+                                primary25: 'silver',
+                            },
+                        })}
+                    />
+                </div>
 
-        <form onSubmit={handleSubmit}>
-            <label>
-                Apply Discount:
 
-                <textarea value={state.essay} onChange={handleChange} />
-            </label>
-            <div className="input-container">
-                <label>First Name</label>
-                <input className = "input-form-box" onChange = {handleChange} type="text" placeholder="First Name" value={state.essay} />
+                {/*<div className>*/}
+                {/*    <label>Pick-up Date</label>*/}
+                {/*    /!*<Datepicker />*!/*/}
+                {/*    <div className="date-picker">*/}
+                {/*        <DateSingleInput*/}
+                {/*            onDateChange={data => dispatch({type: "dateChange", payload: data})}*/}
+                {/*            onFocusChange={focusedInput => dispatch({type: "focusChange", payload: focusedInput})}*/}
+                {/*            date={state.date} // Date or null*/}
+                {/*            showDatepicker={state.showDatepicker} // Boolean*/}
+                {/*        />*/}
+                {/*    </div>*/}
+                {/*    /!*<input onChange = {handleCarInformation} type="text" placeholder="Pick-up Date" value={carInformation.pickUpDate} />*!/*/}
+                {/*</div>*/}
+
+                <h4 />
+
+                <button onClick={routeChange}>Search</button>
             </div>
+        </Form>
 
-            <input type="submit" value="Submit" />
-        </form>
-    </div>
 
     );
 }

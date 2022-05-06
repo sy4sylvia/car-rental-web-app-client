@@ -24,6 +24,11 @@ function Home(){
                     Register
                 </button>
                 {' '}
+                {/*<button onClick={routeChangeToRegister} style={{width: "10%"}}>*/}
+                {/*    Register*/}
+                {/*</button>*/}
+                {/*{' '}*/}
+
                 <button onClick={routeChangeToLogin} style={{width: "10%"}}>
                     Log in
                 </button>

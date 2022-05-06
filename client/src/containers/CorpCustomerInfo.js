@@ -19,11 +19,6 @@ function CorpCustomerInfo(){
     };
 
     function handleClick(event) {
-        //after clicking the submit button -> should be saved to database
-        //then direct to car rental page
-
-        //form would automatically refresh the page
-        //prevent current page being refreshed after submitting information
         event.preventDefault();
     }
 

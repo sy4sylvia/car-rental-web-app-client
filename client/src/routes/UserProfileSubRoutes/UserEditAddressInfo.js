@@ -1,8 +1,11 @@
 import UserAddressInfo from "../../containers/UserAddressInfo";
+import UserPersonalInfo from "../../containers/UserPersonalInfo";
 
 function UserEditAddressInfo() {
     return (
-        <UserAddressInfo />
+        <div className="container">
+            <UserAddressInfo />
+        </div>
     );
 };
 

@@ -22,12 +22,11 @@ function OrderTables() {
         //duplicate orders for testing only
     ]
 
-
     return (
         <div className="order-tables">
             <table>
                 <tr>
-                    <th>Customer WOW No.</th>
+                    <th>Your WOW No.</th>
                     <th>Pick Up Date</th>
                     <th>Pick Up Office</th>
                     {/*get office name according to id*/}

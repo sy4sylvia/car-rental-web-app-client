@@ -5,7 +5,6 @@ import {useNavigate} from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import AuthService from "../../services/auth.service"
 
 const required = (value) => {
     if (!value) {
@@ -28,44 +27,44 @@ function EmployeeLogin(){
 
     const handleEmployeeIdChange = (event) => {
         setEmployeeId(event.target.value);
-        //actually not set...?send data back to database and verify?
     }
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
-        //actually not set...?send data back to database and verify?
     }
 
     function handleEmployeeLogin(event) {
         // form would refresh the page
         event.preventDefault();
 
-        setMessage("");
-        setLoading(true);
-        form.current.validateAll();
+        //JWT token -> validation -> uncomment later
 
-        if (checkBtn.current.context._errors.length === 0) {
-            AuthService.login(employeeId, password).then(
-                () => {
-                    navigate("/records");
-                    window.location.reload();
-                },
-                (error) => {
-                    const resMessage =
-                        (error.response && error.response.data && error.response.data.message)
-                        || error.message || error.toString();
-                    setLoading(false);
-                    setMessage(resMessage);
-                }
-            );
-        } else {
-            setLoading(false);
-        }
+        // setMessage("");
+        // setLoading(true);
+        // form.current.validateAll();
+        //
+        // if (checkBtn.current.context._errors.length === 0) {
+        //     AuthService.login(employeeId, password).then(
+        //         () => {
+        //             navigate("/records");
+        //             window.location.reload();
+        //         },
+        //         (error) => {
+        //             const resMessage =
+        //                 (error.response && error.response.data && error.response.data.message)
+        //                 || error.message || error.toString();
+        //             setLoading(false);
+        //             setMessage(resMessage);
+        //         }
+        //     );
+        // } else {
+        //     setLoading(false);
+        // }
     }
 
     let navigate = useNavigate();
     const routeChange = () =>{
-        let path = '/records';
+        let path = '/employee-profile';
         navigate(path);
     }
 
@@ -90,15 +89,15 @@ function EmployeeLogin(){
                            validations={[required]} />
                 </div>
 
-                {/*<button onClick={routeChange}>Log in</button>*/}
-                <div className="form-group">
-                    <button disabled={loading}>
-                        {loading && (
-                            <span className="spinner-border spinner-border-sm"></span>
-                        )}
-                        <span>Log in</span>
-                    </button>
-                </div>
+                <button onClick={routeChange}>Log in</button>
+                {/*<div className="form-group">*/}
+                {/*    <button disabled={loading}>*/}
+                {/*        {loading && (*/}
+                {/*            <span className="spinner-border spinner-border-sm"></span>*/}
+                {/*        )}*/}
+                {/*        <span>Log in</span>*/}
+                {/*    </button>*/}
+                {/*</div>*/}
                 {message && (
                     <div className="form-group">
                         <div className="alert alert-danger" role="alert">

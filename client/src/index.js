@@ -3,7 +3,6 @@ import {BrowserRouter, Routes, Route,} from "react-router-dom";
 
 import './index.css';
 
-
 import App from "./App";
 import Register from "./routes/Register";
 import Login from "./routes/Login";
@@ -24,6 +23,10 @@ import EmployeeLogin from "./routes/EmployeeActions/EmployeeLogin";
 import EditVehicle from "./routes/EmployeeActions/EditVehicle";
 import UpdateOrder from "./routes/EmployeeActions/UpdateOrder";
 import UserPersonalInfo from "./containers/UserPersonalInfo";
+import Profile from "./routes/Profile";
+import CorpCustomerInfo from "./containers/CorpCustomerInfo";
+import EmployeeProfile from "./routes/EmployeeActions/EmployeeProfile";
+import DeleteCustomers from "./routes/EmployeeActions/DeleteCustomers";
 
 const rootElement = document.getElementById("root");
 render(<BrowserRouter>
@@ -38,21 +41,25 @@ render(<BrowserRouter>
                 <Route path="search-cars" element={<SearchCars />} />
                 <Route path="display" element={<Display />} />
                 <Route path="checkout" element={<Checkout />} />
-                <Route path="review" element={<Review />} />
+                <Route path="review-pickup" element={<Review />} />
                 <Route path="complete" element={<Complete />} />
 
                 <Route path="user-profile" element={<UserProfile />} />
 
+
+                <Route path="corp-customer-info" element={<CorpCustomerInfo />} />
                 <Route path="user-profile-edit-info" element={<UserEditInfo />} />
                 <Route path="user-profile-edit-address" element={<UserEditAddressInfo />} />
                 <Route path="order-history" element={<OrderHistory />} />
 
-
-
+                {/*Employee actions*/}
                 {/*<Route path="employee" element={<Employee />} />*/}
                 <Route path="employee-login" element={<EmployeeLogin />} />
+                <Route path = "employee-profile" element ={<EmployeeProfile /> } />
+
+                {/*<Route path="records" element={<Records />} />*/}
                 <Route path="car-management" element={<CarManagement />} />
-                <Route path="records" element={<Records />} />
+                <Route path="delete-customers" element={<DeleteCustomers />} />
                 <Route path="edit-vehicle" element={<EditVehicle />} />
                 <Route path="update-order" element={<UpdateOrder />} />
             </Route>

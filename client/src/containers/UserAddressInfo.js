@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 
 
 export default function UserAddressInfo() {
     //only note down address for individual customers
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
     const [address, setAddress] = useState({
         street: "",
         apt:"",
@@ -28,10 +30,55 @@ export default function UserAddressInfo() {
 
     let navigate = useNavigate();
     const routeChange = () =>{
-        alert("address information submitted successfully.");
         let path = '/register';
         navigate(path);
     };
+
+    function handleSaveAddressInfo(event) {
+        alert("address information submitted successfully.");
+        event.preventDefault();
+
+        //not working
+        // useEffect(() => {
+        //     fetch("https://api.example.com/items")
+        //         .then(res => res.json())
+        //         .then(
+        //             (result) => {
+        //                 setIsLoaded(true);
+        //                 setAddress(result);
+        //             },
+        //
+        //             (error) => {
+        //                 setIsLoaded(true);
+        //                 setError(error);
+        //             }
+        //         )
+        // }, [])
+        //
+        // if (error) {
+        //     return <div>Error: {error.message}</div>;
+        // } else if (!isLoaded) {
+        //     return <div>Loading...</div>;
+        // } else {
+        //     return (
+        //         <ul>
+        //             {address.map(singleAddress => (
+        //                 <li key={singleAddress.id}>
+        //                     {singleAddress.street}
+        //                     {singleAddress.apt}
+        //                     {singleAddress.city}
+        //                     {singleAddress.state}
+        //                     {singleAddress.country}
+        //                     {singleAddress.zipCode}
+        //                 </li>
+        //             ))}
+        //         </ul>
+        //     );
+        // }
+
+
+    }
+
 
     return (
         <div className>
@@ -69,7 +116,7 @@ export default function UserAddressInfo() {
                     <label>Zipcode</label>
                     <input className = "input-form-box" onChange = {handleAddressChange} type="text" placeholder="Zipcode" defaultValue={address.zipcode} />
                 </div>
-                <button onClick={routeChange}>Submit Address Information</button>
+                <button onClick={handleSaveAddressInfo}>Submit Address Information</button>
             </form>
 
         </div>

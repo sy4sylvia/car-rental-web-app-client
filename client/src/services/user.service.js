@@ -1,6 +1,5 @@
 import axios from "axios";
-import AuthHeader from "./auth-header";
-
+import AuthHeader from "./auth-header"; //-> helper function, add JWT to HTTP header.
 
 const apiURL = "http://localhost:3000/api/test/"; //3000?5000?8080?
 const getPublicContent = () => {

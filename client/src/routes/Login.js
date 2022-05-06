@@ -4,7 +4,9 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
+import axios from "axios";
 
+//⭐️⭐️⭐️⭐️⭐
 
 const required = (value) => {
     if (!value) {
@@ -27,38 +29,51 @@ function Login(){
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
-        //actually not set...?send data back to database and verify?
     }
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
-        //actually not set...?send data back to database and verify?
     }
 
     const handleLogin = event => {
         event.preventDefault();
 
+        console.log("handled login");
+
+        axios.post("http://127.0.0.1:5000/login", {
+            email: email,
+            password: password
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+
+
+
+
         setMessage("");
         setLoading(true);
         form.current.validateAll();
-
-        if (checkBtn.current.context._errors.length === 0) {
-            AuthService.login(email, password).then(
-                () => {
-                    navigate("/user-profile");
-                    window.location.reload();
-                },
-                (error) => {
-                    const resMessage =
-                        (error.response && error.response.data && error.response.data.message)
-                        || error.message || error.toString();
-                    setLoading(false);
-                    setMessage(resMessage);
-                }
-            );
-        } else {
-            setLoading(false);
-        }
+        //
+        // if (checkBtn.current.context._errors.length === 0) {
+        //     AuthService.login(email, password).then(
+        //         () => {
+        //             navigate("/user-profile");
+        //             window.location.reload();
+        //         },
+        //         (error) => {
+        //             const resMessage =
+        //                 (error.response && error.response.data && error.response.data.message)
+        //                 || error.message || error.toString();
+        //             setLoading(false);
+        //             setMessage(resMessage);
+        //         }
+        //     );
+        // } else {
+        //     setLoading(false);
+        // }
 
     }
 
@@ -100,11 +115,16 @@ function Login(){
 
                 {/*<button onClick={routeChange}>Log in</button>*/}
                 <div className="form-group">
-                    <button disabled={loading}>
-                        {loading &&
-                            (<span className="spinner-border spinner-border-sm"></span>)}
-                        <span>Log in</span>
+
+                    <button onClick={routeChange}>
+                        Log in
                     </button>
+
+                    {/*<button disabled={loading}>*/}
+                    {/*    {loading &&*/}
+                    {/*        (<span className="spinner-border spinner-border-sm"></span>)}*/}
+                    {/*    <span>Log in</span>*/}
+                    {/*</button>*/}
 
                     <div>
                         <p><br />
@@ -117,13 +137,13 @@ function Login(){
 
                 </div>
 
-                {message &&
-                    (<div className="form-group">
-                        <div className="alert alert-danger" role="alert">
-                            {message}
-                        </div>
-                    </div>)}
-                <CheckButton style={{ display: "none" }} ref={checkBtn} />
+                {/*{message &&*/}
+                {/*    (<div className="form-group">*/}
+                {/*        <div className="alert alert-danger" role="alert">*/}
+                {/*            {message}*/}
+                {/*        </div>*/}
+                {/*    </div>)}*/}
+                {/*<CheckButton style={{ display: "none" }} ref={checkBtn} />*/}
             </Form>
 
         </div>

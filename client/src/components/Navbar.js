@@ -10,6 +10,22 @@ function Navbar() {
 
                 <Bars />
                 <NavMenu>
+
+                {/* <li
+                        className='nav-item'
+                        onMouseEnter={onMouseEnter}
+                        onMouseLeave={onMouseLeave}>
+                        <NavLink
+                            to='/user-profile'
+                            className='nav-links'
+                            onClick={closeMobileMenu}>
+                            Customers
+                            <i className='fas fa-caret-down' />
+                        </NavLink>
+                        {dropdown && <Dropdown />}
+                    </li> */}
+
+
                     <NavLink to="/register" activeStyle>Register</NavLink>
                     <NavLink to="/login" activeStyle>Log in</NavLink>
                     <NavLink to="/search-cars" activeStyle>Search Cars</NavLink>

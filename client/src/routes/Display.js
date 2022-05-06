@@ -5,6 +5,7 @@ import Navigation from "../containers/abandoned/Navigation";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
+import axios from "axios";
 
 // this page displays search results by the customers
 function Display() {
@@ -12,62 +13,89 @@ function Display() {
     const itemData = [
         {
             img: 'https://www.byri.net/wp-content/uploads/2021/07/Audi-A1-a-special-Entry-series.jpg',
-            title: "Audi A1",
-            author: '@rollelflex_graphy726',
+            brand: "Audi",
+            model: "A1",
+            carType:"SUV",
+            nextAvailableDate: "May 5th 2022",
+            vin: axios.get("...."),
+            //get from backend ->
+            // when chekout, would send back so that would be displayed
+            //on the review page
+
+            // title: ,
+            // author: '@rollelflex_graphy726',
         },
         {
             img: 'https://images.dealer.com/ddc/vehicles/2022/Audi/Q5/SUV/trim_45_S_line_Premium_a174ae/color/Florett%20Silver%20Metallic-L5L5-173%2C170%2C170-640-en_US.jpg?impolicy=resize&w=1024',
-            title: 'Audi Q5',
-            author: '@helloimnik',
+            brand: "Audi",
+            model: "Q5",
         },
         {
             img: "https://platform.cstatic-images.com/xlarge/in/v2/stock_photos/980c5437-dbd0-49fb-859d-591474a106a2/f2e59b72-0627-4694-9a87-48d74f5a681a.png",
-            title: 'BMW M3',
-            author: '@bkristastucchio',
+            brand: "BMW",
+            model: "M3",
         },
         {
             img: "https://cdn.motor1.com/images/mgl/WmQb1/s3/custom-bronco-builder-announces-6x6-for-customers-seeking-extra-wheels.webp",
-            title: 'Ford Bronco',
-            author: '@nolanissac',
+            brand: "Ford",
+            model: "Bronco",
         },
 
         // to be continued according to database
         {
-            img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-            title: 'Hats',
-            author: '@hjrc33',
+            img: 'https://www.byri.net/wp-content/uploads/2021/07/Audi-A1-a-special-Entry-series.jpg',
+            brand: "Audi",
+            model: "A1",
         },
         {
-            img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-            title: 'Honey',
-            author: '@arwinneil',
+            img: 'https://images.dealer.com/ddc/vehicles/2022/Audi/Q5/SUV/trim_45_S_line_Premium_a174ae/color/Florett%20Silver%20Metallic-L5L5-173%2C170%2C170-640-en_US.jpg?impolicy=resize&w=1024',
+            brand: "Audi",
+            model: "Q5",
         },
         {
-            img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-            title: 'Tomato basil',
-            author: '@shelleypauls',
+            img: "https://platform.cstatic-images.com/xlarge/in/v2/stock_photos/980c5437-dbd0-49fb-859d-591474a106a2/f2e59b72-0627-4694-9a87-48d74f5a681a.png",
+            brand: "BMW",
+            model: "M3"
         },
         {
-            img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-            title: 'Sea star',
-            author: '@peterlaster',
+            img: "https://cdn.motor1.com/images/mgl/WmQb1/s3/custom-bronco-builder-announces-6x6-for-customers-seeking-extra-wheels.webp",
+            brand: "Ford",
+            model: "Bronco",
         },
         {
-            img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-            title: 'Bike',
-            author: '@southside_customs',
+            img: 'https://www.byri.net/wp-content/uploads/2021/07/Audi-A1-a-special-Entry-series.jpg',
+            brand: "Audi",
+            model: "A1",
         },
+        {
+            img: 'https://images.dealer.com/ddc/vehicles/2022/Audi/Q5/SUV/trim_45_S_line_Premium_a174ae/color/Florett%20Silver%20Metallic-L5L5-173%2C170%2C170-640-en_US.jpg?impolicy=resize&w=1024',
+            brand: "Audi",
+            model: "Q5",
+        },
+        {
+            img: "https://platform.cstatic-images.com/xlarge/in/v2/stock_photos/980c5437-dbd0-49fb-859d-591474a106a2/f2e59b72-0627-4694-9a87-48d74f5a681a.png",
+            brand: "BMW",
+            model: "M3"
+        },
+        {
+            img: "https://cdn.motor1.com/images/mgl/WmQb1/s3/custom-bronco-builder-announces-6x6-for-customers-seeking-extra-wheels.webp",
+            brand: "Ford",
+            model: "Bronco",
+        },
+
     ];
 
     return (
 
         <div>
-            <h1>This page should display results according to customers' search</h1>
-            <h2>Here are some results!</h2>
-            <div className = "search-results">
+            <h1 style={{textAlign: "center", marginTop: "5%", marginBottom: "5%"}}>
+                Here are some results!
+                <br/>
+            </h1>
+            <div className = "search-results" style={{marginLeft: "10%", marginRight: "10%"}}>
                 <ImageList sx={{ width: 900, height: 800 }} cols={3} >
                     {itemData.map((item) => (
-                        <ImageListItem key={item.img}>
+                        <ImageListItem key={item.img} style={{marginLeft: "20%"}}>
                             <img
                                 src={`${item.img}?w=248&fit=crop&auto=format`}
                                 srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -75,20 +103,35 @@ function Display() {
                                 loading="lazy"
                             />
                             <ImageListItemBar
-                                title={item.title}
+                                title={item.brand + " " + item.model +" " + item.carType}
+
                                 subtitle={
-                                    <span>
-                                <a href="/review">
+                                <span>
+                                    <div>
+                                        {/*Car Type:*/}
+                                        {/*{}*/}
+
+                                        next available date  {item.nextAvailableDate}
+                                    </div>
+
+                                <a href="/review-pickup">
                                     <button>Check this one out!</button>
+                                    {/*when click the button, send corresponding vin to backend*/}
                                 </a>
                                         {/*by: {item.author}*/}
-                            </span>}
+                                </span>}
                                 position="below"
                             />
                         </ImageListItem>
                     ))}
                 </ImageList>
+
             </div>
+
+
+
+
+
 
 
         </div>
