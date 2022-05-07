@@ -64,7 +64,7 @@ function EditVehicle(){
         alert("Edited vehicle information successfully!");
         console.log("Edited vehicle information successfully!");
 
-        axios.post("http://127.0.0.1:5000/edit-vehicle", {
+        axios.post("http://127.0.0.1:5000/insert-vehicle", {
             make: make,
             model: model,
             year: year,
@@ -110,7 +110,7 @@ function EditVehicle(){
                 </div>
 
                 <div className="input-container">
-                    <label>Year of Manufacturing</label>
+                    <label>Date of Manufacturing</label>
                     <Input onChange = {handleYearChange} type="text"
                            placeholder="Year" defaultValue={year}
                            validations={[required]} />

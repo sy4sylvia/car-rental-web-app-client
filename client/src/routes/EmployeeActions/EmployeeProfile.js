@@ -16,16 +16,16 @@ function EmployeeProfile() {
     }
 
     const editVehicle = () =>{
-        let path = '/edit-vehicle';
+        let path = '/insert-vehicle';
         navigate(path);
     }
     const editVehicleClass = () =>{
-        let path = '/edit-vehicle-class';
+        let path = '/insert-vehicle-class';
         navigate(path);
     }
 
     const updateOrder = () =>{
-        let path = '/update-order';
+        let path = '/dropoff-order';
         navigate(path);
     }
 
@@ -68,7 +68,7 @@ function EmployeeProfile() {
             </div>
 
             <div className="input-container">
-                <button onClick={updateOrder}>Update Order Information</button>
+                <button onClick={updateOrder}>Drop off Order Information</button>
             </div>
 
             <br/>

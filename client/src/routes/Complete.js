@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 
 function Complete(){
+
+    // localStorage.clear();
     //route change after checking for corporate discount
     let navigate = useNavigate();
     const routeChange = () =>{

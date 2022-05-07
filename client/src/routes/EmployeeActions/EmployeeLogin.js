@@ -22,7 +22,7 @@ function EmployeeLogin(){
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
-    const [employeeId, setEmployeeId] = useState("");
+    const [employeeAcc, setEmployeeAcc] = useState("");
     const [password, setPassword] = useState("");
 
     let navigate = useNavigate();
@@ -31,8 +31,8 @@ function EmployeeLogin(){
         navigate(path);
     }
 
-    const handleEmployeeIdChange = (event) => {
-        setEmployeeId(event.target.value);
+    const handleEmployeeAccChange = (event) => {
+        setEmployeeAcc(event.target.value);
     }
 
     const handlePasswordChange = (event) => {
@@ -44,12 +44,14 @@ function EmployeeLogin(){
         console.log("handled employee login");
 
         axios.post("http://127.0.0.1:5000/employee-login", {
-            employee_id: employeeId,
+            employee_account: employeeAcc,
             password: password
         }).then(function (response) {
             console.log(response);
             if (response.status === 200) {
                 navigate('/employee-profile');
+            } else {
+                alert("Wrong account or password.");
             }
         }).catch(function (error) {
             console.log(error);
@@ -89,9 +91,9 @@ function EmployeeLogin(){
             <br/>
             <Form onSubmit={handleEmployeeLogin} name = "information">
                 <div className="input-container">
-                    <label>Employee ID</label>
-                    <Input onChange = {handleEmployeeIdChange} type="text"
-                           placeholder="Employee Id" defaultValue={employeeId}
+                    <label>Employee Account</label>
+                    <Input onChange = {handleEmployeeAccChange} type="text"
+                           placeholder="Employee Account Name" defaultValue={employeeAcc}
                            validations={[required]} />
                 </div>
 

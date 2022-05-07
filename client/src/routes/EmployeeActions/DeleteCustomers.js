@@ -38,6 +38,9 @@ function DeleteCustomers() {
             cust_customer_id: customerId,
         }).then(function (response) {
             console.log(response);
+            if (response.data.status === 200) {
+                alert("Success!");
+            }
 
 
         }).catch(function (error) {

@@ -13,17 +13,17 @@ import {DateSingleInput} from '@datepicker-react/styled';
 
 function SearchCars() {
     //selection bar for the car type
-    // const options = [
+
     const carTypeOptions = [
         { value: 'standard', label: 'Standard' },
         { value: 'midsize', label: 'Midsize' },
-        { value: 'suv', label: 'SUV' },
-        { value: 'premium', label: 'Premium' },
+        { value: 'SUV', label: 'SUV' },
+        { value: 'Premium SUV', label: 'Premium' },
         { value: 'miniVan', label: 'Mini Van' },
         { value: 'others', label: 'Others' },
     ];
 
-    const [carType, setCarTypeOption] = useState(null);
+    const [carType, setCarTypeOption] = useState("");
 
     //pick up office location options selection bar according state
     //FL NY CA
@@ -32,7 +32,7 @@ function SearchCars() {
         { value: 'CA', label: "CA" },
         { value: 'FL', label: "FL" },
     ];
-    const [officeOption, setOfficeOption] = useState(null); //pick up office location
+    const [officeOption, setOfficeOption] = useState(""); //pick up office location
 
 
     // //pick up office location options selection bar
@@ -76,30 +76,41 @@ function SearchCars() {
     const handleSearchCar = (event) => {
         event.preventDefault();
         console.log("handled car information filtered by the user");
-        console.log(carType);
+        console.log(carType.value);
 
         //display: Form submission canceled because the form is not connected
-        axios.post("http://127.0.0.1:5000/serach-cars", {
-            class_name: carType,
-            add_state: officeOption,
-            //don't use date any more
+        axios.post("http://127.0.0.1:5000/search-cars", {
+            class_name: carType.value,
+            add_state: officeOption.value,
             // pickup_date: initialState.date,
 
         }).then(function (response) {
                 console.log(response);
 
 
-
             if (response.status === 200) {
                 //get corresponding result
 
-                //[{"make": "Honda", "model": "Accord Hybrid", "over_mileage_fee": "3.00", "rental_rate": "40.00", "year": "Tue, 08 Mar
-                // 2022 00:00:00 GMT"}, {"make": "Subaru", "model": "Outback", "over_mileage_fee": "3.00", "rental_rate": "40.00", "year":
-                // "Wed, 06 Apr 2022 00:00:00 GMT"}]
+                var filteredVehicleInfo = response.data;
+                if (filteredVehicleInfo.length === 0) {
+                    alert("Sorry, we have no cars available that meet your requirement.");
+                    navigate('/search-cars');
+                } else {
+                    alert("Ready for some results?");
+                    // Put the object into storage
+                    localStorage.setItem('filteredVehicleInfo', JSON.stringify(filteredVehicleInfo));
+                    console.log(JSON.stringify(filteredVehicleInfo));
 
-                //take out and then send corresponding message to review page.
-                let path = '/review';
-                navigate(path);
+                    //take out and then send corresponding message to review page.
+                    navigate('/test');
+                }
+
+
+                console.log(response.data);
+
+                console.log(response.data.length);
+
+
             };
 
             }).catch(function (error) {
@@ -110,7 +121,7 @@ function SearchCars() {
 
     let navigate = useNavigate();
     const routeChange = () =>{
-        let path = '/display';
+        let path = '/test';
         navigate(path);
     }
 
@@ -127,7 +138,7 @@ function SearchCars() {
                     <Select
                         onChange={setCarTypeOption}
                         options={carTypeOptions}
-                        defaultValue={carType}
+                        defaultValue={carType.value}
                         theme={(theme) => ({
                             ...theme,
                             borderRadius: 0,
@@ -146,7 +157,7 @@ function SearchCars() {
                     <Select
                         onChange={setOfficeOption}
                         options={officeLocationOptions}
-                        defaultValue={officeOption}
+                        defaultValue={officeOption.value}
                         theme={(theme) => ({
                             ...theme,
                             borderRadius: 0,
@@ -176,7 +187,7 @@ function SearchCars() {
 
                 <h4 />
 
-                <button onClick={routeChange}>Search</button>
+                <button >Search</button>
             </div>
         </Form>
 

@@ -59,9 +59,9 @@ render(<BrowserRouter>
                 <Route path = "employee-profile" element ={<EmployeeProfile /> } />
 
                 <Route path="delete-customers" element={<DeleteCustomers />} />
-                <Route path="edit-vehicle-class" element={<EditVehicleClass />} />
-                <Route path="edit-vehicle" element={<EditVehicle />} />
-                <Route path="update-order" element={<UpdateOrder />} />
+                <Route path="insert-vehicle-class" element={<EditVehicleClass />} />
+                <Route path="insert-vehicle" element={<EditVehicle />} />
+                <Route path="dropoff-order" element={<UpdateOrder />} />
             </Route>
 
             <Route path="test" element={<Test />} />

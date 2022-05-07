@@ -64,6 +64,8 @@ function Login(){
             }
         }).catch(function (error) {
             console.log(error);
+            // alert("Invalid, please try again");
+            alert(error);
         });
 
 

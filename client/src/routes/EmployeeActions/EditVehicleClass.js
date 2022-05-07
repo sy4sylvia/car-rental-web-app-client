@@ -5,6 +5,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import axios from "axios";
+//insert
 
 function EditVehicleClass(){
     const required = (value) => {
@@ -43,7 +44,7 @@ function EditVehicleClass(){
         //testing
         alert("Edited vehicle information successfully!");
         console.log("Edited vehicle class information successfully!");
-        axios.post("http://127.0.0.1:5000/edit-vehicle-class", {
+        axios.post("http://127.0.0.1:5000/insert-vehicle-class", {
             over_mileage_fee: overMileageFee,
             rental_rate: rentalRate,
             class_name: className

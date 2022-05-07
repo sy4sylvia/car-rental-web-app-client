@@ -41,20 +41,23 @@ function UpdateOrder(){
         event.preventDefault();
 
         //testing
-        alert("Updated order information successfully!");
-        console.log("Updated order information successfully!!");
 
-        axios.post("http://127.0.0.1:5000/update-order", {
+
+        axios.post("http://127.0.0.1:5000/dropoff-order", {
             cust_customer_id: customerId,
             end_odometer: endOdometer,
             dropoff_office_id: dropOffOfficeId
 
-
-
         }).then(function (response) {
             console.log(response);
+            if (response.data.status === 200) {
+                alert("Updated order information successfully!");
+                console.log("Updated order information successfully!!");
+            }
+
         }).catch(function (error) {
             console.log(error);
+            // alert(error);
         });
 
 
@@ -69,7 +72,7 @@ function UpdateOrder(){
 
     return (
         <div className="container">
-            <h1>Update Order Information</h1>
+            <h1>Update Drop off Order Information</h1>
 
             <br/>
             <Form onSubmit={handleSubmitForm} name = "information" ref={form}>

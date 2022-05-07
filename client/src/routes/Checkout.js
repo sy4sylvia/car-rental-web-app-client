@@ -8,6 +8,8 @@ import axios from "axios";
 
 function Checkout(){
 
+    const[vin, setVIN] = useState("");
+
     const[paymentMethod, setPaymentMethod] = useState("");
     const[cardNumber, setCardNumber] = useState("");
     const [individualCouponId, setIndividualCouponId] =useState("");
@@ -20,6 +22,9 @@ function Checkout(){
         navigate(path);
     }
 
+    const handleVINChange = (event) => {
+        setVIN(event.target.value);
+    }
 
     const handlePaymentMethodChange = (event) => {
         setPaymentMethod(event.target.value);
@@ -61,6 +66,7 @@ function Checkout(){
         console.log("handled filter search results");
 
         axios.post("http://127.0.0.1:5000/checkout", {
+            vin: vin,
             payment_method: paymentMethod,
             card_number: cardNumber,
             coupon_id: individualCouponId,
@@ -71,9 +77,12 @@ function Checkout(){
                 //take out and then send corresponding message to review page.
                 let path = '/complete';
                 navigate(path);
-            };
+            } else {
+                alert("Sorry, someone reserved this car before you");
+            }
         }).catch(function (error) {
             console.log(error);
+            alert("Sorry, someone reserved this car before you");
         });
     }
 
@@ -91,6 +100,15 @@ function Checkout(){
                     <i className="icon fa-solid fa-bullseye fa-4x"></i>
 
                     <form onSubmit={handleClick}>
+
+                        <h2>Vehicle Info</h2>
+                        <div className="input-container">
+                            <label>VIN</label>
+                            <input onChange = {handleVINChange}
+                                   type="text" placeholder="VIN"
+                                   defaultValue={vin} />
+                        </div>
+
                         <h2>Payment Info</h2>
                         <div className="input-container">
                             <label>Payment Method</label>
@@ -129,7 +147,7 @@ function Checkout(){
                         <br/>
 
 
-                        <button onClick={routeChange}>Confirm and Submit</button>
+                        <button >Confirm and Submit</button>
                     </form>
                 </div>
             </div>
