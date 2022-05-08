@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import AuthService from "../services/auth.service";
 
 function Complete(){
 
@@ -7,6 +8,7 @@ function Complete(){
     //route change after checking for corporate discount
     let navigate = useNavigate();
     const routeChange = () =>{
+        AuthService.logout();
         let path = '/home';
         navigate(path);
     }

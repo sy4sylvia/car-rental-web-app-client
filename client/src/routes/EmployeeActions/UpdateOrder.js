@@ -40,6 +40,7 @@ function UpdateOrder(){
     const handleSubmitForm = event => {
         event.preventDefault();
 
+        alert("Updated order information successfully!");
         //testing
 
 
@@ -76,7 +77,6 @@ function UpdateOrder(){
 
             <br/>
             <Form onSubmit={handleSubmitForm} name = "information" ref={form}>
-
                 <div className="input-container">
                     <label>Customer WOW No.</label>
                     <Input onChange = {handleCustomerIdChange} type="text"
@@ -92,9 +92,9 @@ function UpdateOrder(){
                 </div>
 
                 <div className="input-container">
-                    <label>Drop Off Location</label>
+                    <label>Drop Off Location ID</label>
                     <Input onChange = {handleDropOffOfficeIdChange} type="text"
-                           placeholder="Drop Off Location" defaultValue={dropOffOfficeId}
+                           placeholder="Drop Off Location ID" defaultValue={dropOffOfficeId}
                            validations={[required]} />
                 </div>
 
@@ -110,16 +110,16 @@ function UpdateOrder(){
 
                 {/*<button onClick={routeChange}>Log in</button>*/}
                 <div>
-                    <button onClick>Confirm Update</button>
+                    <button>Confirm Update</button>
                 </div>
                 <br />
-                <div>
-                    <button onClick={() => {
-                        navigate('/employee-profile')}}>
-                        Go Back</button>
-                </div>
 
             </Form>
+            <div>
+                <button onClick={() => {
+                    navigate('/employee-profile')}}>
+                    Go Back</button>
+            </div>
 
         </div>
     );

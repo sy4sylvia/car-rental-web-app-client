@@ -51,7 +51,6 @@ function Checkout(){
 
     const handleCorporateCouponChange = (event) => {
         setCorporateCouponId((prevalue) => {
-            alert("You have chosen the corporate discount!");
             return {
                 ...prevalue,
                 [event.target.name]: event.target.value
@@ -70,15 +69,13 @@ function Checkout(){
             payment_method: paymentMethod,
             card_number: cardNumber,
             coupon_id: individualCouponId,
-            //coupon_id either individual or binded with corporate
+            //coupon_id either individual or bound with corporate
         }).then(function (response) {
             console.log(response);
             if (response.status === 200) {
                 //take out and then send corresponding message to review page.
                 let path = '/complete';
                 navigate(path);
-            } else {
-                alert("Sorry, someone reserved this car before you");
             }
         }).catch(function (error) {
             console.log(error);
@@ -129,7 +126,7 @@ function Checkout(){
                             <label>Individual Discount Coupon: </label>
                             <input onChange = {handleIndividualCouponChange}
                             type="text" placeholder="Individual Coupon Id" defaultValue={individualCouponId} />
-                            <button style={{width: "15%"}}>Apply</button>
+                            {/*<button style={{width: "15%"}}>Apply</button>*/}
                         </div>
 
                         <h4></h4>
@@ -139,7 +136,7 @@ function Checkout(){
                             <input onChange = {handleCorporateCouponChange}
                             type="text" placeholder="Corporate Coupon Id" defaultValue={corporateCouponId} />
                             {/*<input onChange = {handleCouponChange} type="text" placeholder="Please input the discount coupon here." value={coupon.couponId} />*/}
-                            <button style={{width: "15%"}}>Choose</button>
+                            {/*<button style={{width: "15%"}}>Choose</button>*/}
                         </div>
 
                         <br/>

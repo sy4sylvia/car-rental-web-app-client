@@ -15,10 +15,12 @@ function SearchCars() {
     //selection bar for the car type
 
     const carTypeOptions = [
-        { value: 'standard', label: 'Standard' },
-        { value: 'midsize', label: 'Midsize' },
+        { value: 'Small Car', label: 'Small Car' },
+        { value: 'Mid-size Car', label: 'Midsize Car' },
         { value: 'SUV', label: 'SUV' },
-        { value: 'Premium SUV', label: 'Premium' },
+        { value: 'Premium SUV', label: 'Premium SUV' },
+        { value: 'Luxury Car', label: 'Luxury Car' },
+        { value: 'Station Wagon', label: 'Station Wagon' },
         { value: 'miniVan', label: 'Mini Van' },
         { value: 'others', label: 'Others' },
     ];
@@ -34,17 +36,6 @@ function SearchCars() {
     ];
     const [officeOption, setOfficeOption] = useState(""); //pick up office location
 
-
-    // //pick up office location options selection bar
-    // const officeLocationOptions = [
-    //     { value: 'henry', label: "1 Henry Street" },
-    //     { value: 'monroe', label: "490 Monroe Street" },
-    //     { value: 'west', label: "23 W 66th Street" },
-    //     { value: 'humboldt', label: "45 Humboldt Street" },
-    //     { value: 'union', label: "2 Union Street" },
-    //     { value: 'others', label: 'Others' },
-    // ];
-    // const [officeOption, setOfficeOption] = useState(null); //pick up office location
 
     //date picker
     const initialState = {
@@ -63,15 +54,6 @@ function SearchCars() {
     }
     const [state, dispatch] = useReducer(reducer, initialState)
 
-
-    // const handleCarInformation = (event) => {
-    //     setCarInformation((prevalue) => {
-    //         return {
-    //             ...prevalue,
-    //             [event.target.name]: event.target.value
-    //         }
-    //     })
-    // }
 
     const handleSearchCar = (event) => {
         event.preventDefault();
@@ -102,14 +84,12 @@ function SearchCars() {
                     console.log(JSON.stringify(filteredVehicleInfo));
 
                     //take out and then send corresponding message to review page.
-                    navigate('/test');
+                    navigate('/display');
                 }
-
 
                 console.log(response.data);
 
                 console.log(response.data.length);
-
 
             };
 
@@ -121,7 +101,7 @@ function SearchCars() {
 
     let navigate = useNavigate();
     const routeChange = () =>{
-        let path = '/test';
+        let path = '/display';
         navigate(path);
     }
 

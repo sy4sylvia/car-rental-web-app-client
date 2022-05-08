@@ -36,9 +36,8 @@ function UserProfile(){
 
     return (
         <div className="container">
-            <h1> Hello{" "} </h1>
-            {/*followed by the customer name retrieved from database*/}
-           <h4>User profile home page - in progress</h4>
+            <h1>Customer Profile</h1>
+            <h3></h3>
             <div>
                 {/*information only available to individual customers*/}
                 <button onClick={routeChangeEditInfo}>My Personal information</button>
@@ -46,11 +45,11 @@ function UserProfile(){
             <br />
 
 
-            <div>
-                {/*information only available to individual customers*/}
-                <button onClick={routeChangeEditCorporateInfo}>Corporate Information</button>
-            </div>
-            <br />
+            {/*<div>*/}
+            {/*    /!*information only available to individual customers*!/*/}
+            {/*    <button onClick={routeChangeEditCorporateInfo}>Corporate Information</button>*/}
+            {/*</div>*/}
+            {/*<br />*/}
 
 
             <div>
@@ -60,11 +59,6 @@ function UserProfile(){
 
             <div>
                 <button onClick={routeChangeViewOrder}>My orders</button>
-            </div>
-            <br />
-
-            <div>
-                <button onClick={routeChangeViewCoupon}>My coupons</button>
             </div>
             <br />
 
